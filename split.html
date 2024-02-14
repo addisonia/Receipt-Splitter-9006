@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesSplit.css">
+    <title>Split</title>
+</head>
+<body>
+    <div class="Home">
+        <button onclick="home()">Home</button>
+    </div>
+
+    <div class="input-region">
+        <div class="row">
+            <form id="buyersForm">
+                <label for="buyerName">Buyers: </label>
+                <input type="text" id="buyerName" name="buyerName">
+                <button id="addBuyerButton" onclick="addBuyer()">Add</button>
+            </form>
+    
+            <form id="taxForm">
+                <label for="taxAmount">Tax: </label>
+                <input type="number" id="taxAmount" name="taxAmount" step=0.01 required>
+                <button onclick="addTax()">Enter</button>
+            </form>
+        </div>
+
+        <form id="itemForm">
+            <div class="item-name-container">
+                <label for="itemName">Item: </label>
+                <input type="text" id="itemName" name="itemName">
+            </div>
+            
+            <div class="item-price-container">
+                <label for="itemPrice">Price: $</label>
+                <input type="number" id="itemPrice" name="itemPrice" step=0.01>
+                <button id="submitItemButton" onclick="submitItem()">Add</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script src="split.js"></script>
+
+    <!-- Cost per buyer section -->
+    <div id="cost-per-buyer-section">
+        <p><strong>Cost per Buyer: </strong></p>
+        <div id="cost-per-buyer-list"></div>
+    </div>
+
+    <!-- display titles -->
+    <div id="display-titles" class="grid-container">
+        <div>Item</div>
+        <div>Price</div>
+        <div>Buyers</div>
+    </div>
+
+    <!-- display info -->
+    <div id="display-info">
+        <!-- <div class="item-display"></div>
+
+        <div class="price-display"></div>
+
+        <div class="buyers-display"></div>
+
+        <div class="cost-display"></div> -->
+    </div>
+    
+</body>
+</html>

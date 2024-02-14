@@ -1,0 +1,73 @@
+
+- move cost per buyer to above display grid and below item and
+price inputs area. should look like this:
+
+    -- input area --
+    -----------------------------
+    Cost per buyer:
+    Buyer 1: cost
+    Buyer 2: cost
+    _____________________________
+
+    -- display grid -- 
+____________________________________
+|   item   | price |     buyers    |
+------------------------------------
+| bread    |   $4  | jack adds     |                                 |
+| spagh    |  $3.1 | adds          |                                 |
+|   milk   | $3.09 | jack          |
+
+
+
+----------------------
+
+BUGS:
+
+
+-------------
+
+TO ADD:
+- tax mode switch (even split | proportional split)
+
+-------------
+
+
+
+
+
+------------------------------
+OTHER IDEAS:
+------------------------------
+
+- dont tax food items
+(maybe put "tax" in front of the item)
+(machine learning food or not food model??)
+
+- vegan option
+(type VEGAN at end of buyer name to auto uncheck non vegan items)
+
+- weighted items option?
+
+- have a switch button so user can choose between proportional 
+tax and even split tax
+
+- for buyer name checkbox maybe do a green fill quare around name
+to indicate yes for item and when clicked turn red to indicate no
+
+-add a reset button
+-add clear items button
+-add remove item button
+
+
+
+- for home page: when spacebar is pressed go to split page
+
+- remove like asian women in your area ad??
+
+- have it save the split data when you go to the home screen?
+
+- have a save option (to like csv or something?)?
+
+
+
+- add snake game

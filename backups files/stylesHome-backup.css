@@ -1,0 +1,124 @@
+/* Global styles */
+:root {
+    --white: #ffffff;
+    --off-white: #ede7d8;
+    --transp-white-1: rgba(255,255,255,0.25);
+    --transp-white-2: rgba(255,255,255,0.1);
+    --blue-1: #62b8f5;
+    --blue02: #4475ef;
+    --shadow: rgba(3,46,87,0.2);
+    --dark-shadow: #2e2b3d;
+    --green: #08f800;
+    --yuck: #5c540b;
+    --yuckLight: #9e9b7b;
+    --yellow: #e3d400;
+    --blood: rgb(182, 57, 11);
+
+}
+
+
+*{
+    padding: 0; /* Removes padding from all elements */
+    margin: 0; /* Removes margins from all elements */
+    box-sizing: border-box; /* Changes the box model to include padding and border in the element's total width and height */
+    font-family: "Tenorite"; /* Sets a default font for all elements */
+}
+
+/* Body styling */
+body{
+    background-color: var(--yuck); /* Sets the background color of the body */
+    display: flex; /* Enables flex layout */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    min-height: 100vh; /* Full height of the viewport */
+    flex-direction: column; /* Stacks items vertically */
+
+}
+
+
+
+.flex-container {
+    display: flex; /* Enables Flexbox */
+    align-items: center; /* Vertically centers the items */
+    justify-content: center; /* Horizontally centers the items */
+    gap: 20px; /* Adds space between the image and the button container */
+    width: 100%;
+}
+
+/* Centered container for content */
+.centered-container {
+    min-width: 250px;
+    text-align: center; /* Centers the text inside the container */
+    background-color: var(--yuckLight); /* Background color of the container */
+    padding: 40px 20px; /* Adds padding inside the container */
+    border-radius: 15px; /* Rounds the corners of the container */
+    display: inline-block; /* Fits content width */
+    margin: auto; /* Auto margin for auto centering */
+}
+
+.version-gif {
+    max-width: 80%; /* Ensures the GIF is not wider than its container */
+    height: auto; /* Keeps the GIF's aspect ratio */
+    display: block; /* Makes the GIF a block-level element */
+    margin: 0 auto 20px; /* Centers the GIF and adds some space below it */
+    margin-top: 10px;
+}
+
+
+/* Button styling for a consistent look across the site */
+button{
+    background-color: var(--yellow); /* Sets the background color of buttons */
+    border: 2px solid black; /* Removes the default border from buttons */
+    border-radius: 5px; /* Rounds the corners of the buttons */
+    padding: 15px 10px; /* Adds padding inside the buttons for space around the text */
+    color: black; /* Sets the text color inside the buttons */
+    cursor: -webkit-grab; /* Pointer cursor on hover */
+    font-size: 24px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    display: inline-block; /* Inline block display */
+    margin-top: 20px; /* Space above the button */
+    transition: background-color 0.3s; /* Smooth color transition */
+
+}
+
+.ad5 {
+    object-fit: cover;
+    width: auto; /* Adjusts the width of ad5 to your preference */
+    height: auto; /* Maintains the aspect ratio of ad5 */
+    margin-left: 10px;
+}
+
+
+    
+.bottom-ads {
+    display: flex; /* Use Flexbox for layout */
+    flex-wrap: wrap; /* Allows items to wrap as needed */
+    justify-content: space-between; /* Spaces out the ads evenly */
+    align-items: flex-start; /* Align items at the start of the container */
+    margin-bottom: 10px;
+}
+
+.bottom-ads .ad1, .bottom-ads .ad3, .bottom-ads .ad4 {
+    flex: 1; /* Allows the ads to grow and fill the space */
+    margin: 10px; /* Adds some space around the ads */
+}
+
+.bottom-ads .ad3, .bottom-ads .ad4 {
+    width: calc(50% - 20px); /* Sets width to fill half the container minus margin */
+}
+
+.bottom-ads .ad1 {
+    width: 100%; /* Allows ad1 to fill the entire width */
+}
+
+  
+
+
+
+
+button:hover {
+    background-color: var(--green); /* Lighter color on hover */
+}
+
+
+
