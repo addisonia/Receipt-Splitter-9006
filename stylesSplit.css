@@ -180,7 +180,7 @@ button:hover {
     display: grid;
     grid-template-columns: 0.7fr 0.5fr 1.8fr;
     gap: 0px;
-    row-gap: 7.5px;
+    row-gap: 0px; /*gap between display rows */
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 30px;
@@ -200,7 +200,7 @@ button:hover {
 .item-price,
 .item-buyers{
     border: 1px solid #000;
-    padding: 5px;
+    padding: 10px; /*height of display rows*/
     align-self: stretch; /* Ensures that the cell stretches to fill the row height */
     word-break: break-word; /* Allows the text to wrap within the container */
     overflow-wrap: break-word; /* Ensures words break to prevent overflow */
