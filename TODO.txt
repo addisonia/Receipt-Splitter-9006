@@ -28,6 +28,7 @@ BUGS:
 
 TO ADD:
 - tax mode switch (even split | proportional split)
+- different views for different reported screen sizes (mobile view)
 
 -------------
 
