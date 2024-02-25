@@ -2,7 +2,9 @@
 BUGS:
 ------------------------------
 
--fix ad6 not loading
+- fix ad6 not loading
+- grid lines on display are off by like a pixel from title
+display
 
 
 
@@ -19,7 +21,6 @@ is entered
 
 - Settings button
     - Accessibility ideas within settings:
-        - dark mode option
         - alternating white and light gray background color 
         on display grid for ease of seeing?
         - for buyer name checkbox maybe do a green fill 

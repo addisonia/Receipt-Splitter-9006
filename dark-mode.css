@@ -57,3 +57,9 @@ body.dark-mode #settingsButton .fa-gear {
 body.dark-mode #settingsButton:hover .fa-gear {
     color: var(--blue02) !important; 
   }
+
+
+/* change grid lines color */
+body.dark-mode .item-row > div {
+    border-color: #ffffff; /* Sets the border color to white */
+  }
