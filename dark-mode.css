@@ -12,7 +12,11 @@
     --yuckLight: #9e9b7b;
     --yellow: #e3d400;
     --blood: rgb(182, 57, 11);
-    --orange: #de910d
+    --orange: #de910d;
+
+    --dmBlue: #6d86b0;
+    --dmRed: #7b584f;
+    --dmYuckLight: #67654d;
 
 }
 
@@ -32,7 +36,17 @@ body.dark-mode {
     color: #e0e0e0;
   }
   
+
+body.dark-mode .input-region {
+  background-color: #121212; /* Or whatever your dark mode background color is */
+}
  
+/* Change label text color to white in dark mode */
+body.dark-mode label {
+    color: #ffffff; /* Sets text color to white */
+  }
+
+
 /* This ensures text in the settings popup remains the same in dark mode */
 body.dark-mode .popup {
     color: #000;
@@ -40,7 +54,7 @@ body.dark-mode .popup {
 
 /* This changes the button outlines to white in dark mode */
 body.dark-mode button {
-    border: 1px solid var(--yellow) /* White border for buttons */
+    border: 2px solid var(--dark-shadow) /* White border for buttons */
   }
   
 /* If you have specific buttons you want to exclude, you can reverse the effect */
@@ -62,4 +76,19 @@ body.dark-mode #settingsButton:hover .fa-gear {
 /* change grid lines color */
 body.dark-mode .item-row > div {
     border-color: #ffffff; /* Sets the border color to white */
+  }
+
+
+
+/* Change the background colors for specific sections in dark mode */
+body.dark-mode #buyersForm {
+    background-color: var(--dmBlue); /* Dark mode blue for buyers section */
+  }
+  
+  body.dark-mode #taxForm {
+    background-color: var(--dmRed); /* Dark mode red for tax section */
+  }
+  
+  body.dark-mode #itemForm {
+    background-color: var(--dmYuckLight); /* Dark mode yellowish for item/price section */
   }
