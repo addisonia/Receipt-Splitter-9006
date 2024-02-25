@@ -48,3 +48,12 @@ body.dark-mode button#settingsButton {
     border: none; /* Removes the border from the settings button, if desired */
   }
 
+/* Change the settings gear icon to yellow in dark mode */
+body.dark-mode #settingsButton .fa-gear {
+    color: var(--yellow) !important;
+  }
+
+/* Add !important to the hover effect in dark mode to ensure it takes precedence */
+body.dark-mode #settingsButton:hover .fa-gear {
+    color: var(--blue02) !important; 
+  }
