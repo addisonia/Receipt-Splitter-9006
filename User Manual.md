@@ -13,6 +13,11 @@
 - **Enter**: Jump from item to price if there is no value entered in price (otherwise submits item to display).
 
 
+## Settings Button:
+- **Dark Mode**: changes background and button colors to fit a dark mode theme when switch button is toggled
+
+
+
 ## Inputs:
 
 ### Buyers input:
