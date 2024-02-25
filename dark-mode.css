@@ -72,6 +72,11 @@ body.dark-mode #settingsButton:hover .fa-gear {
     color: var(--blue02) !important; 
   }
 
+/* Targeting the label for Dark Mode within the popup for dark mode specifically */
+body.dark-mode .popup label[for='darkModeToggle'] {
+    color: #000; /* Sets the label text color to black */
+  }
+
 
 /* change grid lines color */
 body.dark-mode .item-row > div {
