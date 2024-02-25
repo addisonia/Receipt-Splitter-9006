@@ -1,0 +1,75 @@
+------------------------------
+BUGS:
+------------------------------
+
+-fix ad6 not loading
+
+
+
+------------------------------
+TO ADD:
+------------------------------
+
+- split tax evenly among all buyers when there are no
+items entered yet
+
+- add "Enter a buyer" in faded text in the text box
+for Buyers and have it go away after the first buyer
+is entered
+
+- Settings button
+    - Accessibility ideas within settings:
+        - dark mode option
+        - alternating white and light gray background color 
+        on display grid for ease of seeing?
+        - for buyer name checkbox maybe do a green fill 
+        square around name to indicate yes for item and when 
+        clicked turn red to indicate no
+    - have a switch button so user can choose between 
+    proportional tax and even split tax
+    - have a save option (to like csv or something)
+
+
+- have it save the split data when you go to the home screen
+(use local storage method for now)
+- add a reset/clear button to split page
+
+
+
+------------------------------
+OTHER IDEAS:
+------------------------------
+
+- use firebase cloud storage (spark plan) to save data
+
+-add remove item button (trash can symbol?)
+
+- create a login button where users can create an
+account to save receipt data
+
+
+
+Machine learning related ideas:
+- dont tax food items
+(maybe put "tax" in front of the item)
+(machine learning food or not food model??)
+- vegan option
+(type VEGAN at end of buyer name to auto uncheck non 
+vegan items)
+
+
+- different views for different reported screen sizes 
+(mobile view) use react??
+
+
+- weighted items option?
+
+- multiple of same items option (automath?)
+
+
+
+- for home page: when spacebar is pressed go to split page
+
+
+
+- add snake game
