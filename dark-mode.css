@@ -1,0 +1,50 @@
+:root {
+    --white: #ffffff;
+    --off-white: #ede7d8;
+    --transp-white-1: rgba(255,255,255,0.25);
+    --transp-white-2: rgba(255,255,255,0.1);
+    --blue-1: #62b8f5;
+    --blue02: #4475ef;
+    --shadow: rgba(3,46,87,0.2);
+    --dark-shadow: #2e2b3d;
+    --green: #08f800;
+    --yuck: #5c540b;
+    --yuckLight: #9e9b7b;
+    --yellow: #e3d400;
+    --blood: rgb(182, 57, 11);
+    --orange: #de910d
+
+}
+
+
+
+/* dark-mode.css */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+  }
+  
+  body.dark-mode .input-region,
+  body.dark-mode #taxForm,
+  body.dark-mode #buyersForm,
+  body.dark-mode #itemForm {
+    background-color: #1e1e1e; /* Slightly lighter than body background */
+    color: #e0e0e0;
+  }
+  
+ 
+/* This ensures text in the settings popup remains the same in dark mode */
+body.dark-mode .popup {
+    color: #000;
+}
+
+/* This changes the button outlines to white in dark mode */
+body.dark-mode button {
+    border: 1px solid var(--yellow) /* White border for buttons */
+  }
+  
+/* If you have specific buttons you want to exclude, you can reverse the effect */
+body.dark-mode button#settingsButton {
+    border: none; /* Removes the border from the settings button, if desired */
+  }
+

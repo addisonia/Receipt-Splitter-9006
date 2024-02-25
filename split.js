@@ -80,6 +80,50 @@ document.addEventListener("DOMContentLoaded", () => {
   taxAmountInput.addEventListener("keydown", handleArrowKeyNavigation);
 });
 
+
+//------------------------------------------------------\\
+
+//Settings Button
+document.addEventListener('DOMContentLoaded', () => {
+  const settingsButton = document.getElementById('settingsButton');
+  const settingsPopup = document.getElementById('settingsPopup');
+
+  settingsButton.addEventListener('click', () => {
+    // Toggle the popup display on button click
+    settingsPopup.style.display = settingsPopup.style.display === 'block' ? 'none' : 'block';
+  });
+
+  window.addEventListener('click', (event) => {
+    if (!settingsPopup.contains(event.target) && !settingsButton.contains(event.target)) {
+      settingsPopup.style.display = 'none';
+    }
+  });
+
+});
+
+
+
+//Dark Mode
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  
+  darkModeToggle.addEventListener('change', function() {
+    if(this.checked) {
+      document.body.classList.add('dark-mode');
+      document.getElementById('darkModeStylesheet').disabled = false;
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.getElementById('darkModeStylesheet').disabled = true;
+    }
+  });
+});
+
+
+
+
+
+
+
 //------------------------------------------------------\\
 
 //Info storage
