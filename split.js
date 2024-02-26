@@ -371,5 +371,10 @@ function clearData() {
   buyers = [];
   updateItemsDisplay();
   updateCostPerBuyerDisplay();
-  // Any other update/reset functions here
+
+  // Clear input fields
+  document.getElementById("buyerName").value = '';
+  document.getElementById("taxAmount").value = '';
+  document.getElementById("itemName").value = '';
+  document.getElementById("itemPrice").value = '';
 }
