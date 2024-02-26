@@ -1,3 +1,3 @@
-Website link: https://addisonia.github.io/Receipt-Splitter-9006/split.html
+Website link: https://receiptsplitter.org
 
 **See User Manual for more details regarding Receipt Splitter**
