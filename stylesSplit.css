@@ -75,7 +75,7 @@ button:hover {
 
 .clear-data-container {
     position: absolute;
-    left: 51%;
+    left: 50%;
     transform: translateX(-50%);
   }
 
