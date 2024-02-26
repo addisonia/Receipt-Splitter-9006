@@ -18,6 +18,8 @@ items entered yet
 for Buyers and have it go away after the first buyer
 is entered
 
+
+
 - Settings button
     - Accessibility ideas within settings:
         - alternating white and light gray background color 
@@ -27,16 +29,18 @@ is entered
         clicked turn red to indicate no
     - have a switch button so user can choose between 
     proportional tax and even split tax
-    - have a save option (to like csv or something)
 
-
-- use firebase cloud storage (spark plan) to save data
 
 - create a login button where users can create an
-account to save receipt data
+account to save receipt data (on firebase cloud)
 
-- have a save button that appears only after a user
-has signed in
+- have a user profile icon that appears only after 
+a user has signed in. they can click on this icon
+to access past saved receipts and whatnot
+
+- have a Save button that appears after a user has
+signed in, which they can click to save data to their
+account
 
 
 
