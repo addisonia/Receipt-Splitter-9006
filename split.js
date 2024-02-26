@@ -172,6 +172,8 @@ const submitItem = () => {
     document.getElementById("itemForm").reset();
     document.getElementById("itemName").focus();
     updateCostPerBuyerDisplay();
+
+    saveState(); // Save the updated state to local storage
   }
 };
 
@@ -185,6 +187,8 @@ const addBuyer = () => {
     });
     document.getElementById("buyersForm").reset();
     updateCostPerBuyerDisplay(); // Update cost per buyer display
+    saveState(); // Save the updated state to local storage
+
   }
 };
 
@@ -257,6 +261,8 @@ const addTax = () => {
   updateCostPerBuyerDisplay();
   const itemNameInput = document.getElementById("itemName");
   itemNameInput.focus();
+  saveState(); // Save the updated state to local storage
+
 };
 
 //cost per buyer
@@ -321,6 +327,8 @@ const toggleBuyerSelection = (itemIndex, buyerIndex) => {
 
   updateItemsDisplay(); // Re-render the items display
   updateCostPerBuyerDisplay(); // Update the cost per buyer display
+  saveState(); // Save the updated state to local storage
+
 };
 
 
@@ -340,7 +348,11 @@ function getLocalReceiptData() {
 }
 
 function saveState() {
-  const receiptData = { items, buyers };
+  const receiptData = {
+    items: items,
+    buyers: buyers,
+    tax: tax
+  };
   saveReceiptDataLocally(receiptData);
 }
 
