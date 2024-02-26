@@ -13,6 +13,10 @@
 - **Enter**: Jump from item to price if there is no value entered in price (otherwise submits item to display).
 
 
+## Clear Data Button:
+-- Clears all data entered on page
+
+
 ## Settings Button:
 - **Dark Mode**: changes background and button colors to fit a dark mode theme when switch button is toggled
 

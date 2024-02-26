@@ -2,7 +2,6 @@
 BUGS:
 ------------------------------
 
-- fix ad6 not loading
 - grid lines on display are off by like a pixel from title
 display
 
@@ -31,9 +30,10 @@ is entered
     - have a save option (to like csv or something)
 
 
-- have it save the split data when you go to the home screen
-(use local storage method for now)
-- add a reset/clear button to split page
+- use firebase cloud storage (spark plan) to save data
+
+- create a login button where users can create an
+account to save receipt data
 
 
 
@@ -41,12 +41,8 @@ is entered
 OTHER IDEAS:
 ------------------------------
 
-- use firebase cloud storage (spark plan) to save data
 
 -add remove item button (trash can symbol?)
-
-- create a login button where users can create an
-account to save receipt data
 
 
 
