@@ -275,13 +275,10 @@ const calculateBuyerOwes = () => {
 
   // Calculate the total cost per item and accumulate total cost without tax
   items.forEach((item) => {
-    const itemTotalBuyers = item.buyers.filter(
-      (buyer) => buyer.selected
-    ).length;
+    const itemTotalBuyers = item.buyers.filter((buyer) => buyer.selected).length;
     if (itemTotalBuyers === 0) return;
 
     const itemCostPerBuyer = item.price / itemTotalBuyers;
-
     item.buyers.forEach((buyer, index) => {
       if (buyer.selected) {
         buyerTotals[index] += itemCostPerBuyer;
@@ -290,16 +287,23 @@ const calculateBuyerOwes = () => {
     });
   });
 
-  // Calculate the proportional tax for each buyer
-  buyers.forEach((buyer, index) => {
-    if (buyerTotals[index] === 0) return; // Skip buyers who didn't buy anything
-    const buyerProportionalCost = buyerTotals[index] / totalCostWithoutTax;
-    const taxContribution = buyerProportionalCost * tax;
-    buyerTotals[index] += taxContribution; // Add the tax contribution to the buyer's total
-  });
+  // If no items, split tax evenly among all buyers
+  if (items.length === 0 && buyers.length > 0) {
+    const taxPerBuyer = tax / buyers.length;
+    buyerTotals.forEach((_, index) => buyerTotals[index] += taxPerBuyer);
+  } else if (totalCostWithoutTax > 0) { // Only divide tax if there are items
+    // Calculate the proportional tax for each buyer
+    buyers.forEach((buyer, index) => {
+      if (buyerTotals[index] === 0) return; // Skip buyers who didn't buy anything
+      const buyerProportionalCost = buyerTotals[index] / totalCostWithoutTax;
+      const taxContribution = buyerProportionalCost * tax;
+      buyerTotals[index] += taxContribution; // Add the tax contribution to the buyer's total
+    });
+  }
 
   return buyerTotals;
 };
+
 
 const updateCostPerBuyerDisplay = () => {
   // Call the calculate function to get the latest totals
@@ -320,6 +324,11 @@ const updateCostPerBuyerDisplay = () => {
     // Display a default value or message if no buyers are present
     costPerBuyerList.textContent = "No buyers added.";
   }
+
+  if (buyers.length === 0) {
+    document.getElementById("buyerName").placeholder = "Enter a buyer";
+  }
+
 };
 
 const toggleBuyerSelection = (itemIndex, buyerIndex) => {

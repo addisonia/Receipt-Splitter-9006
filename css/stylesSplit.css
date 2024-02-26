@@ -242,6 +242,14 @@ button:hover {
     margin-left: 25px;
 }
 
+/* Vertically center buyer and tax labels */
+.aligned-label {
+    display: flex;
+    align-items: center;
+    margin-right: 2.5px; /* Adjust as necessary */
+  }
+
+
 .input-region button{
     margin-left: 10px;
 }
