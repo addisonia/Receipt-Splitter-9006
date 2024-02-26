@@ -115,6 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('dark-mode');
       document.getElementById('darkModeStylesheet').disabled = true;
     }
+    saveState(); // Save the updated state to local storage
+
   });
 });
 
@@ -351,7 +353,8 @@ function saveState() {
   const receiptData = {
     items: items,
     buyers: buyers,
-    tax: tax
+    tax: tax,
+    darkMode: document.body.classList.contains('dark-mode')
   };
   saveReceiptDataLocally(receiptData);
 }
@@ -365,6 +368,12 @@ document.addEventListener('DOMContentLoaded', () => {
     buyers = savedData.buyers || [];
     updateItemsDisplay();
     updateCostPerBuyerDisplay();
+  }
+
+  if (savedData.darkMode) {
+    document.body.classList.add('dark-mode');
+    document.getElementById('darkModeStylesheet').disabled = false;
+    document.getElementById('darkModeToggle').checked = true; // Set the toggle to match
   }
 });
 
@@ -390,3 +399,10 @@ function clearData() {
   document.getElementById("itemName").value = '';
   document.getElementById("itemPrice").value = '';
 }
+
+
+
+
+
+
+
