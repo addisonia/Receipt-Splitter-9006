@@ -35,6 +35,9 @@ is entered
 - create a login button where users can create an
 account to save receipt data
 
+- have a save button that appears only after a user
+has signed in
+
 
 
 ------------------------------

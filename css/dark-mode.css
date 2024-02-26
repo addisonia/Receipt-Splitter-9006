@@ -18,13 +18,15 @@
     --dmRed: #7b584f;
     --dmYuckLight: #67654d;
 
+    --dark: #1d1d1d;
+
 }
 
 
 
 /* dark-mode.css */
 body.dark-mode {
-    background-color: #121212; /* Dark background */
+    background-color: var(--dark); /* Dark background */
     color: #e0e0e0; /* Light text */
   }
   
@@ -38,7 +40,7 @@ body.dark-mode {
   
 
 body.dark-mode .input-region {
-  background-color: #121212; /* Or whatever your dark mode background color is */
+  background-color: var(--dark); /* Or whatever your dark mode background color is */
 }
  
 /* Change label text color to white in dark mode */
