@@ -9,26 +9,34 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
     <script src="firebase.js"></script>
     <title>Split</title>
   </head>
   <body>
-    <div class="Home">
-      <button onclick="home()">Home</button>
-    </div>
+    <div class="top-buttons-container">
+      <div class="Home">
+        <button onclick="home()">Home</button>
+      </div>
 
-    <div class="settings-container">
-      <button id="settingsButton"><i class="fa-solid fa-gear" style="color: #032e57;"></i></button>
-      <div id="settingsPopup" class="popup">
-        <h2>Settings</h2>
-        <label for="darkModeToggle">Dark Mode:</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="darkModeToggle" class="toggle-input">
-          <label for="darkModeToggle" class="toggle-slider"></label>
+      <div class="clear-data-container">
+        <button id="clearDataButton">Clear Data</button>
+      </div>
+    
+      <div class="settings-container">
+        <button id="settingsButton"><i class="fa-solid fa-gear" style="color: #032e57;"></i></button>
+        <div id="settingsPopup" class="popup">
+          <h2>Settings</h2>
+          <label for="darkModeToggle">Dark Mode:</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle" class="toggle-input">
+            <label for="darkModeToggle" class="toggle-slider"></label>
+          </div>
         </div>
       </div>
-    </div>
 
+  </div>
     <div class="input-region">
       <div class="row">
         <form id="buyersForm">

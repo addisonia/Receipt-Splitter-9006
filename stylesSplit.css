@@ -25,11 +25,6 @@
 }
 
 
-
-.Home{
-    padding: 10px 10px;
-}
-
 button{
     background-color: var(--yellow);
     cursor:-webkit-grab;
@@ -54,25 +49,61 @@ button:hover {
 }
 
 
-/* Settings Button */
+/* New container for all top buttons */
+.top-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+  
+.Home,
+.clear-data-container,
+.settings-container {
+    /* Make sure each container can grow and shrink as needed */
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center content of each button container */
+}
 
+/* Specifically align the Home button to the left */
+.Home {
+    justify-content: flex-start;
+    padding: 10px 10px;
+}
+
+
+.clear-data-container {
+    position: absolute;
+    left: 51%;
+    transform: translateX(-50%);
+  }
+
+  
+/* Settings Button */
 .settings-container {
     position: absolute;
     top: 10px;
     right: 10px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
+/* Adjust the popup positioning */
 .popup {
     display: none;
     position: absolute;
+    margin-top: -2.5px;
+    margin-right: 5px;
     right: 0;
+    top: 100%; /* Align the top of the popup with the bottom of the button */
     padding: 20px;
     border: 1px solid #ccc;
     background-color: var(--white);
     box-shadow: 0 2px 10px var(--shadow);
     z-index: 10;
-
-}
+  }
 
 .popup h2 {
     margin-bottom: 10px;
@@ -168,6 +199,12 @@ button:hover {
     box-shadow: 0 0 1px #2196F3;
   }
 
+
+/* Adjust the clear data button height */
+#clearDataButton {
+    height: auto;
+    padding: 5px 10px; 
+}
 
 
 /* ---------------------------------------------------------------*/

@@ -323,4 +323,53 @@ const toggleBuyerSelection = (itemIndex, buyerIndex) => {
   updateCostPerBuyerDisplay(); // Update the cost per buyer display
 };
 
+
+
 //---------------------------------------------------\\
+
+//Save receipt data locally for guests
+
+
+function saveReceiptDataLocally(receiptData) {
+  localStorage.setItem("receiptData", JSON.stringify(receiptData));
+}
+
+function getLocalReceiptData() {
+  const data = localStorage.getItem("receiptData");
+  return data ? JSON.parse(data) : null;
+}
+
+function saveState() {
+  const receiptData = { items, buyers };
+  saveReceiptDataLocally(receiptData);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Load local data if it exists
+  const savedData = getLocalReceiptData();
+  if (savedData) {
+    // Assuming 'items' and 'buyers' are the data you want to load
+    items = savedData.items || [];
+    buyers = savedData.buyers || [];
+    updateItemsDisplay();
+    updateCostPerBuyerDisplay();
+  }
+});
+
+
+
+// Clear Data Button
+
+document.getElementById("clearDataButton").addEventListener("click", clearData);
+
+function clearData() {
+  // Clear local storage
+  localStorage.removeItem("receiptData");
+
+  // Also reset your application state
+  items = [];
+  buyers = [];
+  updateItemsDisplay();
+  updateCostPerBuyerDisplay();
+  // Any other update/reset functions here
+}
