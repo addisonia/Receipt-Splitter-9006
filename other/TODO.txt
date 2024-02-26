@@ -11,15 +11,6 @@ display
 TO ADD:
 ------------------------------
 
-- split tax evenly among all buyers when there are no
-items entered yet
-
-- add "Enter a buyer" in faded text in the text box
-for Buyers and have it go away after the first buyer
-is entered
-
-
-
 - Settings button
     - Accessibility ideas within settings:
         - alternating white and light gray background color 

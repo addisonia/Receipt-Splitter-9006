@@ -14,7 +14,7 @@
 
 
 ## Clear Data Button:
--- Clears all data entered on page
+- Clears all data entered on page
 
 
 ## Settings Button:
@@ -31,6 +31,7 @@
 ### Tax input:
 - Enter tax amount (must be a number).
 - Defaults to 0 if no amount entered.
+- Splits tax amount proportionally among buyers by default (if no items are entered than tax amount is evenly split among buyers)
 - Value can be changed and will auto-update Cost per Buyer.
 - Press "Add" button or hit "Enter" key to add tax amount.
 
