@@ -1,12 +1,14 @@
 :root {
     --white: #ffffff;
     --off-white: #ede7d8;
+    --easy-white: #e0e0e0;
     --transp-white-1: rgba(255,255,255,0.25);
     --transp-white-2: rgba(255,255,255,0.1);
     --blue-1: #62b8f5;
     --blue02: #4475ef;
     --shadow: rgba(3,46,87,0.2);
     --dark-shadow: #2e2b3d;
+    --dark-shadow2: #333333;
     --green: #08f800;
     --yuck: #5c540b;
     --yuckLight: #9e9b7b;
@@ -27,7 +29,7 @@
 /* dark-mode.css */
 body.dark-mode {
     background-color: var(--dark); /* Dark background */
-    color: #e0e0e0; /* Light text */
+    color: var(--easy-white)
   }
   
   body.dark-mode .input-region,
@@ -35,7 +37,7 @@ body.dark-mode {
   body.dark-mode #buyersForm,
   body.dark-mode #itemForm {
     background-color: #1e1e1e; /* Slightly lighter than body background */
-    color: #e0e0e0;
+    color: var(--easy-white);
   }
   
 
@@ -45,7 +47,7 @@ body.dark-mode .input-region {
  
 /* Change label text color to white in dark mode */
 body.dark-mode label {
-    color: #ffffff; /* Sets text color to white */
+    color: var(--easy-white); /* Sets text color to white */
   }
 
 
@@ -82,7 +84,7 @@ body.dark-mode .popup label[for='darkModeToggle'] {
 
 /* change grid lines color */
 body.dark-mode .item-row > div {
-    border-color: #ffffff; /* Sets the border color to white */
+    border-color: var(--easy-white); /* Sets the border color to white */
   }
 
 
@@ -99,3 +101,26 @@ body.dark-mode #buyersForm {
   body.dark-mode #itemForm {
     background-color: var(--dmYuckLight); /* Dark mode yellowish for item/price section */
   }
+
+
+
+/* display title background color */
+#display-titles > div {
+  background-color: var(--dark-shadow2); /* Different background for title row */
+}
+
+/* Adds border to the left of the first cell */
+#display-titles > div:first-child {
+    border-left: 3px solid var(--easy-white);
+}
+
+/* Adds border to the right of the last cell */
+#display-titles > div:last-child {
+    border-right: 3px solid var(--easy-white);
+}
+
+#display-titles > div {
+  border: 2px solid var(--easy-white);
+  border-top: 3px solid var(--easy-white);
+  border-bottom: 3px solid var(--easy-white);
+}

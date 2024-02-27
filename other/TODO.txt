@@ -6,6 +6,10 @@ BUGS:
 display
 
 
+- when google search console finishes indexing add 
+sitemap (https://addisonia.github.io/Receipt-Splitter-9006/sitemap.xml)
+
+
 
 ------------------------------
 TO ADD:
