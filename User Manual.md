@@ -8,6 +8,7 @@ ____________________________________________________________________
 
 # Receipt Splitter Page
 ***Click the "Home" button to go back to the home page***
+  
 
 
 ## Keyboard shortcuts:
@@ -37,11 +38,11 @@ ____________________________________________________________________
 - Defaults to 0 if no amount entered.
 - Splits tax amount proportionally among buyers by default (if no items are entered than tax amount is evenly split among buyers)
 - Value can be changed and will auto-update Cost per Buyer.
-- Press "Add" button or hit "Enter" key to add tax amount.
+- Press "Add" button or hit "Enter" key to add tax amount.  
 
 ### Item input:
 - Enter item name.
-- Will not add item unless price is also entered.
+- Will not add item unless price is also entered.  
 
 ### Price input:
 - Enter item price (must be a number).

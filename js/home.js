@@ -56,16 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userManualPanel.style.zIndex = '1000';
       document.body.appendChild(userManualPanel);
 
-      // Close button
-      const closeButton = document.createElement('button');
-      closeButton.innerText = 'Close';
-      closeButton.style.position = 'absolute';
-      closeButton.style.top = '1rem'; // Use rem for better scaling across devices
-      closeButton.style.right = '1rem';
-      closeButton.onclick = function() {
-          userManualPanel.style.display = 'none';
-      };
-      userManualPanel.appendChild(closeButton);
+
   }
 
   userManualBtn.addEventListener('click', () => {
@@ -82,32 +73,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-// Simple Markdown to HTML conversion function (further improved)
-function markdownToHTML(markdown) {
-  // Replace Markdown headings with HTML headings as an example
-  let html = markdown
-    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-    // Add more Markdown syntax replacements as needed
-    .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
-    .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
-    .replace(/\*(.*)\*/gim, '<i>$1</i>')
-    .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
-    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>");
-
-  // Split the text by double newlines to identify separate paragraphs
-  const paragraphs = html.split(/\n\n+/gim);
-  // Wrap each paragraph in <p> tags and replace single newlines with <br>
-  html = paragraphs.map(paragraph => {
-    // Replace single newlines within a paragraph with <br>
-    return '<p>' + paragraph.replace(/\n/gim, '<br>') + '</p>';
-  }).join('');
-
-  return html;
-}
-
-
+  //markdown to HTML function
+  function markdownToHTML(markdown) {
+    // Convert headings
+    markdown = markdown.replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                       .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                       .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                       .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+                       .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
+                       .replace(/^###### (.*$)/gim, '<h6>$1</h6>');
+    
+    // Convert bold and italic
+    markdown = markdown.replace(/\*\*\*(.*)\*\*\*/gim, '<strong><em>$1</em></strong>')
+                       .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+                       .replace(/\*(.*)\*/gim, '<em>$1</em>');
+  
+    // Convert horizontal rule
+    markdown = markdown.replace(/____________________________________________________________________/gim, '<hr>');
+  
+    // Handling dashes directly and ensure proper indentation
+    // Replace lines starting with dash with a div that simulates a list item
+    markdown = markdown.replace(/^\- (.*)$/gm, '<div style="margin-left: 20px;">- $1</div>');
+  
+    // Convert line breaks to <br> only in certain conditions
+    markdown = markdown.replace(/([^\n])\n([^\n])/gim, '$1<br>$2');
+  
+    return markdown;
+  }
+  
+  
 });
 
 
