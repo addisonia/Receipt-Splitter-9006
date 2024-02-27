@@ -1,5 +1,5 @@
 const startSplitting = () => {
-    window.location.href = 'split.html'
+    window.location.href = 'html/split.html';
 }
 
 
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userManualPanel.style.display = isVisible ? 'none' : 'block';
       if (!isVisible) {
           // Assuming 'User Manual.md' exists and is accessible
-          fetch('User Manual.md')
+          fetch('../User Manual.md')
               .then(response => response.text())
               .then(markdown => {
                   userManualPanel.innerHTML = markdownToHTML(markdown); // Ensure this replaces existing content
