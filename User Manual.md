@@ -29,7 +29,7 @@ ____________________________________________________________________
 
 ## Inputs:
 ### Buyers input:
-- Enter buyer name.
+- Enter buyer name.  
 - Press "Add" button or hit "Enter" key to add buyer.
 
 ### Tax input:

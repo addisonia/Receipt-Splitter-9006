@@ -82,21 +82,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-  // Simple Markdown to HTML conversion function (placeholder)
-  function markdownToHTML(markdown) {
-    // Replace Markdown headings with HTML headings as an example
-    return markdown
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      // Add more Markdown syntax replacements as needed
-      .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
-      .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
-      .replace(/\*(.*)\*/gim, '<i>$1</i>')
-      .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
-      .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>")
-      .replace(/\n$/gim, '<br />');
-  }
+// Simple Markdown to HTML conversion function (further improved)
+function markdownToHTML(markdown) {
+  // Replace Markdown headings with HTML headings as an example
+  let html = markdown
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    // Add more Markdown syntax replacements as needed
+    .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
+    .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
+    .replace(/\*(.*)\*/gim, '<i>$1</i>')
+    .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
+    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>");
+
+  // Split the text by double newlines to identify separate paragraphs
+  const paragraphs = html.split(/\n\n+/gim);
+  // Wrap each paragraph in <p> tags and replace single newlines with <br>
+  html = paragraphs.map(paragraph => {
+    // Replace single newlines within a paragraph with <br>
+    return '<p>' + paragraph.replace(/\n/gim, '<br>') + '</p>';
+  }).join('');
+
+  return html;
+}
+
+
 });
 
 
