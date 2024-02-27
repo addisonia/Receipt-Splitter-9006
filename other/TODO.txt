@@ -2,13 +2,7 @@
 BUGS:
 ------------------------------
 
-- grid lines on display are off by like a pixel from title
-display
-
-
-- when google search console finishes indexing add 
-sitemap (https://addisonia.github.io/Receipt-Splitter-9006/sitemap.xml)
-
+- none
 
 
 ------------------------------
@@ -39,12 +33,16 @@ account
 
 
 
+- when google search console finishes indexing add 
+sitemap (https://addisonia.github.io/Receipt-Splitter-9006/sitemap.xml)
+
+
 ------------------------------
 OTHER IDEAS:
 ------------------------------
 
 
--add remove item button (trash can symbol?)
+-add remove item button (trash can symbol? x circle symbol?)
 
 
 

@@ -351,6 +351,17 @@ button:hover {
     margin-top: 0px;
 }
 
+/* Adds border to the left of the first column in every row of the display grid */
+#display-info .item-row > div:first-child {
+    border-left: 2px solid black;
+}
+
+/* Adds border to the right of the last column in every row of the display grid */
+#display-info .item-row > div:last-child {
+    border-right: 2px solid black;
+}
+
+
 
 #display-info {
     display: grid;

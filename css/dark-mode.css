@@ -135,3 +135,15 @@ body.dark-mode #buyersForm {
   border-top: 3px solid var(--easy-white);
   border-bottom: 3px solid var(--easy-white);
 }
+
+
+/* display grid */
+/* Adds border to the left of the first column in every row of the display grid */
+#display-info .item-row > div:first-child {
+  border-left: 2px solid var(--easy-white);
+}
+
+/* Adds border to the right of the last column in every row of the display grid */
+#display-info .item-row > div:last-child {
+  border-right: 2px solid var(--easy-white);
+}
