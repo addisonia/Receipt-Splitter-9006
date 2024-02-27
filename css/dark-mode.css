@@ -14,6 +14,7 @@
     --yuck: #5c540b;
     --yuckLight: #9e9b7b;
     --yellow: #e3d400;
+    --dark-yellow: #c9bc0b;
     --blood: rgb(182, 57, 11);
     --orange: #de910d;
 
@@ -25,6 +26,28 @@
 
 }
 
+
+/* Keyframes to simulate color transition */
+@keyframes colorCycle {
+  0% { background-color: var(--dark-yellow); }
+  30% { background-color: var(--blood); }
+  60% { background-color: var(--dark-shadow); }
+  73% { background-color: var(--dmRed); }
+  75% { background-color: var(--dark-shadow); }
+  76% { background-color: var(--dmRed); }
+  78% { background-color: var(--dark-shadow); }
+  79% { background-color: var(--dmRed); }
+  81% { background-color: var(--dark-shadow); }
+  82% { background-color: var(--dmRed); }
+  84% { background-color: var(--dark-shadow); }
+  85% { background-color: var(--dmRed); }
+  100% { background-color: var(--dark-yellow);}
+}
+
+
+button{
+  background-color: var(--dark-yellow);
+}
 
 
 /* dark-mode.css */
