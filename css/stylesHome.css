@@ -81,39 +81,6 @@ button{
 
 }
 
-.ad6 {
-    object-fit: cover;
-    width: auto; /* Adjusts the width of ad6 to your preference */
-    height: auto; /* Maintains the aspect ratio of ad6 */
-    margin-left: 10px;
-    transform: scale(0.7); /* Reduces size to 70% of the original */
-}
-
-
-    
-.bottom-ads {
-    display: flex; /* Use Flexbox for layout */
-    flex-wrap: wrap; /* Allows items to wrap as needed */
-    justify-content: space-between; /* Spaces out the ads evenly */
-    align-items: flex-start; /* Align items at the start of the container */
-    margin-bottom: 10px;
-}
-
-.bottom-ads .ad1, .bottom-ads .ad3, .bottom-ads .ad4 {
-    flex: 1; /* Allows the ads to grow and fill the space */
-    margin: 10px; /* Adds some space around the ads */
-}
-
-.bottom-ads .ad3, .bottom-ads .ad4 {
-    width: calc(50% - 20px); /* Sets width to fill half the container minus margin */
-}
-
-.bottom-ads .ad1 {
-    width: 100%; /* Allows ad1 to fill the entire width */
-}
-
-  
-
 
 
 
@@ -165,4 +132,53 @@ button:hover {
   }
   
 
+
+
+
+
+/* User Manual Button */
+.manual-btn {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    background-color: transparent; /* Make the button background transparent */
+    color: inherit; /* The button text color should inherit from its parent */
+}
+
+#userManualBtn {
+    background-color: transparent; /* Ensure this button has no background color */
+}
+
+#userManualBtn .fa-book {
+    color: var(--yellow); /* Only the icon color is yellow */
+}
+
+#userManualBtn:hover .fa-book {
+    color: var(--green); /* Change the icon color on hover */
+}
+
+
+
+  
+/* User Manual Panel */
+.user-manual-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+
+
+  
 

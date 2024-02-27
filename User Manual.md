@@ -1,10 +1,13 @@
-# Home Page
-**Click the "Start Splitting" button on the home page to go to the receipt splitter page.**
+# **User Manual**
+____________________________________________________________________
+
+
+***Click the "Start Splitting" button on the home page to go to the receipt splitter page.***
 
 
 
-# Receipt Split Page
-**Click the "Home" button to go back to the home page**
+# Receipt Splitter Page
+***Click the "Home" button to go back to the home page***
 
 
 ## Keyboard shortcuts:
@@ -13,8 +16,10 @@
 - **Enter**: Jump from item to price if there is no value entered in price (otherwise submits item to display).
 
 
+
 ## Clear Data Button:
 - Clears all data entered on page
+
 
 
 ## Settings Button:
@@ -23,7 +28,6 @@
 
 
 ## Inputs:
-
 ### Buyers input:
 - Enter buyer name.
 - Press "Add" button or hit "Enter" key to add buyer.
@@ -42,6 +46,7 @@
 ### Price input:
 - Enter item price (must be a number).
 - Press "Add" button or hit "Enter" key to add item price.
+
 
 
 ## Display grid:

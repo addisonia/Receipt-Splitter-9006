@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/stylesHome.css" />
+    <script src="https://kit.fontawesome.com/59175ccc07.js" crossorigin="anonymous"></script>
+
     <title>Receipt Splitter 9006</title>
 
     <!-- adsense link -->
@@ -11,9 +13,6 @@
     crossorigin="anonymous"></script>
   </head>
   <body>
-    <!-- <div class="top-ad">
-      <img src="images/ad2.PNG" alt="ad2" class="ad2" />
-    </div> -->
 
     <div class="flex-container">
       <!-- <img src="images/ad6.png" alt="ad6" class="ad6" /> -->
@@ -25,14 +24,10 @@
           class="version-gif"
         />
         <button onclick="startSplitting()">Start Splitting</button>
+        <!-- User Manual Button -->
+        <button id="userManualBtn" class="manual-btn"><i class="fa-solid fa-book"></i></button> 
       </div>
     </div>
-
-    <!-- <div class="bottom-ads">
-      <img src="images/ad3.PNG" alt="ad3" class="ad3" />
-      <img src="images/ad4.PNG" alt="ad4" class="ad4" />
-      <img src="images/ad1.PNG" alt="ad1" class="ad1" />
-    </div> -->
 
     <!-- Privacy Policy Modal -->
     <div id="privacyPolicyModal" class="privacy-modal">
@@ -43,6 +38,15 @@
         <button id="acceptPrivacyPolicy">I Agree</button>
       </div>
     </div>
+
+    <!-- User Manual Modal -->
+    <div id="userManualModal" class="user-manual-modal">
+      <div class="user-manual-modal-content">
+        <!-- The user manual content will be dynamically loaded here -->
+        <div id="userManualContent"></div>
+      </div>
+    </div>
+
 
 
     <div id="output"></div>
