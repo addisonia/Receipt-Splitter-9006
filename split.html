@@ -44,13 +44,13 @@
     <div class="input-region">
       <div class="row">
         <form id="buyersForm">
-          <label for="buyerName" class="aligned-label">Buyers: </label>
+          <label for="buyerName" class="aligned-label white-label">Buyers: </label>
           <input type="text" id="buyerName" name="buyerName" placeholder="Enter a buyer" />
           <button id="addBuyerButton" onclick="addBuyer()">Add</button>
         </form>
 
         <form id="taxForm">
-          <label for="taxAmount" class="aligned-label">Tax: </label>
+          <label for="taxAmount" class="aligned-label white-label">Tax: </label>
           <input
             type="number"
             id="taxAmount"
@@ -64,12 +64,12 @@
 
       <form id="itemForm">
         <div class="item-name-container">
-          <label for="itemName">Item: </label>
+          <label for="itemName" class="white-label">Item: </label>
           <input type="text" id="itemName" name="itemName" />
         </div>
 
         <div class="item-price-container">
-          <label for="itemPrice">Price: $</label>
+          <label for="itemPrice" class="white-label">Price: $</label>
           <input type="number" id="itemPrice" name="itemPrice" step="0.01" />
           <button id="submitItemButton" onclick="submitItem()">Add</button>
         </div>

@@ -2,6 +2,7 @@
     --white: #ffffff;
     --off-white: #ede7d8;
     --easy-white: #e0e0e0;
+    --easy-white2: #ececec;
     --transp-white-1: rgba(255,255,255,0.25);
     --transp-white-2: rgba(255,255,255,0.1);
     --blue-1: #62b8f5;
@@ -44,11 +45,21 @@ body.dark-mode {
 body.dark-mode .input-region {
   background-color: var(--dark); /* Or whatever your dark mode background color is */
 }
+
+
+/* Style input boxes in dark mode */
+body.dark-mode input {
+  background-color: var(--easy-white); /* Sets input background color to easy-white */
+  color: var(--dark); /* Sets input text color to dark for contrast */
+  /* You may also want to set the border color for these input boxes */
+  border: 1px solid var(--dark); /* Assuming you want a dark border */
+}
+
  
 /* Change label text color to white in dark mode */
-body.dark-mode label {
-    color: var(--easy-white); /* Sets text color to white */
-  }
+body.dark-mode label.white-label {
+  color: var(--easy-white2); /* Sets text color to white */
+}
 
 
 /* This ensures text in the settings popup remains the same in dark mode */
