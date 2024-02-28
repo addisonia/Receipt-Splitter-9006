@@ -2,8 +2,12 @@
 ____________________________________________________________________
 
 
-***Click the "Start Splitting" button on the home page to go to the receipt splitter page.***
-
+***Click the "Start Splitting" button or press the spacebar on the home page to go to the receipt splitter page.***  
+# 
+***Click the game symbol on the home page to go to the snake game page.***
+# 
+# 
+____________________________________________________________________
 
 
 # Receipt Splitter Page
@@ -52,3 +56,20 @@ ____________________________________________________________________
 
 ## Display grid:
 - Click the checkbox next to a buyer's name or click on buyer's name to uncheck/check a buyer for any item. Once checked/unchecked, the Cost per Buyer display will auto-update accordingly.
+
+# 
+# 
+____________________________________________________________________
+# 
+# Snake Game Page
+***Click the "Home" button to go back to the home page***
+# 
+
+## Keyboard shortcuts:
+- **Left Arrow / Right Arrow / Up Arrow / Down Arrow**: Moves snake left / right / up / down respectively.
+- **W / A / S / D**: Moves snake up / left / down / right respectively.
+- **Space**: Pauses snake game. Press space again to unpause.
+# 
+
+## Settings Button:
+- **Toggle Mobile Buttons**: Enables mobile buttons which appear below the game screen when switch button is toggled. 

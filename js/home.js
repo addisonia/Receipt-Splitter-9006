@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
       // Show the modal
       modal.style.display = "block";
     }
+
+
+    // Event listener for the spacebar key press
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target === document.body) { // Check if spacebar was pressed and the target is the body to avoid triggering when focused on other elements
+          e.preventDefault(); // Prevent the default spacebar action (scrolling)
+          document.getElementById('startSplittingBtn').click(); // Programmatically click the button
+      }
+    });
   });
   
 

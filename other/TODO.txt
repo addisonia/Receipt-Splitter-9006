@@ -9,8 +9,6 @@ BUGS:
 TO ADD:
 ------------------------------
 
-- update user manual with snake game
-
 - Settings button
     - Accessibility ideas within settings:
         - alternating white and light gray background color 
