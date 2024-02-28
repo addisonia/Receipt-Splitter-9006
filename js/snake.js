@@ -127,6 +127,20 @@ window.addEventListener('keydown', e => {
 });
 
 
+// Initialize the score
+let score = 1;
+
+// Function to update the scoreboard
+function updateScoreboard() {
+    const scoreboardElement = document.getElementById('scoreboard');
+    scoreboardElement.textContent = `Score: ${score}`;
+}
+
+// Call updateScoreboard to initialize the score display
+updateScoreboard();
+
+
+
 // Update game state: snake movement, food consumption, and collision detection
 function update() {
     const head = {x: snake[0].x + direction.x * snakeSize, y: snake[0].y + direction.y * snakeSize};
@@ -134,6 +148,8 @@ function update() {
     
     // Check if the snake has eaten the food
     if (head.x === food.x && head.y === food.y) {
+        score += 1; // Increment the score
+        updateScoreboard(); // Update the scoreboard with the new score
         placeFood(); // Place new food
     } else {
         snake.pop(); // Remove the tail segment if no food is eaten

@@ -62,7 +62,3 @@ vegan items)
 - weighted items option?
 
 - multiple of same items option (automath?)
-
-
-
-- for home page: when spacebar is pressed go to split page

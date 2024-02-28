@@ -280,3 +280,20 @@ body, html {
     background-color: var(--blood);
     position: absolute;
 }
+
+
+
+
+/* Scoreboard Styles */
+#scoreboard {
+    padding: 10px;
+    margin-bottom: 10px; /* Space between scoreboard and game area */
+    color: var(--white);
+    background: var(--dark-shadow);
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+}
+
