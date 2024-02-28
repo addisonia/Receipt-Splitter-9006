@@ -1,0 +1,100 @@
+:root {
+    --white: #ffffff;
+    --off-white: #ede7d8;
+    --transp-white-1: rgba(255,255,255,0.25);
+    --transp-white-2: rgba(255,255,255,0.1);
+    --blue-1: #62b8f5;
+    --blue02: #4475ef;
+    --shadow: rgba(3,46,87,0.2);
+    --dark-shadow: #2e2b3d;
+    --green: #08f800;
+    --yuck: #5c540b;
+    --yuckLight: #9e9b7b;
+    --yellow: #e3d400;
+    --blood: rgb(182, 57, 11);
+    --orange: #de910d
+
+}
+
+/* Global styles */
+*{
+    padding: 0; /* Removes padding from all elements */
+    margin: 0; /* Removes margins from all elements */
+    box-sizing: border-box; /* Changes the box model to include padding and border in the element's total width and height */
+    font-family: "Tenorite"; /* Sets a default font for all elements */
+}
+
+
+button{
+    background-color: var(--yellow);
+    cursor:-webkit-grab;
+    padding: 5px 5px;
+    font-size: 15px;
+    display: inline-flex;
+    border: 2px solid black; /* Removes the default border from buttons */
+
+}
+
+
+/* Keyframes to simulate color transition */
+@keyframes colorCycle {
+    0% { background-color: var(--yellow); }
+    35% { background-color: var(--green); }
+    50% { background-color: var(--blood); }
+    75% { background-color: var(--yuck); }
+    100% { background-color: var(--yellow);}
+}
+
+button:hover {
+    animation: colorCycle 5s infinite; /* Apply the animation on hover */
+}
+
+.top-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.home {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px;
+    position: absolute; /* Position the container absolutely */
+    top: 0; /* Align the top edge of the container with the top of the page */
+    left: 0; /* Align the left edge of the container with the left of the page */
+    z-index: 10; /* Ensure it's on top of other elements */
+}
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--yuck);
+}
+
+#gameArea {
+    box-sizing: border-box;
+    background-color: var(--yuckLight);
+    position: relative;
+    border: 10px solid var(--dark-shadow);
+}
+
+.snake {
+    width: 20px;
+    height: 20px;
+    background-color: var(--dark-shadow);
+    position: absolute;
+}
+
+.food {
+    width: 20px;
+    height: 20px;
+    background-color: var(--blood);
+    position: absolute;
+}

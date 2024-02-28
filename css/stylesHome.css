@@ -161,8 +161,6 @@ button:hover {
 }
 
 
-
-  
 /* User Manual Panel */
 .user-manual-modal {
     display: none; /* Hidden by default */
@@ -177,6 +175,32 @@ button:hover {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+
+
+
+/* Snake Game Button */
+.snake-game-btn {
+    position: absolute;
+    top: 0px;
+    right: 75px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    background-color: transparent; 
+    color: inherit; 
+}
+
+#snakeGameBtn {
+    background-color: transparent;
+}
+
+#snakeGameBtn .fa-gamepad{
+    color: var(--yellow);
+}
+
+#snakeGameBtn:hover .fa-gamepad {
+    color: var(--green);
+}
 
 
 

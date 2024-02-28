@@ -106,9 +106,18 @@ function markdownToHTML(markdown) {
   return markdown;
 }
 
-  
 });
 
 
 
+
+//Snake game button
+document.addEventListener('DOMContentLoaded', () => {
+  const userManualBtn = document.getElementById('snakeGameBtn');
+
+  snakeGameBtn.addEventListener('click', () => {
+    window.location.href = "html/snake.html";
+  });
+
+});
 
