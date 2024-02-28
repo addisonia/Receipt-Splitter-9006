@@ -4,6 +4,44 @@ const home = () => {
 };
 
 
+//Settings Button
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsButton = document.getElementById('settingsButton');
+    const settingsPopup = document.getElementById('settingsPopup');
+  
+    settingsButton.addEventListener('click', () => {
+      // Toggle the popup display on button click
+      settingsPopup.style.display = settingsPopup.style.display === 'block' ? 'none' : 'block';
+    });
+  
+    window.addEventListener('click', (event) => {
+      if (!settingsPopup.contains(event.target) && !settingsButton.contains(event.target)) {
+        settingsPopup.style.display = 'none';
+      }
+    });
+
+    const mobileButtonsToggle = document.getElementById('mobileButtonsToggle');
+    
+    // Initial setup based on the current state of the toggle
+    toggleMobileButtons(mobileButtonsToggle.checked);
+
+    mobileButtonsToggle.addEventListener('change', (e) => {
+        toggleMobileButtons(e.target.checked);
+    });
+  
+  });
+
+
+// Function to toggle mobile buttons visibility
+function toggleMobileButtons(shouldShow) {
+    const mobileButtonsContainer = document.getElementById('mobileButtonsContainer');
+    mobileButtonsContainer.style.display = shouldShow ? 'flex' : 'none';
+}
+
+
+
+//----------------------------------------------
+
 
 //Snake Game
 

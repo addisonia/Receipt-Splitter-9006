@@ -109,13 +109,146 @@ button:hover {
 /* Ensure the combined height of the up and down buttons is the same as left and right */
 .up-arrow, .down-arrow {
     height: 8vh;
-    width: 15vw;
+    width: 20vw;
 }
 
 .left-arrow, .right-arrow {
     height: 16vh;
-    width: 10vw;
+    width: 16vw;
 }
+
+
+
+/* Settings Button */
+.settings-container {
+    position: absolute;
+    top: 10px; /* Adjust as needed for spacing from top */
+    right: 0px; /* Adjust as needed for spacing from right */
+    left: 100vw;
+    z-index: 100; /* Make sure it's above other elements */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* Center items vertically */
+}
+
+/* Adjust the popup positioning */
+.popup {
+    display: none;
+    position: absolute;
+    margin-top: -5px;
+    margin-right: 15px;
+    right: 0;
+    top: 100%; /* Align the top of the popup with the bottom of the button */
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px var(--shadow);
+    z-index: 10;
+  }
+
+.popup h2 {
+    margin-bottom: 10px;
+}
+
+/* Styling for the settings button */
+#settingsButton {
+    padding: 10px 15px;
+    margin-bottom: 10px; /* Space between button and popup */
+    border: none;
+    background: none;
+}
+
+#settingsButton i {
+    font-size: 24px;
+    color: var(--yellow) !important;
+}
+
+/* Override the hover effect for the settings button */
+#settingsButton:hover {
+    animation: none;
+    background-color: none;
+}
+
+/* Change the color of the gear icon when hovering over the settings button */
+#settingsButton:hover .fa-gear {
+    color: var(--green) !important; 
+}
+
+
+/* Container for the toggle switch, adds spacing around the switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Width of the switch */
+    height: 24px; /* Height of the switch */
+    margin: auto;
+    vertical-align: middle;
+  }
+
+  /* Hides default checkbox */
+  .toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* The slider */
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 24px; /* Circular edges */
+  }
+
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 50%;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+.toggle-input:checked + .toggle-slider {
+    background-color: var(--orange);
+  }
+
+  /* Move the slider to the right when checked */
+.toggle-input:checked + .toggle-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+/* Add styling for when the mouse hovers over the input */
+.toggle-slider:hover {
+    background-color: var(--shadow);
+  }
+
+/* Style for when the input is focused by keyboard navigation, adds a box shadow */
+.toggle-input:focus + .toggle-slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+
+
+
+
+
+
+
+
 
 
 body, html {

@@ -5,18 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
     <link rel="stylesheet" href="../css/snake.css">
+    <script src="https://kit.fontawesome.com/59175ccc07.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="top-buttons-container">
         <div class="home">
           <button onclick="home()">Home</button>
         </div>
+
+        <div class="settings-container">
+            <button id="settingsButton"><i class="fa-solid fa-gear" style="color: #032e57;"></i></button>
+            <div id="settingsPopup" class="popup">
+                <h2>Settings</h2>
+                <label for="mobileButtonsMode">Mobile Buttons:</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="mobileButtonsToggle" class="toggle-input">
+                    <label for="mobileButtonsToggle" class="toggle-slider"></label>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <div class="game-container">
         <div id="gameArea"></div>
 
-        <div class="bottom-buttons-container">
+        <div class="bottom-buttons-container" id="mobileButtonsContainer">
             <button onclick="leftArrow()" class="arrow-button left-arrow">Left</button>
             <div class="vertical-buttons">
                 <button onclick="upArrow()" class="arrow-button up-arrow">Up</button>
