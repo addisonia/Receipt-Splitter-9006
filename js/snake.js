@@ -45,18 +45,49 @@ function main(currentTime) {
 
 window.requestAnimationFrame(main);
 
-// Listen for arrow key presses to change snake direction
+// Button functionality
+function leftArrow() {
+    if (direction.x === 0) direction = { x: -1, y: 0 };
+}
+
+function upArrow() {
+    if (direction.y === 0) direction = { x: 0, y: -1 };
+}
+
+function downArrow() {
+    if (direction.y === 0) direction = { x: 0, y: 1 };
+}
+
+function rightArrow() {
+    if (direction.x === 0) direction = { x: 1, y: 0 };
+}
+
+
+// Listen for arrow key presses and WASD key presses to change snake direction
 window.addEventListener('keydown', e => {
     switch (e.key) {
-        case 'ArrowUp': if (direction.y === 0) direction = { x: 0, y: -1 }; break;
-        case 'ArrowDown': if (direction.y === 0) direction = { x: 0, y: 1 }; break;
-        case 'ArrowLeft': if (direction.x === 0) direction = { x: -1, y: 0 }; break;
-        case 'ArrowRight': if (direction.x === 0) direction = { x: 1, y: 0 }; break;
-        case ' ': // Spacebar
+        case 'ArrowUp':
+        case 'w': // Add 'W' key functionality
+            upArrow(); // Reuse the upArrow function
+            break;
+        case 'ArrowDown':
+        case 's': // Add 'S' key functionality
+            downArrow(); // Reuse the downArrow function
+            break;
+        case 'ArrowLeft':
+        case 'a': // Add 'A' key functionality
+            leftArrow(); // Reuse the leftArrow function
+            break;
+        case 'ArrowRight':
+        case 'd': // Add 'D' key functionality
+            rightArrow(); // Reuse the rightArrow function
+            break;
+        case ' ':
             isPaused = !isPaused;
             break;
     }
 });
+
 
 // Update game state: snake movement, food consumption, and collision detection
 function update() {

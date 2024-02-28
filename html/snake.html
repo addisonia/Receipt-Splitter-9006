@@ -13,7 +13,19 @@
         </div>
     </div>
 
-    <div id="gameArea"></div>
+    <div class="game-container">
+        <div id="gameArea"></div>
+
+        <div class="bottom-buttons-container">
+            <button onclick="leftArrow()" class="arrow-button left-arrow">Left</button>
+            <div class="vertical-buttons">
+                <button onclick="upArrow()" class="arrow-button up-arrow">Up</button>
+                <button onclick="downArrow()" class="arrow-button down-arrow">Down</button>
+            </div>
+            <button onclick="rightArrow()" class="arrow-button right-arrow">Right</button>
+        </div>
+    </div>
+
     <script src="../js/snake.js"></script>
 </body>
 </html>

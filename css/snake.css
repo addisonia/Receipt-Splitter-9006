@@ -25,6 +25,17 @@
 }
 
 
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the game area and button container */
+}
+
+
+
+
+/* Buttons */
+
 button{
     background-color: var(--yellow);
     cursor:-webkit-grab;
@@ -50,10 +61,11 @@ button:hover {
 }
 
 .top-buttons-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+    position: absolute;
+    top: 0px; /* Adjust as needed for spacing from top */
+    left: 0px; /* Center horizontally */
+    transform: translateX(-50%); /* Center align */
+    z-index: 10; /* Ensure it's on top of other elements */
 }
 
 .home {
@@ -67,6 +79,43 @@ button:hover {
     z-index: 10; /* Ensure it's on top of other elements */
 }
 
+
+.bottom-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space between game area and buttons */
+}
+
+.arrow-button {
+    margin: 5px; /* Space between buttons */
+    padding: 20px; /* Larger buttons */
+    font-size: 18px; /* Bigger text size */
+    flex: 0 0 auto; /* Do not grow or shrink */
+    align-items: center;
+    justify-content: center;
+
+}
+
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-arrow, .up-arrow, .down-arrow, .right-arrow {
+    margin: 0 0px;
+}
+
+/* Ensure the combined height of the up and down buttons is the same as left and right */
+.up-arrow, .down-arrow {
+    height: 8vh;
+    width: 15vw;
+}
+
+.left-arrow, .right-arrow {
+    height: 16vh;
+    width: 10vw;
+}
 
 
 body, html {
