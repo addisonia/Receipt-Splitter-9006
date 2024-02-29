@@ -129,7 +129,7 @@ window.addEventListener('keydown', e => {
 
 // Initialize the score
 let score = 1;
-let highScore = localStorage.getItem('highScore') || 0; // Retrieve the saved high score from local storage or start with 0
+let highScore = localStorage.getItem('highScore') || 1; // Retrieve the saved high score from local storage or start with 0
 
 // Function to update the current score
 function updateCurrentScore() {
