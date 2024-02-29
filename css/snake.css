@@ -285,15 +285,24 @@ body, html {
 
 
 /* Scoreboard Styles */
-#scoreboard {
+
+/* Scoreboard container styles */
+.scoreboard-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* Adjust based on your layout */
+    margin-bottom: 10px; /* Space between scoreboards and game area */
+}
+
+/* Individual scoreboard styles */
+.scoreboard-container > div {
     padding: 10px;
-    margin-bottom: 10px; /* Space between scoreboard and game area */
     color: var(--white);
     background: var(--dark-shadow);
     border-radius: 5px;
     font-size: 20px;
     text-align: center;
-    width: 200px;
-    height: 40px;
+    width: 200px; /* Or adjust to fit your design */
+    margin: 0 10px; /* Spacing between scoreboards */
 }
 

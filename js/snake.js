@@ -129,15 +129,23 @@ window.addEventListener('keydown', e => {
 
 // Initialize the score
 let score = 1;
+let highScore = localStorage.getItem('highScore') || 0; // Retrieve the saved high score from local storage or start with 0
 
-// Function to update the scoreboard
-function updateScoreboard() {
-    const scoreboardElement = document.getElementById('scoreboard');
-    scoreboardElement.textContent = `Score: ${score}`;
+// Function to update the current score
+function updateCurrentScore() {
+    const currentScoreElement = document.getElementById('currentScore');
+    currentScoreElement.textContent = `Current Score: ${score}`;
 }
 
-// Call updateScoreboard to initialize the score display
-updateScoreboard();
+// Function to update the high score
+function updateHighScore() {
+    const highScoreElement = document.getElementById('highScore');
+    highScoreElement.textContent = `High Score: ${highScore}`;
+}
+
+// Call to initialize the score displays
+updateCurrentScore();
+updateHighScore();
 
 
 
@@ -148,15 +156,24 @@ function update() {
     
     // Check if the snake has eaten the food
     if (head.x === food.x && head.y === food.y) {
-        score += 1; // Increment the score
-        updateScoreboard(); // Update the scoreboard with the new score
+        score += 1; // Increment the current score
+        updateCurrentScore(); // Update the current score display
         placeFood(); // Place new food
     } else {
         snake.pop(); // Remove the tail segment if no food is eaten
     }
-    
+
     // Check for collisions with the game area boundaries or self
     if (head.x < 0 || head.x + snakeSize > gameWidth || head.y < 0 || head.y + snakeSize > gameHeight || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
+        // Check if current score is higher than the high score
+        if (score > highScore) {
+            highScore = score; // Update the high score
+            localStorage.setItem('highScore', highScore); // Save the new high score to local storage
+            updateHighScore(); // Update the high score display
+        }
+        // Reset the current score and update the display
+        score = 0;
+        updateCurrentScore();
         // Reset the game state on collision
         snake = [{x: snakeSize * 5, y: snakeSize * 5}];
         direction = {x: 0, y: 0};
