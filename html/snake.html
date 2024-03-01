@@ -16,16 +16,35 @@
           <button onclick="home()">Home</button>
         </div>
 
+        <button class = "reset-high-score-button" id="resetHighScoreBtn" onclick="resetHighScore()">Reset High Score</button>
+
         <div class="settings-container">
             <button id="settingsButton"><i class="fa-solid fa-gear" style="color: #032e57;"></i></button>
             <div id="settingsPopup" class="popup">
                 <h2>Settings</h2>
-                <label for="mobileButtonsMode">Mobile Buttons:</label>
-                <div class="toggle-switch">
-                    <input type="checkbox" id="mobileButtonsToggle" class="toggle-input">
-                    <label for="mobileButtonsToggle" class="toggle-slider"></label>
+
+                <!-- Game mode setting -->
+                <div class="setting">
+                    <div class="setting-label">Game Mode:</div>
+                    <div class="select-container">
+                        <select id="gameModeSelect" class="game-mode-select">
+                            <option value="easy">Easy</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="hard">Hard</option>
+                            <option value="impossible">IMPOSSIBLE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-option">
+                    <div class="settings-description">Mobile<br>Buttons</div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="mobileButtonsToggle" class="toggle-input">
+                        <label for="mobileButtonsToggle" class="toggle-slider"></label>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 

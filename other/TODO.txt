@@ -9,29 +9,6 @@ BUGS:
 TO ADD:
 ------------------------------
 
-- make high score update in realtime instead of after
-player dies
-
-- make sure that when mobile buttons are activated there
-is a margin below them and same with the score buttonsand
-and the top
-
-
-- add difficulty modes in the settings for snake game
-
-
-- Settings button
-    - Accessibility ideas within settings:
-        - alternating white and light gray background color 
-        on display grid for ease of seeing?
-        - for buyer name checkbox maybe do a green fill 
-        square around name to indicate yes for item and when 
-        clicked turn red to indicate no
-    - have a switch button so user can choose between 
-    proportional tax and even split tax
-
-
-
 - create a login button where users can create an
 account to save receipt data (on firebase cloud)
 
@@ -58,6 +35,15 @@ OTHER IDEAS:
 
 
 
+- Settings button additions
+    - Accessibility ideas within settings:
+        - alternating white and light gray background color 
+        on display grid for ease of seeing?
+        - for buyer name checkbox maybe do a green fill 
+        square around name to indicate yes for item and when 
+        clicked turn red to indicate no
+
+
 Machine learning related ideas:
 - dont tax food items
 (maybe put "tax" in front of the item)
@@ -67,10 +53,16 @@ Machine learning related ideas:
 vegan items)
 
 
-- different views for different reported screen sizes 
-(mobile view) use react??
+- reorganize receipt splitter split page for mobile
+view
 
 
 - weighted items option?
 
 - multiple of same items option (automath?)
+
+
+
+- notes page
+
+- weather page

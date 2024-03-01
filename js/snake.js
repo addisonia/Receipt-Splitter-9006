@@ -35,8 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to toggle mobile buttons visibility
 function toggleMobileButtons(shouldShow) {
     const mobileButtonsContainer = document.getElementById('mobileButtonsContainer');
+    const gameContainer = document.querySelector('.game-container');
+    const body = document.body;
+
     mobileButtonsContainer.style.display = shouldShow ? 'flex' : 'none';
+
+    if (shouldShow) {
+        body.classList.add('mobile-buttons-enabled');
+        gameContainer.style.height = `calc(100vh - var(--mobile-buttons-height))`; // Adjust the game container height
+    } else {
+        body.classList.remove('mobile-buttons-enabled');
+        gameContainer.style.height = 'auto'; // Reset the game container height
+    }
+
+    // After adjusting the game area, place the food in a new position
+    placeFood();
 }
+
 
 
 
@@ -50,8 +65,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
     adjustGameAreaSize();
     placeFood();
     window.requestAnimationFrame(main);
+
+    const gameModeSelect = document.getElementById('gameModeSelect');
+
+    // Retrieve the last game mode from localStorage, default to 'normal' if not found
+    currentMode = localStorage.getItem('gameMode') || 'normal';
+    gameModeSelect.value = currentMode; // Set the select element to reflect the current mode
+    // Apply the game mode settings
+    applyGameModeSettings(currentMode);
+
+    gameModeSelect.addEventListener('change', (e) => {
+        currentMode = e.target.value;
+        // Save the selected game mode to localStorage
+        localStorage.setItem('gameMode', currentMode);
+        applyGameModeSettings(currentMode);
+    });
+
+    // Add touch event listener to game area
+    const gameArea = document.getElementById('gameArea');
+    gameArea.addEventListener('touchstart', function(e) {
+        // Check if mobile buttons are enabled
+        if (document.body.classList.contains('mobile-buttons-enabled')) {
+            e.preventDefault(); // Prevent default touch behavior (scrolling, zooming, etc.)
+            togglePause(); // Call function to toggle game pause state
+        }
+    });    
+
 });
 
+// Function to toggle the pause state of the game
+function togglePause() {
+    isPaused = !isPaused;
+}
+
+function applyGameModeSettings(mode) {
+    speed = gameModes[mode].speed;
+    growthRate = gameModes[mode].growthRate;
+    resetGame();
+}
+
+// Ensure the resetGame function properly resets the game to the current mode's settings
+function resetGame() {
+    // Reset game state variables to their initial values according to the current game mode
+    snake = [{x: snakeSize * 5, y: snakeSize * 5}]; // Reset snake to initial position
+    direction = {x: 0, y: 0}; // Reset movement direction
+    score = 1; // Reset score
+    updateCurrentScore(); // Update score display
+    placeFood(); // Place food in a new position
+}
 
 // Access the game area from the DOM to manipulate it
 const gameArea = document.getElementById('gameArea');
@@ -62,9 +123,21 @@ const snakeSize = 20; // The size of each snake segment
 let snake = [{x: snakeSize * 5, y: snakeSize * 5}]; // Initial snake position
 let food = {x: 0, y: 0}; // Initial food position
 let direction = {x: 0, y: 0}; // Initial movement direction
-let speed = 16; // The speed of the game, controlling the update frequency
+let speed = 30; // The speed of the game, controlling the update frequency
 let lastRenderTime = 0; // The last time the game was rendered
 let isPaused = false; // Tracks the pause state of the game
+
+const gameModes = {
+    easy: { speed: 8, growthRate: 4 },
+    normal: { speed: 14, growthRate: 3 },
+    hard: { speed: 24, growthRate: 2 },
+    impossible: { speed: 60, growthRate: 1 }
+};
+
+// Set the default mode to 'normal'
+let currentMode = 'normal';
+let growthRate = gameModes[currentMode].growthRate;
+speed = gameModes[currentMode].speed;
 
 
 // The main game loop
@@ -148,6 +221,14 @@ updateCurrentScore();
 updateHighScore();
 
 
+function resetHighScore() {
+    highScore = 1; // Reset high score variable
+    localStorage.removeItem('highScore'); // Remove the high score from local storage
+    updateHighScore(); // Update the high score display
+}
+
+
+
 
 // Update game state: snake movement, food consumption, and collision detection
 function update() {
@@ -156,11 +237,23 @@ function update() {
     
     // Check if the snake has eaten the food
     if (head.x === food.x && head.y === food.y) {
-        score += 1; // Increment the current score
+        // Increase the score based on the growth rate
+        score += growthRate;
         updateCurrentScore(); // Update the current score display
+        if (score > highScore) {
+            highScore = score; // Update the high score
+            localStorage.setItem('highScore', highScore); // Save the new high score to local storage
+            updateHighScore(); // Update the high score display
+        }
         placeFood(); // Place new food
+        
+        // Add new segments to the end of the snake equal to the growth rate
+        for (let i = 0; i < growthRate; i++) {
+            snake.push({...snake[snake.length - 1]}); // Copy the last segment of the snake
+        }
     } else {
-        snake.pop(); // Remove the tail segment if no food is eaten
+        // Only remove the tail segment if no food is eaten
+        snake.pop();
     }
 
     // Check for collisions with the game area boundaries or self
@@ -172,7 +265,7 @@ function update() {
             updateHighScore(); // Update the high score display
         }
         // Reset the current score and update the display
-        score = 0;
+        score = 1;
         updateCurrentScore();
         // Reset the game state on collision
         snake = [{x: snakeSize * 5, y: snakeSize * 5}];
@@ -180,6 +273,7 @@ function update() {
         placeFood(); // Ensure food is placed in a valid location after reset
     }
 }
+
 
 // Call this function to adjust the game area size whenever the window is resized
 window.addEventListener('resize', adjustGameAreaSize);
@@ -210,20 +304,33 @@ function placeFood() {
     gameWidth = gameArea.clientWidth;
     gameHeight = gameArea.clientHeight;
 
+    let minX = 0;
+    let minY = 0;
+    let maxX = (gameWidth / snakeSize) - 1;
+    let maxY = (gameHeight / snakeSize) - 1;
+
+    // In 'easy' mode, avoid placing food in the outer rows and columns
+    if (currentMode === 'easy') {
+        minX = 1;
+        minY = 1;
+        maxX = (gameWidth / snakeSize) - 2;
+        maxY = (gameHeight / snakeSize) - 2;
+    }
+
     let potentialFoodPosition;
 
     // Keep generating new positions until one that doesn't overlap with the snake is found
     do {
         potentialFoodPosition = {
-            // Allow food to spawn within an area that excludes the outer layer
-            x: (Math.floor(Math.random() * ((gameWidth / snakeSize) - 2)) + 1) * snakeSize,
-            y: (Math.floor(Math.random() * ((gameHeight / snakeSize) - 2)) + 1) * snakeSize
+            x: (Math.floor(Math.random() * (maxX - minX + 1)) + minX) * snakeSize,
+            y: (Math.floor(Math.random() * (maxY - minY + 1)) + minY) * snakeSize
         };
     } while (isFoodOnSnake(potentialFoodPosition));
 
     // Assign the valid non-overlapping position to the food
     food = potentialFoodPosition;
 }
+
 
 
 // Check if the new food position overlaps with the snake's body

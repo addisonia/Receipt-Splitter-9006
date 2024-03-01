@@ -267,8 +267,18 @@ const addTax = () => {
 
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+  const splitTaxToggle = document.getElementById('splitTaxToggle');
+
+  splitTaxToggle.addEventListener('change', function() {
+    calculateAndDisplayCosts(); // Call a function to recalculate and display costs
+  });
+});
+
+
 //cost per buyer
 const calculateBuyerOwes = () => {
+  const splitEvenly = document.getElementById('splitTaxToggle').checked;
   // Initialize buyer totals with zero values
   const buyerTotals = buyers.map(() => 0);
   let totalCostWithoutTax = 0;
@@ -287,8 +297,12 @@ const calculateBuyerOwes = () => {
     });
   });
 
+  if (splitEvenly) {
+    const taxPerBuyer = tax / buyers.length;
+    buyerTotals.forEach((_, index) => buyerTotals[index] += taxPerBuyer);
+  }
   // If no items, split tax evenly among all buyers
-  if (items.length === 0 && buyers.length > 0) {
+  else if (items.length === 0 && buyers.length > 0) {
     const taxPerBuyer = tax / buyers.length;
     buyerTotals.forEach((_, index) => buyerTotals[index] += taxPerBuyer);
   } else if (totalCostWithoutTax > 0) { // Only divide tax if there are items
@@ -303,6 +317,8 @@ const calculateBuyerOwes = () => {
 
   return buyerTotals;
 };
+
+
 
 
 const updateCostPerBuyerDisplay = () => {
@@ -330,6 +346,11 @@ const updateCostPerBuyerDisplay = () => {
   }
 
 };
+
+function calculateAndDisplayCosts() {
+  updateCostPerBuyerDisplay();
+  saveState();
+}
 
 const toggleBuyerSelection = (itemIndex, buyerIndex) => {
   // Toggle the 'selected' state of the buyer for this item
@@ -363,28 +384,40 @@ function saveState() {
     items: items,
     buyers: buyers,
     tax: tax,
-    darkMode: document.body.classList.contains('dark-mode')
+    darkMode: document.body.classList.contains('dark-mode'),
+    splitTaxEvenly: document.getElementById('splitTaxToggle').checked // Save the toggle state
   };
   saveReceiptDataLocally(receiptData);
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Load local data if it exists
   const savedData = getLocalReceiptData();
   if (savedData) {
-    // Assuming 'items' and 'buyers' are the data you want to load
     items = savedData.items || [];
     buyers = savedData.buyers || [];
+    tax = savedData.tax || 0; // Restore saved tax amount
+    document.getElementById('taxAmount').value = tax; // Set the input box to show the saved tax amount
+
     updateItemsDisplay();
     updateCostPerBuyerDisplay();
-  }
 
-  if (savedData.darkMode) {
-    document.body.classList.add('dark-mode');
-    document.getElementById('darkModeStylesheet').disabled = false;
-    document.getElementById('darkModeToggle').checked = true; // Set the toggle to match
+    if (savedData.darkMode) {
+      document.body.classList.add('dark-mode');
+      document.getElementById('darkModeStylesheet').disabled = false;
+      document.getElementById('darkModeToggle').checked = true;
+    }
+
+    if (savedData.splitTaxEvenly !== undefined) {
+      const splitTaxToggle = document.getElementById('splitTaxToggle');
+      splitTaxToggle.checked = savedData.splitTaxEvenly;
+      calculateAndDisplayCosts(); // Recalculate costs based on the restored setting
+    }
   }
 });
+
+
 
 
 

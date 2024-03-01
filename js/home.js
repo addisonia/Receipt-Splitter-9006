@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-  //markdown to HTML function
+
 //markdown to HTML function
 function markdownToHTML(markdown) {
   // Convert headings
@@ -98,22 +98,25 @@ function markdownToHTML(markdown) {
                      .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
                      .replace(/\*(.*)\*/gim, '<em>$1</em>');
 
-  // Convert horizontal rule
-  markdown = markdown.replace(/____________________________________________________________________/gim, '<hr>');
+  // Handle lines starting with dashes, including indentation
+  markdown = markdown.split('\n').map(line => {
+      const matches = line.match(/^(\s*)-\s(.*)/);
+      if (matches) {
+          const indentLevel = matches[1].length / 2; // Assuming 2 spaces per indent level
+          return `<div style="margin-left: ${indentLevel * 20}px;">- ${matches[2]}</div>`;
+      }
+      return line;
+  }).join('\n');
 
-  // Handling dashes directly and ensure proper indentation
-  // Replace lines starting with dash with a div that simulates a list item
-  markdown = markdown.replace(/^\- (.*)$/gm, '<div style="margin-left: 20px;">- $1</div>');
+  // Convert horizontal rules
+  markdown = markdown.replace(/^-{3,}$/gim, '<hr>');
 
-  // Ensure paragraphs are separated by proper line breaks
-  // Use double newline to separate paragraphs
-  markdown = markdown.replace(/\n\n/g, '<br><br>');
-
-  // Convert single line breaks to <br>, preserving existing spacing for non-paragraph breaks
+  // Convert line breaks to <br>
   markdown = markdown.replace(/([^\n])\n([^\n])/gim, '$1<br>$2');
 
   return markdown;
 }
+
 
 });
 
