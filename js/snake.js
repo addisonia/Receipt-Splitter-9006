@@ -89,9 +89,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
             e.preventDefault(); // Prevent default touch behavior (scrolling, zooming, etc.)
             togglePause(); // Call function to toggle game pause state
         }
-    });    
+    });   
+    
+    // Automatically enable mobile buttons for mobile users
+    if (isMobileDevice()) {
+        mobileButtonsToggle.checked = true;
+        toggleMobileButtons(true);
+    } else {
+        // Optionally, read the saved state from localStorage for desktop users
+        const savedState = localStorage.getItem('mobileButtonsEnabled');
+        const shouldShowMobileButtons = savedState ? JSON.parse(savedState) : false;
+        mobileButtonsToggle.checked = shouldShowMobileButtons;
+        toggleMobileButtons(shouldShowMobileButtons);
+    }
+
+    mobileButtonsToggle.addEventListener('change', (e) => {
+        toggleMobileButtons(e.target.checked);
+        // Save the state to localStorage
+        localStorage.setItem('mobileButtonsEnabled', e.target.checked);
+    });
 
 });
+
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 
 // Function to toggle the pause state of the game
 function togglePause() {
