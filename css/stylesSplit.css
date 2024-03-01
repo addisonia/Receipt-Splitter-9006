@@ -79,11 +79,62 @@ button:hover {
     transform: translateX(-50%);
   }
 
+
+.sign-in-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px; 
+    top: 4px;
+}
+
+#signInButton {
+    margin-bottom: 5px; 
+    border: none;
+    background: none;
+    padding: 10px; 
+    margin-right: 20px;
+}
+
+#signInButton i {
+    font-size: 24px; 
+}
+
+
+#signInButton:hover {
+    animation: none;
+    background-color: none;
+}
+
+/* Change the color of the gear icon when hovering over the settings button */
+#signInButton:hover .fa-user {
+    color: var(--blue02) !important; 
+}
+
+.sign-in-popup {
+    min-width: 100px; /* Set a minimum width to ensure "Sign In to Save Data" fits on one line */
+    text-align: center;
+    left: 0%;
+    transform: translateX(-30%);
+    padding: 15px !important;
+}
+
+.signin-text {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.save-data-text {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+
   
 /* Settings Button */
 .settings-container {
     position: absolute;
-    top: 10px;
+    top: 18px;
     right: 10px;
     flex: 1;
     display: flex;
@@ -121,7 +172,6 @@ button:hover {
 }
 
 #settingsButton {
-    padding: 5px 10px;
     margin-bottom: 10px; /* Space between button and popup */
     border: none;
     background: none;

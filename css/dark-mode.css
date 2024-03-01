@@ -94,8 +94,22 @@ body.dark-mode .popup {
 body.dark-mode button {
     border: 2px solid var(--dark-shadow) /* White border for buttons */
   }
-  
-/* If you have specific buttons you want to exclude, you can reverse the effect */
+
+
+
+body.dark-mode button#signInButton {
+  border: none; 
+}
+
+body.dark-mode #signInButton .fa-user {
+    color: var(--yellow) !important;
+  }
+
+body.dark-mode #signInButton:hover .fa-user {
+    color: var(--blue02) !important; 
+  }
+
+
 body.dark-mode button#settingsButton {
     border: none; /* Removes the border from the settings button, if desired */
   }
