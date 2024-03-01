@@ -134,7 +134,7 @@ button:hover {
 /* Settings Button */
 .settings-container {
     position: absolute;
-    top: 18px;
+    top: 19px;
     right: 10px;
     flex: 1;
     display: flex;
