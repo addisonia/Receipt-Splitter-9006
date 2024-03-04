@@ -451,7 +451,7 @@ button:hover {
 }
 
 
-
+/* mobile view */
 @media (max-width: 768px) {
     .row {
         flex-direction: column;
@@ -462,7 +462,6 @@ button:hover {
     .input-region form {
         align-items: center; /* Center-align the items */
       }
-
     
     /* Adjust label alignment with larger input boxes */
     .input-region label.aligned-label {
@@ -491,6 +490,13 @@ button:hover {
         width: 100%; /* Set a specific width */
         max-width: 350px; /* Example max width to prevent overly wide forms on larger screens */
         margin: 0 auto; /* Center the forms */
+    }
+
+    #itemForm button#submitItemButton {
+        width: 25vw; 
+        height: 5vh;
+        margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
+        display: block; /* Display block to enable the use of auto margins for centering */
     }
 
 

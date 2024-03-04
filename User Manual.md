@@ -27,6 +27,14 @@ ____________________________________________________________________
 # 
 # 
 
+## User Profile Button
+- Click "Sign In" button to sign in to google account
+- Once signed in:
+    - Click "Save Receipt" to save current receipt data to account
+    - Click "Log Out" to sign out of google account
+# 
+# 
+
 ## Settings Button:
 - **Dark Mode**: Changes background and button colors to fit a dark mode theme when switch button is toggled
 # 

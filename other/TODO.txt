@@ -2,15 +2,16 @@
 BUGS:
 ------------------------------
 
-- fix flash not showing when hovering over button
+- none
 
 
 ------------------------------
 TO ADD:
 ------------------------------
 
-- reorganize receipt splitter split page for mobile
-view (just fix the buyer, tax, and item/price inputs)
+- update user manual
+
+- fix input item and price add button
 
 - automath ability to mutliply cost in price input
 box (displays a x(number) on the to the left of the
