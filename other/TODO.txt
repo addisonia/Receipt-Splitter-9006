@@ -2,28 +2,32 @@
 BUGS:
 ------------------------------
 
-- none
+- fix flash not showing when hovering over button
 
 
 ------------------------------
 TO ADD:
 ------------------------------
 
-- create a login button where users can create an
-account to save receipt data (on firebase cloud)
+- automath ability to mutliply cost in price input
+box (displays a x(number) on the to the left of the
+item in the item display)
 
-- have a user profile icon that appears only after 
-a user has signed in. they can click on this icon
-to access past saved receipts and whatnot
+- receipt name input field top middle, below clear
+data button (input text says (optional), default
+value to "My Receipt")
 
-- have a Save button that appears after a user has
-signed in, which they can click to save data to their
-account
+- allow users to save multiple receipts (have some
+way to track it so that with future implementation
+they can browse through past receipts)
 
+- Past Receipts button (new page?)
 
+- allow users to delete past receipts
 
-- when google search console finishes indexing add 
-sitemap (https://addisonia.github.io/Receipt-Splitter-9006/sitemap.xml)
+- allow users to import past receipts directly
+into display grid
+
 
 
 ------------------------------
@@ -33,10 +37,12 @@ OTHER IDEAS:
 
 -add remove item button (trash can symbol? x circle symbol?)
 
+- unselect all items from a user
 
 
 - Settings button additions
     - Accessibility ideas within settings:
+        - less dark mode
         - alternating white and light gray background color 
         on display grid for ease of seeing?
         - for buyer name checkbox maybe do a green fill 
@@ -59,7 +65,6 @@ view
 
 - weighted items option?
 
-- multiple of same items option (automath?)
 
 
 

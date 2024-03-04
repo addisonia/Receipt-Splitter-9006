@@ -1,3 +1,5 @@
+
+
 //home button
 const home = () => {
   window.location.href = "../index.html";
@@ -100,6 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+function closeSettingsPopup() {
+  const settingsPopup = document.getElementById('settingsPopup');
+  if (settingsPopup && settingsPopup.style.display === 'block') {
+      settingsPopup.style.display = 'none';
+  }
+}
+
+// Make it globally accessible
+window.closeSettingsPopup = closeSettingsPopup;
 
 
 
@@ -444,23 +456,10 @@ function clearData() {
 
 
 
-// User sign in button
-document.addEventListener('DOMContentLoaded', () => {
-  const signInButton = document.getElementById('signInButton');
-  const signInPopup = document.getElementById('signInPopup');
 
-  signInButton.addEventListener('click', () => {
-    // Toggle the display of the sign-in popup
-    signInPopup.style.display = signInPopup.style.display === 'block' ? 'none' : 'block';
-  });
 
-  window.addEventListener('click', (event) => {
-    // Close the sign-in popup if the user clicks outside of it
-    if (!signInButton.contains(event.target) && !signInPopup.contains(event.target)) {
-      signInPopup.style.display = 'none';
-    }
-  });
-});
+
+
 
 
 
