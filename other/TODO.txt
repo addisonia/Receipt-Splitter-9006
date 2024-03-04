@@ -9,6 +9,9 @@ BUGS:
 TO ADD:
 ------------------------------
 
+- reorganize receipt splitter split page for mobile
+view (just fix the buyer, tax, and item/price inputs)
+
 - automath ability to mutliply cost in price input
 box (displays a x(number) on the to the left of the
 item in the item display)
@@ -59,8 +62,7 @@ Machine learning related ideas:
 vegan items)
 
 
-- reorganize receipt splitter split page for mobile
-view
+
 
 
 - weighted items option?

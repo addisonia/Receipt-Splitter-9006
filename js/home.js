@@ -4,7 +4,7 @@ const startSplitting = () => {
 
 
 
-//privacy policy
+//cookies consent
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the user has already accepted the policy
