@@ -80,6 +80,7 @@
       <div class="sign-in-container">
         <button id="signInButton"><i class="fa-solid fa-user" style="color: #032e57;"></i></button>
         <div id="signInPopup" class="popup sign-in-popup">
+          <h3>My Account</h3>
           <!-- Pre Sign-in Content -->
           <div id="initialSignInContent" class="initial-popup">
             <button id="signInText" class="signin-text">Sign In</button>
@@ -123,6 +124,14 @@
     </div>
   </div>
     <div class="input-region">
+      <div id="receiptNameContainer" style="display: none;">
+        <form id="receiptNameForm">
+          <label for="receiptName" class="aligned-label">Receipt Name: </label>
+          <input type="text" id="receiptName" name="receiptName"/>
+          <button id="addReceiptNameButton" onclick="addReceiptName()">Add</button>
+        </form>
+      </div>
+
       <div class="row">
         <form id="buyersForm">
           <label for="buyerName" class="aligned-label white-label">Buyers: </label>

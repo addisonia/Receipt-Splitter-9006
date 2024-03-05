@@ -125,10 +125,22 @@ function markdownToHTML(markdown) {
 
 //Snake game button
 document.addEventListener('DOMContentLoaded', () => {
-  const userManualBtn = document.getElementById('snakeGameBtn');
+  const snakeGameBtn = document.getElementById('snakeGameBtn');
 
   snakeGameBtn.addEventListener('click', () => {
     window.location.href = "html/snake.html";
+  });
+
+});
+
+
+
+//Privacy policy button
+document.addEventListener('DOMContentLoaded', () => {
+  const realPrivacyPolicyBtn = document.getElementById('realPrivacyPolicyBtn');
+
+  realPrivacyPolicyBtn.addEventListener('click', () => {
+    window.location.href = "html/privacy-policy.html";
   });
 
 });

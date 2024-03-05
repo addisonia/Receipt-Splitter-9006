@@ -1,6 +1,8 @@
 :root {
     --white: #ffffff;
     --off-white: #ede7d8;
+    --light-gray: #f0f0f0;
+    --light-gray2: #dfdfdf;
     --transp-white-1: rgba(255,255,255,0.25);
     --transp-white-2: rgba(255,255,255,0.1);
     --blue-1: #62b8f5;
@@ -110,6 +112,7 @@ button:hover {
 #signInButton:hover .fa-user {
     color: var(--blue02) !important; 
 }
+
 
 #signInPopup {
     min-width: 100px; /* Set a minimum width to ensure "Sign In to Save Data" fits on one line */
@@ -357,8 +360,21 @@ button:hover {
 
 
 .input-region{
-    margin-top: 20px;
+    margin-top: 10px;
 }
+
+/* receipt name */
+#receiptNameForm {
+    background-color: var(--light-gray2);
+    padding: 20px;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-bottom: 10px !important;
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto;
+}
+
 
 .row {
     display: flex;
@@ -481,12 +497,16 @@ button:hover {
         align-items: center; 
     }
 
+    #receiptNameForm {
+        margin-bottom: 10px !important;
+    }
+
     #itemForm input[type="text"],
     #itemForm input[type="number"] {
         margin-bottom: 10px; /* Provide space between successive fields */
     }
 
-    #buyersForm, #taxForm {
+    #buyersForm, #taxForm, #receiptNameForm {
         width: 100%; /* Set a specific width */
         max-width: 350px; /* Example max width to prevent overly wide forms on larger screens */
         margin: 0 auto; /* Center the forms */
@@ -510,7 +530,7 @@ button:hover {
 
 /* display title background color */
 #display-titles > div {
-    background-color: #f0f0f0; /* Different background for title row */
+    background-color: var(--light-gray); /* Different background for title row */
 }
   
 

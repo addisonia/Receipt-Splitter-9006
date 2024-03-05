@@ -77,13 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for auth state changes
     auth.onAuthStateChanged(user => {
         if (user) {
-        // User is signed in.
-        console.log("User is signed in:", user);
-        togglePopupContent(true); // Show post-sign-in content
+            // User is signed in.
+            console.log("User is signed in:", user);
+            togglePopupContent(true); // Show post-sign-in content
+
+            // Show the receipt name input field
+            document.getElementById("receiptNameContainer").style.display = "block";
         } else {
-        // No user is signed in.
-        console.log("No user is signed in.");
-        togglePopupContent(false); // Show initial sign-in content
+            // No user is signed in.
+            console.log("No user is signed in.");
+            togglePopupContent(false); // Show initial sign-in content
+            
+            // Hide the receipt name input field
+            document.getElementById("receiptNameContainer").style.display = "none";
         }
     });
     
@@ -136,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('No user is signed in');
             }
         });
+        
 
     }
 
@@ -144,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function getReceiptData() {
     return {
+        name: receiptName,
         items: items, // Assuming 'items' is an array of your items
         buyers: buyers, // Assuming 'buyers' is an array of your buyers
         tax: tax, // Assuming 'tax' is your tax amount

@@ -8,10 +8,13 @@ BUGS:
 ------------------------------
 TO ADD:
 ------------------------------
+- add privacy policy
 
-- update user manual
+- add functionality to receipt name input box
 
-- fix input item and price add button
+- fix snake score boxes for mobile view
+
+- make price input box less wide on mobile view
 
 - automath ability to mutliply cost in price input
 box (displays a x(number) on the to the left of the
@@ -38,6 +41,8 @@ into display grid
 OTHER IDEAS:
 ------------------------------
 
+- add game mode ACTUALLY IMPOSSIBLE where the snake
+cannot move
 
 -add remove item button (trash can symbol? x circle symbol?)
 
@@ -64,6 +69,9 @@ vegan items)
 
 
 
+- for snake game, replace snake pixel with Receipt
+png 📜 and add bent receipts for when the snake turns
+- use coins or moneybag png for snake food
 
 
 - weighted items option?

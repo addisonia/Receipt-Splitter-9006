@@ -144,6 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Attach event listeners inside this DOMContentLoaded callback
+  document.getElementById("receiptNameForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    addReceiptName();
+  });
+
   document.getElementById("itemForm").addEventListener("submit", (event) => {
     event.preventDefault();
     submitItem();
@@ -167,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   taxAmountInput.addEventListener("change", addTax);
 });
 
+let receiptName = "";
 let items = [];
 let buyers = [];
 
@@ -190,6 +196,16 @@ const submitItem = () => {
     saveState(); // Save the updated state to local storage
   }
 };
+
+const addReceiptName = () => {
+  const inputReceiptName = document.getElementById('receiptName').value.trim();
+  receiptName = inputReceiptName || "placeholder"; 
+  // Save to local storage
+  localStorage.setItem('receiptName', receiptName);
+
+  saveState(); // Make sure to save the updated state
+}
+
 
 const addBuyer = () => {
   const buyerName = document.getElementById("buyerName").value.trim();
@@ -393,6 +409,7 @@ function getLocalReceiptData() {
 
 function saveState() {
   const receiptData = {
+    receiptName: receiptName,
     items: items,
     buyers: buyers,
     tax: tax,
@@ -405,8 +422,16 @@ function saveState() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Load local data if it exists
+  // Set receipt name from local storage if it exists
+  const savedReceiptName = localStorage.getItem('receiptName');
+  if (savedReceiptName) {
+    document.getElementById('receiptName').value = savedReceiptName;
+  }
+  
+
   const savedData = getLocalReceiptData();
   if (savedData) {
+    receiptName = savedData.receiptName || "";
     items = savedData.items || [];
     buyers = savedData.buyers || [];
     tax = savedData.tax || 0; // Restore saved tax amount
@@ -442,6 +467,7 @@ function clearData() {
   localStorage.removeItem("receiptData");
 
   // Also reset your application state
+  receiptName = "";
   items = [];
   buyers = [];
   updateItemsDisplay();

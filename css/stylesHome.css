@@ -202,5 +202,30 @@ button:hover {
 
 
 
+
+/* Real Privacy Policy Button */
+.real-privacy-policy-btn {
+    position: fixed; 
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    right: 20px; /* Distance from the right side of the viewport */
+    border: none;
+    z-index: 10; 
+    background-color: transparent; 
+    cursor: pointer; 
+    color: inherit; 
+}
+
+#realPrivacyPolicyBtn {
+    background-color: transparent;
+}
+
+#realPrivacyPolicyBtn .fa-shield-halved {
+    color: var(--yellow); 
+}
+
+#realPrivacyPolicyBtn:hover .fa-shield-halved {
+    color: var(--green); 
+}
+
   
 
