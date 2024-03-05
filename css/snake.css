@@ -357,9 +357,9 @@ body, html {
 @media (max-width: 768px) {
     /* Adjust the width of score and high score displays for mobile */
     .scoreboard-container > div {
-        width: 150px; /* Reduce the width on mobile devices */
+        width: 100px; /* Reduce the width on mobile devices */
         margin: 0 auto; /* Center the scoreboards */
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
@@ -407,11 +407,11 @@ body.mobile-buttons-enabled .bottom-buttons-container {
 /* Ensure the combined height of the up and down buttons is the same as left and right */
 .up-arrow, .down-arrow {
     height: 8vh;
-    width: 20vw;
+    width: 25vw;
 }
 
 .left-arrow, .right-arrow {
     height: 16vh;
-    width: 16vw;
+    width: 25vw;
 }
 
