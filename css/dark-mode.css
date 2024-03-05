@@ -184,3 +184,9 @@ body.dark-mode #buyersForm {
 #display-info .item-row > div:last-child {
   border-right: 2px solid var(--easy-white);
 }
+
+
+
+body.dark-mode #receiptNameForm {
+  background-color: var(--dark-shadow); /* Or use a specific dark gray color code if preferred */
+}

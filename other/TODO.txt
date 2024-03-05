@@ -8,9 +8,9 @@ BUGS:
 ------------------------------
 TO ADD:
 ------------------------------
-- add privacy policy
 
-- add functionality to receipt name input box
+- fix receipt name visual on dark mode
+    - make placeholder text say "optional"
 
 - fix snake score boxes for mobile view
 
@@ -20,9 +20,6 @@ TO ADD:
 box (displays a x(number) on the to the left of the
 item in the item display)
 
-- receipt name input field top middle, below clear
-data button (input text says (optional), default
-value to "My Receipt")
 
 - allow users to save multiple receipts (have some
 way to track it so that with future implementation

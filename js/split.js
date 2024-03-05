@@ -197,15 +197,16 @@ const submitItem = () => {
   }
 };
 
+// Upon submission, save the actual value or an empty string if nothing is entered
 const addReceiptName = () => {
   const inputReceiptName = document.getElementById('receiptName').value.trim();
-  receiptName = inputReceiptName || "placeholder"; 
-  // Save to local storage
+  // Save the input value or an empty string if nothing is entered
+  receiptName = inputReceiptName || "placeholder";
+  // Save to local storage and only default to "placeholder" when saving if nothing is entered
   localStorage.setItem('receiptName', receiptName);
 
   saveState(); // Make sure to save the updated state
 }
-
 
 const addBuyer = () => {
   const buyerName = document.getElementById("buyerName").value.trim();
@@ -426,6 +427,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedReceiptName = localStorage.getItem('receiptName');
   if (savedReceiptName) {
     document.getElementById('receiptName').value = savedReceiptName;
+  } else {
+    // If there's no savedReceiptName or it's an empty string, set it to "placeholder"
+    document.getElementById('receiptName').value = "placeholder";
   }
   
 
@@ -435,6 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     items = savedData.items || [];
     buyers = savedData.buyers || [];
     tax = savedData.tax || 0; // Restore saved tax amount
+    document.getElementById('receiptName').value = receiptName;
     document.getElementById('taxAmount').value = tax; // Set the input box to show the saved tax amount
 
     updateItemsDisplay();
@@ -474,6 +479,7 @@ function clearData() {
   updateCostPerBuyerDisplay();
 
   // Clear input fields
+  document.getElementById("receiptName").value = '';
   document.getElementById("buyerName").value = '';
   document.getElementById("taxAmount").value = '';
   document.getElementById("itemName").value = '';

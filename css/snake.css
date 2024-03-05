@@ -354,6 +354,14 @@ body, html {
     margin: 0 10px; /* Spacing between scoreboards */
 }
 
+@media (max-width: 768px) {
+    /* Adjust the width of score and high score displays for mobile */
+    .scoreboard-container > div {
+        width: 150px; /* Reduce the width on mobile devices */
+        margin: 0 auto; /* Center the scoreboards */
+        font-size: 16px;
+    }
+}
 
 
 
