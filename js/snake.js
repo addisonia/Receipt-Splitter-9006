@@ -95,6 +95,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (isMobileDevice()) {
         mobileButtonsToggle.checked = true;
         toggleMobileButtons(true);
+        // Retrieve the last game mode from localStorage, default to 'normal' if not found
+        currentMode = localStorage.getItem('gameMode') || 'easy';
+        gameModeSelect.value = currentMode; // Set the select element to reflect the current mode
+        // Apply the game mode settings
+        applyGameModeSettings(currentMode);
     } else {
         // Optionally, read the saved state from localStorage for desktop users
         const savedState = localStorage.getItem('mobileButtonsEnabled');

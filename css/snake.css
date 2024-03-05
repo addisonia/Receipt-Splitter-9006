@@ -357,9 +357,9 @@ body, html {
 @media (max-width: 768px) {
     /* Adjust the width of score and high score displays for mobile */
     .scoreboard-container > div {
-        width: 100px; /* Reduce the width on mobile devices */
-        margin: 0 auto; /* Center the scoreboards */
-        font-size: 14px;
+        width: 120px; /* Reduce the width on mobile devices */
+        margin: 10 auto; /* Center the scoreboards */
+        font-size: 12px;
     }
 }
 
@@ -412,6 +412,6 @@ body.mobile-buttons-enabled .bottom-buttons-container {
 
 .left-arrow, .right-arrow {
     height: 16vh;
-    width: 25vw;
+    width: 24vw;
 }
 
