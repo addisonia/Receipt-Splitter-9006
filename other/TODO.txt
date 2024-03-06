@@ -9,10 +9,7 @@ BUGS:
 TO ADD:
 ------------------------------
 
-- fix receipt name visual on dark mode
-    - make placeholder text say "optional"
-
-- fix snake score boxes for mobile view
+- make snake game a bit wider on mobile?
 
 - make price input box less wide on mobile view
 
