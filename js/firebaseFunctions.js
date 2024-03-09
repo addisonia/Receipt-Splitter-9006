@@ -126,36 +126,35 @@ document.addEventListener('DOMContentLoaded', () => {
     //save receipt button
     const saveReceiptButton = document.getElementById('saveReceiptButton');
     if (saveReceiptButton) {
-      saveReceiptButton.addEventListener('click', function() {
-        const user = window.auth.currentUser;
-        if (user) {
-          const receiptNameInputValue = document.getElementById('receiptName').value.trim() || "placeholder";
-  
-          checkReceiptNameExists(user.uid, receiptNameInputValue).then((exists) => {
-            if (exists) {
-              const overwrite = confirm(`You already have a receipt named ${receiptNameInputValue}, would you like to override its data?`);
-              if (!overwrite) {
-                return; // Exit if the user does not want to overwrite
+        saveReceiptButton.addEventListener('click', function() {
+          const user = window.auth.currentUser;
+          if (user) {
+            const receiptNameInputValue = document.getElementById('receiptName').value.trim() || "placeholder";
+            checkReceiptNameExists(user.uid, receiptNameInputValue).then((exists) => {
+              if (exists) {
+                const overwrite = confirm(`You already have a receipt named ${receiptNameInputValue}, would you like to override its data?`);
+                if (!overwrite) {
+                  return; // Exit if the user does not want to overwrite
+                }
               }
-            }
-  
-            const receiptData = getReceiptData();
-            const receiptRef = window.firebaseDatabase.ref(window.database, `receipts/${user.uid}/${receiptNameInputValue}`);
-  
-            window.firebaseDatabase.set(receiptRef, receiptData)
-              .then(() => {
-                console.log('Receipt data saved successfully');
-                animateSaveSuccess(saveReceiptButton);
-              })
-              .catch((error) => {
-                console.error('Failed to save receipt data', error);
-              });
-          });
-        } else {
-          console.log('No user is signed in');
-        }
-      });
-    }
+      
+              const receiptData = getReceiptData(); // This now includes time_and_date
+              const receiptRef = window.firebaseDatabase.ref(window.database, `receipts/${user.uid}/${receiptNameInputValue}`);
+              window.firebaseDatabase.set(receiptRef, receiptData)
+                .then(() => {
+                  console.log('Receipt data saved successfully');
+                  animateSaveSuccess(saveReceiptButton);
+                })
+                .catch((error) => {
+                  console.error('Failed to save receipt data', error);
+                });
+            });
+          } else {
+            console.log('No user is signed in');
+          }
+        });
+      }
+      
     
     function animateSaveSuccess() {
       // Add the flash-success class to trigger the animation
@@ -184,11 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
 function getReceiptData() {
     const receiptName = document.getElementById('receiptName').value.trim() || "placeholder";
 
+    const time_and_date = new Date().toISOString();
+
     return {
         name: receiptName,
-        items: items, // Assuming 'items' is an array of your items
-        buyers: buyers, // Assuming 'buyers' is an array of your buyers
-        tax: tax, // Assuming 'tax' is your tax amount
+        items: items, 
+        buyers: buyers, 
+        tax: tax, 
+        time_and_date: time_and_date
     };
 }
 

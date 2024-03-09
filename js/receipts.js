@@ -64,47 +64,51 @@ async function fetchAndDisplayReceipts(user) {
 
 
 
-  function displayReceipts(receipts) {
+function displayReceipts(receipts) {
     const container = document.getElementById('receiptsContainer');
-    // Clear existing content
-    container.innerHTML = '';
-
-    // Check if there are any receipts to display
-    if (!receipts || Object.keys(receipts).length === 0) {
-        container.innerHTML = '<p>No receipts found.</p>';
-        return;
-    }
-
-    // Loop through each receipt and display it
-    Object.entries(receipts).forEach(([receiptName, receipt]) => {
-        const receiptDiv = document.createElement('div');
-        receiptDiv.classList.add('receipt');
-
-        const header = document.createElement('h3');
-        header.textContent = receiptName;
-        receiptDiv.appendChild(header);
-
-        // Check if the current receipt has any items
-        if (receipt.items && receipt.items.length > 0) {
-            const list = document.createElement('ul');
-            receipt.items.forEach(item => {
-                const itemElement = document.createElement('li');
-                // Assuming each item's buyers are an array of objects with 'name' property
-                const buyersNames = item.buyers.map(buyer => buyer.name).join(', ');
-                itemElement.textContent = `${item.item}: $${item.price.toFixed(2)}, Buyers: ${buyersNames}`;
-                list.appendChild(itemElement);
-            });
-            receiptDiv.appendChild(list);
-        } else {
-            // If the receipt has no items, display a message indicating this
-            const noItemsMessage = document.createElement('p');
-            noItemsMessage.textContent = 'No items found in this receipt.';
-            receiptDiv.appendChild(noItemsMessage);
-        }
-
-        container.appendChild(receiptDiv);
+    container.innerHTML = ''; // Clear existing content
+  
+    // Convert receipts object to an array and sort by time_and_date
+    const sortedReceipts = Object.entries(receipts).sort((a, b) => {
+      // Assuming time_and_date is stored in ISO string format
+      return new Date(a[1].time_and_date) - new Date(b[1].time_and_date);
+    }).reverse(); // Use .reverse() if you want the newest receipts first
+  
+    sortedReceipts.forEach(([receiptName, receipt]) => {
+      const receiptDiv = document.createElement('div');
+      receiptDiv.classList.add('receipt');
+  
+      const header = document.createElement('h3');
+      header.textContent = receiptName;
+      receiptDiv.appendChild(header);
+  
+      // Display time and date below the receipt name
+      const dateParagraph = document.createElement('p');
+      dateParagraph.textContent = `Date: ${new Date(receipt.time_and_date).toLocaleString()}`;
+      receiptDiv.appendChild(dateParagraph);
+  
+      // Check if the current receipt has any items
+      if (receipt.items && receipt.items.length > 0) {
+        const list = document.createElement('ul');
+        receipt.items.forEach(item => {
+          const itemElement = document.createElement('li');
+          // Assuming each item's buyers are an array of objects with 'name' property
+          const buyersNames = item.buyers.map(buyer => buyer.name).join(', ');
+          itemElement.textContent = `${item.item}: $${item.price.toFixed(2)}, Buyers: ${buyersNames}`;
+          list.appendChild(itemElement);
+        });
+        receiptDiv.appendChild(list);
+      } else {
+        // If the receipt has no items, display a message indicating this
+        const noItemsMessage = document.createElement('p');
+        noItemsMessage.textContent = 'No items found in this receipt.';
+        receiptDiv.appendChild(noItemsMessage);
+      }
+  
+      container.appendChild(receiptDiv);
     });
-}
+  }
+  
 
 
   

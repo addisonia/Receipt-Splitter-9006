@@ -22,12 +22,7 @@ box (displays a x(number) on the to the left of the
 item in the item display)
 
 
-- Past Receipts button (new page?)
-
 - allow users to delete past receipts
-
-- allow users to import past receipts directly
-into display grid
 
 
 
@@ -70,6 +65,8 @@ png 📜 and add bent receipts for when the snake turns
 
 - weighted items option?
 
+- allow users to import past receipts directly
+into display grid
 
 
 
