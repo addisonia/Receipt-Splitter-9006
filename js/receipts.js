@@ -70,9 +70,9 @@ function displayReceipts(receipts) {
   
     // Convert receipts object to an array and sort by time_and_date
     const sortedReceipts = Object.entries(receipts).sort((a, b) => {
-      // Assuming time_and_date is stored in ISO string format
-      return new Date(a[1].time_and_date) - new Date(b[1].time_and_date);
-    }).reverse(); // Use .reverse() if you want the newest receipts first
+        // Sort by time_and_date descending, so newer receipts come first
+        return new Date(b[1].time_and_date) - new Date(a[1].time_and_date);
+    }); 
   
     sortedReceipts.forEach(([receiptName, receipt]) => {
       const receiptDiv = document.createElement('div');
