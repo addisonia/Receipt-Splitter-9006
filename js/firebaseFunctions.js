@@ -114,9 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         saveReceiptButton.addEventListener('click', function() {
             const user = auth.currentUser;
             if (user) {
+                const receiptNameInput = document.getElementById('receiptName').value.trim()
                 const receiptData = getReceiptData();
-                const receiptRef = window.firebaseDatabase.ref(database, `receipts/${user.uid}`);
-                
+                const receiptRef = window.firebaseDatabase.ref(database, `receipts/${user.uid}/${receiptNameInput}`);
+
                 window.firebaseDatabase.set(receiptRef, receiptData)
                 .then(() => {
                     console.log('Receipt data saved successfully');
@@ -150,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function getReceiptData() {
+    const receiptName = document.getElementById('receiptName').value.trim()
+    
     return {
         name: receiptName,
         items: items, // Assuming 'items' is an array of your items

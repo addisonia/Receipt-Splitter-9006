@@ -9,6 +9,10 @@ BUGS:
 TO ADD:
 ------------------------------
 
+- add a wide transparent down arrow on home page
+that scrolls the site down to the About section
+(add the about section as well)
+
 - make snake game a bit wider on mobile?
 
 - make price input box less wide on mobile view
@@ -17,10 +21,6 @@ TO ADD:
 box (displays a x(number) on the to the left of the
 item in the item display)
 
-
-- allow users to save multiple receipts (have some
-way to track it so that with future implementation
-they can browse through past receipts)
 
 - Past Receipts button (new page?)
 
