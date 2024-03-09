@@ -13,16 +13,11 @@ TO ADD:
 that scrolls the site down to the About section
 (add the about section as well)
 
-- make snake game a bit wider on mobile?
-
 - make price input box less wide on mobile view
 
 - automath ability to mutliply cost in price input
 box (displays a x(number) on the to the left of the
 item in the item display)
-
-
-- allow users to delete past receipts
 
 
 
@@ -33,10 +28,14 @@ OTHER IDEAS:
 - add game mode ACTUALLY IMPOSSIBLE where the snake
 cannot move
 
+- add game mode Paradise where food covers the entire
+game board
+
 -add remove item button (trash can symbol? x circle symbol?)
 
-- unselect all items from a user
+- unselect all items from a user option
 
+- make snake game a bit wider on mobile
 
 - Settings button additions
     - Accessibility ideas within settings:
@@ -46,6 +45,9 @@ cannot move
         - for buyer name checkbox maybe do a green fill 
         square around name to indicate yes for item and when 
         clicked turn red to indicate no
+
+
+- allow users to delete past receipts
 
 
 Machine learning related ideas:

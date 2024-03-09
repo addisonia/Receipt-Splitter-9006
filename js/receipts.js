@@ -1,4 +1,9 @@
 //buttons
+const home = () => {
+    window.location.href = "../index.html";
+  };
+  
+
 const splitPage = () => {
     window.location.href = "../html/split.html";
 };

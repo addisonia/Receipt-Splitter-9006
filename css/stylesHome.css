@@ -115,6 +115,11 @@ button:hover {
     border: 1px solid #888;
     width: 80%;
   }
+
+  #realPrivacyPolicyBtn {
+    background-color: transparent;
+    padding: 10px 20px; /* Additional padding for even larger clickable area */
+}
   
   /* The Close Button */
   .close {
