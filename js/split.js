@@ -176,26 +176,90 @@ let receiptName = "";
 let items = [];
 let buyers = [];
 
+
+
+
+
+function evaluatePriceInput() {
+  const itemPriceInput = document.getElementById("itemPrice");
+  let itemPriceValue = itemPriceInput.value.trim();
+
+  try {
+      let evaluatedValue = eval(itemPriceValue);
+      if (!isNaN(evaluatedValue)) {
+          itemPriceInput.value = evaluatedValue; // Update with evaluated result
+          return true; // Evaluation successful
+      }
+  } catch (error) {
+      itemPriceInput.value = ""; // Clear input
+      itemPriceInput.focus();
+      return false; // Evaluation failed
+  }
+}
+
+
+
+document.getElementById("itemForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  // Move the evaluatePriceInput call here if needed, or ensure its logic is properly integrated
+  if (evaluatePriceInput()) { // Ensure this returns true only if the price is valid
+      submitItem(); // Proceed with adding the item only if the price is valid
+  }
+});
+
+
+
 const submitItem = () => {
-  const itemName = document.getElementById("itemName").value.trim();
-  const itemPrice = parseFloat(document.getElementById("itemPrice").value);
+  const itemNameInput = document.getElementById("itemName");
+  const itemPriceInput = document.getElementById("itemPrice");
+  let itemName = itemNameInput.value.trim();
+  let itemPriceExpression = itemPriceInput.value;
+  let quantityText = ""; // To hold the quantity text, if applicable
 
-  if (itemName !== "" && !isNaN(itemPrice) && itemPrice > 0) {
-    const item = {
-      item: itemName,
-      price: itemPrice,
-      buyers: buyers.map((buyer) => ({ ...buyer })),
-    };
-    items.push(item);
+  // Updated check to allow decimals before '*'
+  if ((itemPriceExpression.match(/\*/g) || []).length === 1 && /^[\d.]+[*][\d.]+$/.test(itemPriceExpression)) {
+      const multiplicationParts = itemPriceExpression.split('*');
+      if (multiplicationParts.length === 2 && multiplicationParts[1].trim() !== "") {
+          // Ensure the part after '*' is purely numerical without any decimal to apply quantity text
+          if (/^\d+$/.test(multiplicationParts[1].trim())) {
+              quantityText = ` (x${multiplicationParts[1].trim()})`;
+          }
+      }
+  }
 
-    updateItemsDisplay();
-    document.getElementById("itemForm").reset();
-    document.getElementById("itemName").focus();
-    updateCostPerBuyerDisplay();
+  try {
+      let itemPrice = eval(itemPriceExpression);
 
-    saveState(); // Save the updated state to local storage
+      if (itemName !== "" && !isNaN(itemPrice) && itemPrice > 0) {
+          const item = {
+              item: itemName + quantityText, // Append the quantity text to the item name, if applicable
+              price: itemPrice,
+              buyers: buyers.map(buyer => ({ ...buyer })),
+          };
+          items.push(item);
+
+          updateItemsDisplay();
+          document.getElementById("itemForm").reset();
+          itemNameInput.focus(); // Focus back to the item name input
+          updateCostPerBuyerDisplay();
+          saveState(); // Assuming there's a function to save the state
+      } 
+      // If the evaluation or input is invalid, the function simply exits without action
+  } catch (error) {
+      // Log error for debugging purposes; in production, this could be removed or handled differently
+      console.error("Error evaluating expression: ", error);
   }
 };
+
+
+
+
+// Function to validate the expression
+function isValidExpression(expression) {
+  return /^[\d+\-*/. ()]+$/.test(expression);
+}
+
 
 // Upon submission, save the actual value or an empty string if nothing is entered
 const addReceiptName = () => {

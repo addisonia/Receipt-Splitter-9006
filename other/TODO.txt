@@ -29,7 +29,7 @@ OTHER IDEAS:
 cannot move
 
 - add game mode Paradise where food covers the entire
-game board
+game board, snake increases by 1 for each food
 
 -add remove item button (trash can symbol? x circle symbol?)
 
@@ -46,6 +46,8 @@ game board
         square around name to indicate yes for item and when 
         clicked turn red to indicate no
 
+- ability to sign in with email and password as well
+instead of just google sign in
 
 - allow users to delete past receipts
 
