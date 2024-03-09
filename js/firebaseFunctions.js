@@ -108,51 +108,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // This function checks if a receipt with the given name already exists for the user.
+    function checkReceiptNameExists(userId, receiptName) {
+        const userReceiptsRef = window.firebaseDatabase.ref(window.database, `receipts/${userId}`);
+        
+        return window.firebaseDatabase.get(userReceiptsRef).then((snapshot) => {
+            return snapshot.child(receiptName).exists();
+        }).catch((error) => {
+            console.error("Firebase read failed: ", error);
+            return false;
+        });
+    }
+    
+
+
     //save receipt button
     const saveReceiptButton = document.getElementById('saveReceiptButton');
     if (saveReceiptButton) {
-        saveReceiptButton.addEventListener('click', function() {
-            const user = auth.currentUser;
-            if (user) {
-                const receiptNameInput = document.getElementById('receiptName').value.trim()
-                const receiptData = getReceiptData();
-                const receiptRef = window.firebaseDatabase.ref(database, `receipts/${user.uid}/${receiptNameInput}`);
-
-                window.firebaseDatabase.set(receiptRef, receiptData)
-                .then(() => {
-                    console.log('Receipt data saved successfully');
-                    // Add the flash-success class to trigger the animation
-                    saveReceiptButton.classList.add('flash-success');
-                    saveReceiptButton.classList.add('flash-border-success');
-                    // Remove the class after the animation duration (e.g., 1s) to reset the state
-                    setTimeout(() => saveReceiptButton.classList.remove('flash-success'), 2000);
-                    setTimeout(() => saveReceiptButton.classList.remove('flash-border-success'), 1000);
-                    // Show and animate the overlay
-                    flashOverlay.style.display = 'block';
-                    flashOverlay.style.animation = 'flash 0.5s ease-out forwards'; // Use "forwards" to retain the last animation frame
-                    
-                    // Hide the overlay after the animation completes
-                    setTimeout(() => {
-                        flashOverlay.style.display = 'none';
-                        flashOverlay.style.animation = ''; // Reset animation
-                    }, 2000); // Match this with your animation duration
-                }).catch((error) => {
-                    console.error('Failed to save receipt data', error);
-                });
-            } else {
-                console.log('No user is signed in');
+      saveReceiptButton.addEventListener('click', function() {
+        const user = window.auth.currentUser;
+        if (user) {
+          const receiptNameInputValue = document.getElementById('receiptName').value.trim() || "placeholder";
+  
+          checkReceiptNameExists(user.uid, receiptNameInputValue).then((exists) => {
+            if (exists) {
+              const overwrite = confirm(`You already have a receipt named ${receiptNameInputValue}, would you like to override its data?`);
+              if (!overwrite) {
+                return; // Exit if the user does not want to overwrite
+              }
             }
-        });
-        
-
+  
+            const receiptData = getReceiptData();
+            const receiptRef = window.firebaseDatabase.ref(window.database, `receipts/${user.uid}/${receiptNameInputValue}`);
+  
+            window.firebaseDatabase.set(receiptRef, receiptData)
+              .then(() => {
+                console.log('Receipt data saved successfully');
+                animateSaveSuccess(saveReceiptButton);
+              })
+              .catch((error) => {
+                console.error('Failed to save receipt data', error);
+              });
+          });
+        } else {
+          console.log('No user is signed in');
+        }
+      });
+    }
+    
+    function animateSaveSuccess() {
+      // Add the flash-success class to trigger the animation
+      saveReceiptButton.classList.add('flash-success');
+      saveReceiptButton.classList.add('flash-border-success');
+    
+      // Remove the class after the animation duration to reset the state
+      setTimeout(() => saveReceiptButton.classList.remove('flash-success'), 2000);
+      setTimeout(() => saveReceiptButton.classList.remove('flash-border-success'), 1000);
+    
+      // Show and animate the overlay
+      flashOverlay.style.display = 'block';
+      flashOverlay.style.animation = 'flash 0.5s ease-out forwards';
+    
+      // Hide the overlay after the animation completes
+      setTimeout(() => {
+        flashOverlay.style.display = 'none';
+        flashOverlay.style.animation = ''; // Reset animation
+      }, 500); // Adjust to match the flash animation duration
     }
 
 });
 
 
 function getReceiptData() {
-    const receiptName = document.getElementById('receiptName').value.trim()
-    
+    const receiptName = document.getElementById('receiptName').value.trim() || "placeholder";
+
     return {
         name: receiptName,
         items: items, // Assuming 'items' is an array of your items
