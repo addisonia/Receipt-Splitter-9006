@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+  
 
 function getReceiptData() {
     const receiptName = document.getElementById('receiptName').value.trim() || "placeholder";
@@ -192,5 +193,14 @@ function getReceiptData() {
 }
 
 
+
+
+
+//navigate to receipt page
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("myReceipts").addEventListener("click", () => {
+      window.location.href = "receipts.html";
+    });
+  });
 
   
