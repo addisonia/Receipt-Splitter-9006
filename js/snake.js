@@ -161,10 +161,11 @@ let isPaused = false; // Tracks the pause state of the game
 const gameModes = {
     easy: { speed: 8, growthRate: 4 },
     normal: { speed: 14, growthRate: 3 },
-    hard: { speed: 24, growthRate: 2 },
-    impossible: { speed: 60, growthRate: 1 },
-    actually_impossible: { speed: 0, growthRate: 0},
-    infinity: {speed: 15, growthRate: 1000}
+    hard: { speed: 24, growthRate: 1 },
+    impossible: { speed: 60, growthRate: 0 },
+    actually_impossible: { speed: 0, growthRate: 0 },
+    infinity: { speed: 15, growthRate: 1000 },
+    patience: { speed: 1, growthRate: 0 }
 };
 
 // Set the default mode to 'normal'

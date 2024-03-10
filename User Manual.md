@@ -99,10 +99,13 @@ ____________________________________________________________________
 
 ## Settings Button:
 - **Select Game Mode**: Select between 4 different difficulties: 
-    - Easy: Slowest movement speed, snake length increases by 4 when it eats a food, food doesn't spawn on outer rows and columns of game area
-    - Normal: Regular movement speed, snake length increases by 3 when it eats a food
+    - Easy: Slowest movement speed, snake length increases by 5 when it eats a food, food doesn't spawn on outer rows and columns of game area
+    - Normal: Regular movement speed, snake length increases by 4 when it eats a food
     - Hard: Fast movement speed, snake length increases by 2 when it eats a food
     - IMPOSSIBLE: Very fast movement speed, snake length increases by 1 when it eats a food
+    - Actually Impossible: Snake cannot move
+    - Infinity: Snake increases forever once it eats the first and only food, score increases by a timer
+    - Patience: Snake moves insanely slow and only increases by 1 for each food eaten
 # 
 # 
 

@@ -41,6 +41,9 @@ game board, snake increases by 1 for each food
 
 - make snake game a bit wider on mobile
 
+- make the high score on snake game reflect high score
+for each game mode
+
 - Settings button additions
     - Accessibility ideas within settings:
         - less dark mode
