@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         itemNameInput.focus();
       } else if (document.activeElement === taxAmountInput) {
         itemPriceInput.focus();
+      } else if (document.activeElement === itemNameInput) {
+        itemPriceInput.focus();
       }
     } else if (event.key === "ArrowUp") {
       event.preventDefault();

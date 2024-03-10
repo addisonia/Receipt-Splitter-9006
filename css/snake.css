@@ -125,6 +125,8 @@ button:hover {
 
 /* Adjust the popup positioning */
 .popup {
+    width: auto; 
+    min-width: 150px;
     display: none;
     position: absolute;
     margin-top: -5px;
@@ -201,6 +203,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
 .settings-description {
@@ -212,10 +215,13 @@ button:hover {
 /* Container for the toggle switch, adds spacing around the switch */
 .toggle-switch {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: flex-end; 
     width: 50px; /* Width of the switch */
     height: 24px; /* Height of the switch */
     margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     vertical-align: middle;
   }
 

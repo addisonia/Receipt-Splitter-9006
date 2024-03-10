@@ -138,8 +138,11 @@ function resetGame() {
     snake = [{x: snakeSize * 5, y: snakeSize * 5}]; // Reset snake to initial position
     direction = {x: 0, y: 0}; // Reset movement direction
     score = 1; // Reset score
-    updateCurrentScore(); // Update score display
-    placeFood(); // Place food in a new position
+    foodEatenInInfinityMode = false; // Allow food to spawn again
+    placeFood(); // This ensures food is placed when the game restarts
+    clearInterval(scoreTimer); // Stop any running score timer
+    score = 1;
+    updateCurrentScore();
 }
 
 // Access the game area from the DOM to manipulate it
@@ -159,7 +162,9 @@ const gameModes = {
     easy: { speed: 8, growthRate: 4 },
     normal: { speed: 14, growthRate: 3 },
     hard: { speed: 24, growthRate: 2 },
-    impossible: { speed: 60, growthRate: 1 }
+    impossible: { speed: 60, growthRate: 1 },
+    actually_impossible: { speed: 0, growthRate: 0},
+    infinity: {speed: 15, growthRate: 1000}
 };
 
 // Set the default mode to 'normal'
@@ -256,51 +261,102 @@ function resetHighScore() {
 }
 
 
+function updateHighScoreIfNeeded() {
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore.toString());
+        updateHighScore();
+    }
+}
+
 
 
 // Update game state: snake movement, food consumption, and collision detection
+let foodEatenInInfinityMode = false; // Tracks if food has been eaten in Infinity mode
+let scoreTimer = null; // Holds the reference to the interval timer for score increment in Infinity mode
+
 function update() {
     const head = {x: snake[0].x + direction.x * snakeSize, y: snake[0].y + direction.y * snakeSize};
-    snake.unshift(head); // Add a new head based on the current direction
-    
-    // Check if the snake has eaten the food
+    snake.unshift(head); // Add a new head
+
     if (head.x === food.x && head.y === food.y) {
-        // Increase the score based on the growth rate
-        score += growthRate;
-        updateCurrentScore(); // Update the current score display
-        if (score > highScore) {
-            highScore = score; // Update the high score
-            localStorage.setItem('highScore', highScore); // Save the new high score to local storage
-            updateHighScore(); // Update the high score display
+        // Skip score increment for infinity mode here since it's handled by a timer
+        if (currentMode !== 'infinity') {
+            // Apply growth rate for non-infinity modes
+            for (let i = 0; i < growthRate; i++) {
+                snake.push({...snake[snake.length - 1]});
+                score++;
+                updateCurrentScore();
+            }
+        } else {
+            for (let i = 0; i < growthRate; i++) {
+                snake.push({...snake[snake.length - 1]});
+            }
         }
-        placeFood(); // Place new food
-        
-        // Add new segments to the end of the snake equal to the growth rate
-        for (let i = 0; i < growthRate; i++) {
-            snake.push({...snake[snake.length - 1]}); // Copy the last segment of the snake
+
+        // Only place new food if not in Infinity mode or if it's the first food in Infinity mode
+        if (currentMode !== 'infinity' || !foodEatenInInfinityMode) {
+            placeFood();
         }
+
+        // Special handling for Infinity mode
+        if (currentMode === 'infinity' && !foodEatenInInfinityMode) {
+            foodEatenInInfinityMode = true; // Prevents further food spawning
+            // Reset score timer for growing the score
+            clearInterval(scoreTimer);
+            scoreTimer = setInterval(() => {
+                if (!isPaused) { // Check if game is not paused
+                    score++;
+                    updateCurrentScore();
+                    updateHighScoreIfNeeded();
+                }
+            }, 200); // Update every second
+        }
+
+        updateHighScoreIfNeeded();
     } else {
-        // Only remove the tail segment if no food is eaten
         snake.pop();
     }
 
-    // Check for collisions with the game area boundaries or self
-    if (head.x < 0 || head.x + snakeSize > gameWidth || head.y < 0 || head.y + snakeSize > gameHeight || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
-        // Check if current score is higher than the high score
-        if (score > highScore) {
-            highScore = score; // Update the high score
-            localStorage.setItem('highScore', highScore); // Save the new high score to local storage
-            updateHighScore(); // Update the high score display
-        }
-        // Reset the current score and update the display
-        score = 1;
-        updateCurrentScore();
-        // Reset the game state on collision
-        snake = [{x: snakeSize * 5, y: snakeSize * 5}];
-        direction = {x: 0, y: 0};
-        placeFood(); // Ensure food is placed in a valid location after reset
+    checkForCollisions();
+}
+
+
+
+function checkAndUpdateHighScore() {
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore);
+        updateHighScore();
     }
 }
+
+function checkForCollisions() {
+    const head = snake[0];
+    // Check for collisions with the game area boundaries or self
+    if (head.x < 0 || head.x >= gameWidth || head.y < 0 || head.y >= gameHeight || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
+        clearInterval(scoreTimer); // Stop the score timer
+        resetGameOnCollision();
+    }
+}
+
+function resetGameOnCollision() {
+    score = 1;
+    updateCurrentScore();
+    highScore = Math.max(score, highScore);
+    localStorage.setItem('highScore', highScore);
+    updateHighScore();
+    snake = [{x: snakeSize * 5, y: snakeSize * 5}];
+    direction = {x: 0, y: 0};
+    foodEatenInInfinityMode = false; // Reset for next game
+    // Reset food visibility for non-Infinity modes
+    if (currentMode !== 'infinity') {
+        placeFood();
+    }
+}
+
+
+
 
 
 // Call this function to adjust the game area size whenever the window is resized
@@ -315,15 +371,19 @@ function draw() {
         snakeElement.style.left = `${segment.x}px`;
         snakeElement.style.top = `${segment.y}px`;
         snakeElement.classList.add('snake');
-        gameArea.appendChild(snakeElement); // Add each snake segment to the game area
+        gameArea.appendChild(snakeElement);
     });
-    
-    const foodElement = document.createElement('div');
-    foodElement.style.left = `${food.x}px`;
-    foodElement.style.top = `${food.y}px`;
-    foodElement.classList.add('food');
-    gameArea.appendChild(foodElement); // Add the food to the game area
+
+    // Draw food only if not in Infinity mode after the first one is eaten
+    if (!foodEatenInInfinityMode || currentMode !== 'infinity') {
+        const foodElement = document.createElement('div');
+        foodElement.style.left = `${food.x}px`;
+        foodElement.style.top = `${food.y}px`;
+        foodElement.classList.add('food');
+        gameArea.appendChild(foodElement);
+    }
 }
+
 
 
 // Place food in a valid location, avoiding the outer edges and the snake's body

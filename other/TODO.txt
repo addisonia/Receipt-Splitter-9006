@@ -15,9 +15,14 @@ that scrolls the site down to the About section
 
 - make price input box less wide on mobile view
 
-- automath ability to mutliply cost in price input
-box (displays a x(number) on the to the left of the
-item in the item display)
+- add a column to the far right called Per item
+that has one checkbox (default unchecked). if
+checked change the checkboxes in the buyers row for
+that item to be number inputs (default to even split)
+and have some way to prevent if numbers dont add up
+to total cost
+
+- change arrow key keyboard shortcuts for mobile view
 
 
 
@@ -25,8 +30,7 @@ item in the item display)
 OTHER IDEAS:
 ------------------------------
 
-- add game mode ACTUALLY IMPOSSIBLE where the snake
-cannot move
+- update user manual
 
 - add game mode Paradise where food covers the entire
 game board, snake increases by 1 for each food
