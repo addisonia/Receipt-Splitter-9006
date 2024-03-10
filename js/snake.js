@@ -283,11 +283,12 @@ function update() {
     if (head.x === food.x && head.y === food.y) {
         // Skip score increment for infinity mode here since it's handled by a timer
         if (currentMode !== 'infinity') {
+            // Increase score by growthRate plus one for the head of the snake
+            score += growthRate + 1;
+            updateCurrentScore();
             // Apply growth rate for non-infinity modes
             for (let i = 0; i < growthRate; i++) {
                 snake.push({...snake[snake.length - 1]});
-                score++;
-                updateCurrentScore();
             }
         } else {
             for (let i = 0; i < growthRate; i++) {
