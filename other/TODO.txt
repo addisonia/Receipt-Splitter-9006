@@ -30,16 +30,12 @@ to total cost
 OTHER IDEAS:
 ------------------------------
 
-- update user manual
-
 - add game mode Paradise where food covers the entire
 game board, snake increases by 1 for each food
 
 -add remove item button (trash can symbol? x circle symbol?)
 
 - unselect all items from a user option
-
-- make snake game a bit wider on mobile
 
 - make the high score on snake game reflect high score
 for each game mode
