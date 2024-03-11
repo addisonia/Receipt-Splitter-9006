@@ -9,6 +9,7 @@ const home = () => {
 
 //allows you to swap between buyer, tax, item, and price inputs using arrow keys
 document.addEventListener("DOMContentLoaded", () => {
+  const receiptNameInput = document.getElementById("receiptName");
   const itemNameInput = document.getElementById("itemName");
   const itemPriceInput = document.getElementById("itemPrice");
   const buyerNameInput = document.getElementById("buyerName");
@@ -30,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         itemPriceInput.focus();
       } else if (document.activeElement === buyerNameInput) {
         taxAmountInput.focus();
+      } else if (document.activeElement === receiptNameInput) {
+        buyerNameInput.focus();
       }
     } else if (event.key === "ArrowLeft") {
       event.preventDefault();
@@ -38,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
         itemNameInput.focus();
       } else if (document.activeElement === taxAmountInput) {
         buyerNameInput.focus();
+      } else if (document.activeElement === buyerNameInput) {
+        receiptNameInput.focus();
       }
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
@@ -48,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         itemPriceInput.focus();
       } else if (document.activeElement === itemNameInput) {
         itemPriceInput.focus();
+      } else if (document.activeElement === receiptNameInput) {
+        buyerNameInput.focus();
       }
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -56,6 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         buyerNameInput.focus();
       } else if (document.activeElement === itemPriceInput) {
         taxAmountInput.focus();
+      } else if (document.activeElement === buyerNameInput) {
+        receiptNameInput.focus();
+      } else if (document.activeElement === taxAmountInput) {
+        buyerNameInput.focus();
       }
     } else if (event.key === "Tab") {
       event.preventDefault();
@@ -68,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         itemPriceInput.focus();
       } else if (document.activeElement === itemPriceInput) {
         buyerNameInput.focus();
-      }
+      } 
     } else if (
       event.key === "Enter" &&
       document.activeElement === itemNameInput
@@ -82,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   itemPriceInput.addEventListener("keydown", handleArrowKeyNavigation);
   buyerNameInput.addEventListener("keydown", handleArrowKeyNavigation);
   taxAmountInput.addEventListener("keydown", handleArrowKeyNavigation);
+  receiptNameInput.addEventListener("keydown", handleArrowKeyNavigation);
 });
 
 

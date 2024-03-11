@@ -20,8 +20,11 @@ ____________________________________________________________________
 # 
 # 
 ## Keyboard shortcuts:
-- **Left Arrow / Right Arrow**: Swap between buyer and tax amount inputs, as well as for item and price inputs.
-- **Tab**: Jump to the next input (cycles from buyers to tax to item to price and then back to buyers).
+- **Left Arrow / Right Arrow**: Swap between buyer and tax amount inputs, as well as for item and price inputs, and as well as for receipt name and buyer inputs.
+- **Up Arrow / Down Arrow**: Swap between buyer and item inputs, as well as for item and price inputs, and as well as for receipt name and buyer inputs.
+- **Down Arrow**: Move from item to price input (not vice versa, but if you submit an item it will auto move your cursor focus to item input).
+- **Up Arrow**: Move down from buyer to tax amount input (not vice versa).
+- **Tab**: Jump to the next input (cycles from buyers to tax to item to price to receipt name and then back to buyers).
 - **Enter**: Jump from item to price if there is no value entered in price (otherwise submits item to display).
 # 
 # 
