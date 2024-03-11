@@ -110,7 +110,7 @@ ____________________________________________________________________
 # 
 
 ## Settings Button:
-- **Select Game Mode**: Select between 4 different difficulties: 
+- **Select Game Mode**: Select between 4 different difficulties and other game variations: 
     - Easy: Slowest movement speed, snake length increases by 5 when it eats a food, food doesn't spawn on outer rows and columns of game area.
     - Normal: Regular movement speed, snake length increases by 4 when it eats a food.
     - Hard: Fast movement speed, snake length increases by 2 when it eats a food.
