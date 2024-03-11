@@ -49,6 +49,7 @@ function toggleMobileButtons(shouldShow) {
     }
 
     // After adjusting the game area, place the food in a new position
+    adjustGameAreaSize(); // Adjust the size of the game area immediately
     placeFood();
 }
 
@@ -435,30 +436,44 @@ placeFood(); // Initial call to place food when the game starts
 
 //game size
 function adjustGameAreaSize() {
-    // Calculate the available width and height based on 80% of the viewport
-    let availableWidth = window.innerWidth * 0.8;
-    let availableHeight = window.innerHeight * 0.8;
+    let gameWidthPercentage = 0.8; // 80% for non-mobile by default
+    let gameHeightPercentage = 0.8; // 80% for both non-mobile and mobile
 
-    // Adjust for the border width (10px on each side)
-    availableWidth -= 20; // Subtract 20px for the left and right borders
-    availableHeight -= 20; // Subtract 20px for the top and bottom borders
+    // Check if the current view is mobile based on width
+    if (window.innerWidth <= 768) { // Using 768px as a breakpoint for mobile
+        gameWidthPercentage = 0.95; // 95% for mobile
+    }
+
+    if (document.body.classList.contains('mobile-buttons-enabled')) {
+        gameHeightPercentage = 0.65; // Decrease the height percentage when mobile buttons are enabled
+    }
+
+    let availableWidth = window.innerWidth * gameWidthPercentage;
+    let availableHeight = window.innerHeight * gameHeightPercentage;
+
+    // Subtract the border width, assuming border-box sizing
+    availableWidth -= (gameArea.clientLeft || 10) * 2; // Defaulting to 10px if clientLeft is not supported
+    availableHeight -= (gameArea.clientTop || 10) * 2; // Defaulting to 10px if clientTop is not supported
 
     // Adjust the dimensions to be a multiple of the snake size
-    availableWidth = availableWidth - (availableWidth % snakeSize);
-    availableHeight = availableHeight - (availableHeight % snakeSize);
+    availableWidth -= availableWidth % snakeSize;
+    availableHeight -= availableHeight % snakeSize;
 
     // Apply the adjusted dimensions to the game area
     gameArea.style.width = `${availableWidth}px`;
     gameArea.style.height = `${availableHeight}px`;
 
-    // Update the gameWidth and gameHeight variables
+    // Update the gameWidth and gameHeight variables to be used elsewhere in the code
     gameWidth = availableWidth;
     gameHeight = availableHeight;
 
-    placeFood(); // Call placeFood here to ensure it uses the correct dimensions
-
+    // Call placeFood to ensure food is within the new dimensions
+    placeFood();
 }
 
-
-// Also call this function once initially to set up the game area dimensions
+// Call the function to set the initial size
 adjustGameAreaSize();
+window.addEventListener('resize', adjustGameAreaSize);
+
+
+
