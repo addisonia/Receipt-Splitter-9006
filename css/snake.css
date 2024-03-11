@@ -300,11 +300,18 @@ body, html {
     background-color: var(--yuck);
 }
 
+#gameAreaWrapper {
+    background-color: var(--dark-shadow); /* Border color */
+    padding: 10px; /* Border size */
+    box-sizing: content-box; /* Include padding in width and height */
+}
+
 #gameArea {
     box-sizing: border-box;
     background-color: var(--yuckLight);
     position: relative;
-    border: 10px solid var(--dark-shadow);
+    width: 100%; /* Make sure gameArea fills its wrapper */
+    height: 100%;
 }
 
 .snake {
