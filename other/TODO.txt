@@ -22,7 +22,6 @@ that item to be number inputs (default to even split)
 and have some way to prevent if numbers dont add up
 to total cost
 
-- change arrow key keyboard shortcuts for mobile view
 
 
 
@@ -54,6 +53,7 @@ instead of just google sign in
 
 - allow users to delete past receipts
 
+- download button on My Receipts page to download data as csv
 
 Machine learning related ideas:
 - dont tax food items
