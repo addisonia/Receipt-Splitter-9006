@@ -73,11 +73,9 @@ function displayReceipts(receipts) {
     const container = document.getElementById('receiptsContainer');
     container.innerHTML = ''; // Clear existing content
   
-    // Convert receipts object to an array and sort by time_and_date
     const sortedReceipts = Object.entries(receipts).sort((a, b) => {
-        // Sort by time_and_date descending, so newer receipts come first
-        return new Date(b[1].time_and_date) - new Date(a[1].time_and_date);
-    }); 
+      return new Date(b[1].time_and_date) - new Date(a[1].time_and_date);
+    });
   
     sortedReceipts.forEach(([receiptName, receipt]) => {
       const receiptDiv = document.createElement('div');
@@ -87,24 +85,21 @@ function displayReceipts(receipts) {
       header.textContent = receiptName;
       receiptDiv.appendChild(header);
   
-      // Display time and date below the receipt name
       const dateParagraph = document.createElement('p');
       dateParagraph.textContent = `Date: ${new Date(receipt.time_and_date).toLocaleString()}`;
       receiptDiv.appendChild(dateParagraph);
   
-      // Check if the current receipt has any items
       if (receipt.items && receipt.items.length > 0) {
         const list = document.createElement('ul');
         receipt.items.forEach(item => {
           const itemElement = document.createElement('li');
-          // Assuming each item's buyers are an array of objects with 'name' property
-          const buyersNames = item.buyers.map(buyer => buyer.name).join(', ');
+          // Filter buyers who have bought into the item and then map their names
+          const buyersNames = item.buyers.filter(buyer => buyer.selected).map(buyer => buyer.name).join(', ');
           itemElement.textContent = `${item.item}: $${item.price.toFixed(2)}, Buyers: ${buyersNames}`;
           list.appendChild(itemElement);
         });
         receiptDiv.appendChild(list);
       } else {
-        // If the receipt has no items, display a message indicating this
         const noItemsMessage = document.createElement('p');
         noItemsMessage.textContent = 'No items found in this receipt.';
         receiptDiv.appendChild(noItemsMessage);
@@ -113,6 +108,7 @@ function displayReceipts(receipts) {
       container.appendChild(receiptDiv);
     });
   }
+  
   
 
 
