@@ -39,6 +39,43 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+
+
+
+// Icon changer
+function updateFavicon() {
+  // Determine the current icon
+  const currentIcon = document.querySelector('link[rel="icon"]');
+  let newIconPath;
+
+  if (currentIcon && currentIcon.href.includes('receipt_icon.ico')) {
+      newIconPath = 'other/snake2.ico';
+  } else {
+      newIconPath = 'other/receipt_icon.ico';
+  }
+
+  // Update or create the favicon element
+  const link = currentIcon || document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'icon';
+  // Add cache busting query parameter
+  link.href = `${newIconPath}?v=${new Date().getTime()}`;
+  if (!currentIcon) {
+      document.getElementsByTagName('head')[0].appendChild(link);
+  }
+}
+
+// Call updateFavicon every 2 seconds to switch between icons
+setInterval(updateFavicon, 2000);
+
+
+
+  
+
+
+
+
   
 
 
