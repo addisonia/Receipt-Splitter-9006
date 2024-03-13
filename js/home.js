@@ -158,6 +158,46 @@ function markdownToHTML(markdown) {
 });
 
 
+// Event listener for opening and closing the user manual
+document.addEventListener('DOMContentLoaded', () => {
+  const userManualBtn = document.getElementById('userManualBtn');
+  const userManualModal = document.getElementById('userManualModal');
+  const userManualIcon = userManualBtn.querySelector('i'); // Assuming there's only one <i> inside this button
+
+  userManualBtn.addEventListener('click', () => {
+    let isModalOpen = userManualModal.classList.contains('active');
+
+    if (isModalOpen) {
+      // Hide the modal
+      userManualModal.classList.remove('active');
+      userManualBtn.classList.remove('active');
+
+      // Reset the button style to default and change the icon back to the book
+      userManualBtn.style.top = ''; // Removes the inline style for top
+      userManualBtn.style.position = ''; // Resets position to default or CSS value
+      userManualBtn.style.zIndex = ''; // Resets zIndex to default or CSS value
+      userManualIcon.className = 'fa-solid fa-book'; // Changes icon back to book
+    } else {
+      // Show the modal and change the icon to a house
+      userManualModal.classList.add('active');
+      userManualBtn.classList.add('active');
+
+      // Move the button 3vh from the top and ensure it's visible above the modal
+      userManualBtn.style.top = '3vh';
+      userManualBtn.style.position = 'fixed';
+      userManualBtn.style.zIndex = 101; // Ensure it's above the modal
+      userManualIcon.className = 'fa-solid fa-house'; // Changes icon to house
+    }
+  });
+});
+
+
+
+
+
+
+
+
 
 
 //Snake game button

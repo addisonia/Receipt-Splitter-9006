@@ -22,7 +22,7 @@ that item to be number inputs (default to even split)
 and have some way to prevent if numbers dont add up
 to total cost
 
-
+- make about page text a bit lower for mobile view
 
 
 ------------------------------
