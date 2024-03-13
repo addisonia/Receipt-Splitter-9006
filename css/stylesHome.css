@@ -32,7 +32,14 @@ body{
     align-items: center; /* Centers vertically */
     min-height: 100vh; /* Full height of the viewport */
     flex-direction: column; /* Stacks items vertically */
-
+    background: linear-gradient(to bottom, var(--yuck) 0%, var(--yuck) 60%, var(--yuckLight) 60%);
+    background-image: linear-gradient(
+        to bottom, 
+        var(--yuck) 0%, 
+        var(--yuck) 55%, 
+        var(--yuckLight) 65%, 
+        var(--yuckLight) 100%
+      );
 }
 
 
@@ -47,13 +54,23 @@ body{
 
 /* Centered container for content */
 .centered-container {
+    position: absolute;
     min-width: 250px;
+    min-height: 250px;
+    width: 40vw;
+    height: 40vh;
+    max-width: 300px;
+    max-height: 350px;
     text-align: center; /* Centers the text inside the container */
     background-color: var(--yuckLight); /* Background color of the container */
     padding: 40px 20px; /* Adds padding for that light green box */
     border-radius: 15px; /* Rounds the corners of the container */
     display: inline-block; /* Fits content width */
     margin: 0px; /* Auto margin for auto centering */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust the positioning correctly */
+    z-index: 5; /* Ensure it's above other elements */
 }
 
 .version-gif {
@@ -61,7 +78,8 @@ body{
     height: auto; /* Keeps the GIF's aspect ratio */
     display: block; /* Makes the GIF a block-level element */
     margin: 0 auto 20px; /* Centers the GIF and adds some space below it */
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -70,13 +88,13 @@ button{
     background-color: var(--yellow); /* Sets the background color of buttons */
     border: 2px solid black; /* Removes the default border from buttons */
     border-radius: 5px; /* Rounds the corners of the buttons */
-    padding: 15px 10px; /* Adds padding inside the buttons for space around the text */
+    padding: 20px 20px; /* Adds padding inside the buttons for space around the text */
     color: black; /* Sets the text color inside the buttons */
     cursor: -webkit-grab; /* Pointer cursor on hover */
     font-size: 24px; /* Larger font size */
     font-weight: bold; /* Bold text */
     display: inline-block; /* Inline block display */
-    margin-top: 20px; /* Space above the button */
+    margin-top: 15px; /* Space above the button */
     transition: background-color 0.3s; /* Smooth color transition */
 
 }
@@ -119,6 +137,7 @@ button:hover {
   #realPrivacyPolicyBtn {
     background-color: transparent;
     padding: 10px 20px; /* Additional padding for even larger clickable area */
+    position: absolute;
 }
   
   /* The Close Button */
@@ -143,7 +162,7 @@ button:hover {
 
 /* User Manual Button */
 .manual-btn {
-    position: fixed;
+    position: absolute;
     top: 0px;
     right: 20px;
     border: none;
@@ -234,3 +253,107 @@ button:hover {
 
   
 
+
+/* chevron arrow */
+.chevron-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 35px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    cursor: pointer;
+  }
+  
+  .chevron {
+    color: var(--yellow); /* Chevron color */
+    font-size: 30px; /* Adjust size as needed */
+  }
+  
+  .chevron-container:hover .chevron {
+    outline: 2px solid var(--yellow); /* Outline on hover */
+    padding: 10px; /* Space around chevron inside the outline */
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+  }
+  
+  /* Optional: Add transition for a smoother hover effect */
+  .chevron-container .chevron {
+    transition: all 0.3s ease;
+  }
+
+
+  /* Chevron Up Container */
+#chevron-up {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 35px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+
+/* change background color when scrolled down */
+/* .body-scrolled {
+    background-color: var(--yuckLight);
+}
+
+.past-transition-point {
+    transition: background-color 0.3s ease;
+    background-color: var(--yuckLight);
+  } */
+  
+
+  
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html,
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll; /* Enables scrolling without the scrollbar */
+    min-height: 100vh;
+}
+
+
+/* about section */
+
+.about-section {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .about-section h2 {
+    font-size: 2em; /* Larger text */
+    color: black; /* Adjust the color as needed */
+    margin-bottom: 2em; /* Space between the heading and paragraph */
+  }
+  
+  .about-section p {
+    font-size: 1em; /* Regular text size */
+    color: black; /* Adjust the color as needed */
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+  
+    .about-section p:first-of-type {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+
+/* New container for about-section to push it to the part of the page with yuckLight background */
+.bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120vh; /* Adjust as needed to push the content into the yuckLight area */
+  }

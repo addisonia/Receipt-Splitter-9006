@@ -182,3 +182,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+
+// chevron arrows
+
+function scrollPageDown() {
+  // Scroll to the bottom of the page
+  window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+  });
+  
+  // Hide the chevron down immediately
+  document.getElementById('chevron-down').style.display = 'none';
+
+  // Use setTimeout to delay the appearance of the chevron up
+  setTimeout(function() {
+    document.getElementById('chevron-up').style.display = 'flex';
+  }, 1000); // Delay in milliseconds (500ms = 0.5 seconds)
+
+  // Use setTimeout to delay the background change
+  setTimeout(function() {
+    document.body.classList.add('body-scrolled');
+  }, 500); 
+}
+
+function scrollPageUp() {
+  // Scroll to the top of the page
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  });
+  
+  // Hide the chevron up and show the chevron down with a delay
+  document.getElementById('chevron-up').style.display = 'none';
+  setTimeout(function() {
+    document.getElementById('chevron-down').style.display = 'flex';
+  }, 1000); 
+
+  // Remove the background class from the body with a delay
+  setTimeout(function() {
+    document.body.classList.remove('body-scrolled');
+  }, 500); 
+}
+
+
+// Listen for scroll events on the window
+window.addEventListener('scroll', function() {
+  // Get the current scroll position
+  var scrollPosition = window.scrollY || window.pageYOffset;
+
+  var transitionPoint = window.innerHeight * 0.6;
+  
+
+  if (scrollPosition > transitionPoint) {
+    document.body.classList.add('past-transition-point');
+  } else {
+    document.body.classList.remove('past-transition-point');
+  }
+});
+
+
+//make arrows move when manually scrolling
+document.addEventListener('DOMContentLoaded', function() {
+  function handleScroll() {
+      const scrolledDown = (window.innerHeight + window.scrollY) / document.body.offsetHeight > 0.6;
+      
+      // Manage chevron visibility based on scroll position
+      document.getElementById('chevron-down').style.display = scrolledDown ? 'none' : 'flex';
+      document.getElementById('chevron-up').style.display = scrolledDown ? 'flex' : 'none';
+      
+      // Smoothly transition background color based on scroll position
+      document.body.style.backgroundColor = scrolledDown ? 'var(--yuckLight)' : 'var(--yuck)';
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
+  // Initialize to set correct state when page loads
+  handleScroll();
+});
+
+
+
+
+
