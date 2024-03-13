@@ -107,6 +107,22 @@ button:hover {
 }
 
 
+/* Adjustments for mobile view */
+@media (max-width: 768px) {
+    .centered-container {
+        padding: 40px 20px; /* Increase padding as needed */
+        min-height: auto; /* Adjust based on content */
+        height: auto; /* Make the container height adjust based on its content */
+        max-height: none; /* Remove max height restrictions */
+    }
+    
+    button {
+        margin-top: 20px; /* Adjust the top margin of the button */
+        padding: 10px 20px; /* Adjust padding to reduce button size if necessary */
+    }
+}
+
+
 
 
 /* privacy policy */
