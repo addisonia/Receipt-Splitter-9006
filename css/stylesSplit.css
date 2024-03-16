@@ -499,37 +499,37 @@ button:hover {
         height: 40px; 
     }
 
-  /* Ensure that containers are stacked vertically */
-  .item-name-container,
-  .item-price-container {
-    display: flex;
-    flex-direction: row;
-    width: 35%; /* Take the full width to contain the label and input */
-    margin: 0; /* Reset margin */
-    align-items: center; /* Aligns items to the start of the flex container */
-}
+    /* Ensure that containers are stacked vertically */
+    .item-name-container,
+    .item-price-container {
+        display: flex;
+        flex-direction: row;
+        width: 35%; /* Take the full width to contain the label and input */
+        margin: 0; /* Reset margin */
+        align-items: center; /* Aligns items to the start of the flex container */
+    }
 
-  /* Adjust the labels */
-  .item-name-container label,
-  .item-price-container label {
-    white-space: nowrap;
-    width: auto; /* Let the width be as wide as the content */
-    margin-left: 0; /* Reset any margin to align with the container start */
-    margin-bottom: 5px; /* Space between label and input */
-  }
+    /* Adjust the labels */
+    .item-name-container label,
+    .item-price-container label {
+        white-space: nowrap;
+        width: auto; /* Let the width be as wide as the content */
+        margin-left: 0; /* Reset any margin to align with the container start */
+        margin-bottom: 5px; /* Space between label and input */
+    }
 
-  /* Adjust the inputs */
-  .item-name-container input,
-  .item-price-container input {
-    width: calc(100% - 20px); /* Take full width minus padding for consistency */
-    margin: 0; /* Reset margin to align with the start of the container */
-}
+    /* Adjust the inputs */
+    .item-name-container input,
+    .item-price-container input {
+        width: calc(100% - 20px); /* Take full width minus padding for consistency */
+        margin: 0; /* Reset margin to align with the start of the container */
+    }
 
-  /* Style the button */
-  #itemForm button#submitItemButton {
-    width: 100%; /* Button should take the full width of its container */
-    margin-top: 10px; /* Provide some space above the button */
-  }
+    /* Style the button */
+    #itemForm button#submitItemButton {
+        width: 100%; /* Button should take the full width of its container */
+        margin-top: 10px; /* Provide some space above the button */
+    }
 
 
 
@@ -557,12 +557,29 @@ button:hover {
 
     #itemForm button#submitItemButton {
         width: 35%; 
-        height: 5vh;
+        height: 40px;
         margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
         display: block; /* Display block to enable the use of auto margins for centering */
     }
 
 }
+
+/* for small small screens */
+@media (max-width: 480px) {
+    #itemForm .item-name-container,
+    #itemForm .item-price-container,
+    #itemForm button#submitItemButton {
+      width: 60%; /* Change the width to 70% */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #itemForm button#submitItemButton {
+        height: 40px; /* Make the button taller. Adjust the value as needed. */
+      }
+    
+
+  }
 
 /*-------------------------------------------------------*/
 
