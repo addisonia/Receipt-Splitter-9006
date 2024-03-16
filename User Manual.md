@@ -1,5 +1,4 @@
 # **User Manual**
-____________________________________________________________________
 
 # 
 ***Click the "Start Splitting" button or press the spacebar on the home page to go to the receipt splitter page.***  
@@ -10,7 +9,9 @@ ____________________________________________________________________
 # 
 ***Click the Shield symbol on the home page to view our privacy policy.***
 # 
-____________________________________________________________________
+***Click the Down Arrow on the home page or scroll down to view the about section***
+# 
+# 
 # 
 # 
 
@@ -92,7 +93,6 @@ ____________________________________________________________________
 
 # 
 # 
-____________________________________________________________________
 # 
 # Snake Game Page
 ***Click the "Home" button to go back to the home page***

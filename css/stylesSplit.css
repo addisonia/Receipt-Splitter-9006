@@ -379,7 +379,7 @@ button:hover {
 .row {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 100%;
     gap: 20px;
     margin-bottom: 10px;
@@ -468,7 +468,7 @@ button:hover {
 
 
 /* mobile view */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .row {
         flex-direction: column;
         align-items: center;
@@ -504,7 +504,7 @@ button:hover {
     .item-price-container {
         display: flex;
         flex-direction: row;
-        width: 35%; /* Take the full width to contain the label and input */
+        width: 45%; /* Take the full width to contain the label and input */
         margin: 0; /* Reset margin */
         align-items: center; /* Aligns items to the start of the flex container */
     }
@@ -537,7 +537,9 @@ button:hover {
     /* Adjust the form layout to stack elements vertically */
     #itemForm {
         flex-direction: column; 
-        align-items: center; 
+        align-items: center;
+        max-width: 450px; /* Adjust the max-width to match other input forms */
+        margin: 0 auto; /* Center the form within the viewport */
     }
 
     #receiptNameForm {
@@ -551,12 +553,12 @@ button:hover {
 
     #buyersForm, #taxForm, #receiptNameForm {
         width: 100%; /* Set a specific width */
-        max-width: 350px; /* Example max width to prevent overly wide forms on larger screens */
+        max-width: 450px; /* Example max width to prevent overly wide forms on larger screens */
         margin: 0 auto; /* Center the forms */
     }
 
     #itemForm button#submitItemButton {
-        width: 35%; 
+        width: 45%; 
         height: 40px;
         margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
         display: block; /* Display block to enable the use of auto margins for centering */
@@ -569,13 +571,17 @@ button:hover {
     #itemForm .item-name-container,
     #itemForm .item-price-container,
     #itemForm button#submitItemButton {
-      width: 60%; /* Change the width to 70% */
+      width: 60%; 
       margin-left: auto;
       margin-right: auto;
     }
 
+    #itemForm, #buyersForm, #taxForm, #receiptNameForm {
+        max-width: 400px; 
+    }
+
     #itemForm button#submitItemButton {
-        height: 40px; /* Make the button taller. Adjust the value as needed. */
+        height: 40px; 
       }
     
 
@@ -702,22 +708,22 @@ button:hover {
 
 
 /* Add margins to the grid container on larger screens */
-@media (min-width: 768px) {
+@media (min-width: 750px) {
     #display-info {
-        margin-left: 15vw;
-        margin-right: 15vw;
+        margin-left: 14vw;
+        margin-right: 14vw;
     }
 
     /* Apply the same margin to the title bar to align with the grid */
     #display-titles {
-        margin-left: 15vw;
-        margin-right: 15vw;
+        margin-left: 14vw;
+        margin-right: 14vw;
     }
 
 }
 
 /* Keep the full width on mobile screens */
-@media (max-width: 767px) {
+@media (max-width: 749px) {
     #display-info, #display-titles {
         margin-left: 10;
         margin-right: 10;
