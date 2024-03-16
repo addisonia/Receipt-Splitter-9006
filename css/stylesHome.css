@@ -129,7 +129,7 @@ button#startSplittingBtn {
     .centered-container {
         padding: 40px 20px; /* Increase padding as needed */
         height: auto; /* Make the container height adjust based on its content */
-        min-width: 55vw;
+        min-width: 65vw;
         max-height: 55vh;
         font-size: smaller;
     }
@@ -403,7 +403,7 @@ body {
   .about-section h2 {
     font-size: 2em; /* Larger text */
     color: black; /* Adjust the color as needed */
-    margin-bottom: 2em; /* Space between the heading and paragraph */
+    margin-bottom: 1.5em; /* Space between the heading and paragraph */
   }
   
   .about-section p {
@@ -418,7 +418,7 @@ body {
   }
 
   .about-section p:nth-of-type(3) {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
 
 
@@ -426,13 +426,7 @@ body {
 .bottom-container {
     display: flex;
     justify-content: center;
-    height: calc(100vh - 15vh);
+    height: calc(100vh - 20vh);
     padding: 20px; /* Add some padding around the content */
   }
 
-
-  /* @media (max-width: 768px) {
-    .about-section {
-        margin-top: 100px; 
-    }
-} */
