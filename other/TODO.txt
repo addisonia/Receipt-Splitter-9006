@@ -24,6 +24,11 @@ to total cost
 
 - make about page text a bit lower for mobile view
 
+- add price totals for all buyers below items for each
+receipt on my receipts page
+
+- update about section
+
 
 ------------------------------
 OTHER IDEAS:

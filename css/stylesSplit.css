@@ -477,19 +477,62 @@ button:hover {
 
     .input-region form {
         align-items: center; /* Center-align the items */
-      }
+    }
+
+    /* You might need to adjust the margins if your labels are taking more space */
+    .input-region label {
+        margin-right: 10px; /* Adjust this value so that it matches the other labels */
+    }
+    
     
     /* Adjust label alignment with larger input boxes */
     .input-region label.aligned-label {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
+        text-align: right;
         margin-bottom: 2px; 
     }
 
-    .input-region input[type="text"], .input-region input[type="number"] {
+    .input-region input[type="text"], 
+    .input-region input[type="number"] {
         height: 40px; 
     }
+
+  /* Ensure that containers are stacked vertically */
+  .item-name-container,
+  .item-price-container {
+    display: flex;
+    flex-direction: row;
+    width: 35%; /* Take the full width to contain the label and input */
+    margin: 0; /* Reset margin */
+    align-items: center; /* Aligns items to the start of the flex container */
+}
+
+  /* Adjust the labels */
+  .item-name-container label,
+  .item-price-container label {
+    white-space: nowrap;
+    width: auto; /* Let the width be as wide as the content */
+    margin-left: 0; /* Reset any margin to align with the container start */
+    margin-bottom: 5px; /* Space between label and input */
+  }
+
+  /* Adjust the inputs */
+  .item-name-container input,
+  .item-price-container input {
+    width: calc(100% - 20px); /* Take full width minus padding for consistency */
+    margin: 0; /* Reset margin to align with the start of the container */
+}
+
+  /* Style the button */
+  #itemForm button#submitItemButton {
+    width: 100%; /* Button should take the full width of its container */
+    margin-top: 10px; /* Provide some space above the button */
+  }
+
+
+
 
     /* Adjust the form layout to stack elements vertically */
     #itemForm {
@@ -513,12 +556,11 @@ button:hover {
     }
 
     #itemForm button#submitItemButton {
-        width: 25vw; 
+        width: 35%; 
         height: 5vh;
         margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
         display: block; /* Display block to enable the use of auto margins for centering */
     }
-
 
 }
 
@@ -640,3 +682,28 @@ button:hover {
 .buyer-label {
     margin-left: 5px; /* Space between the checkbox and the label text */
 }
+
+
+/* Add margins to the grid container on larger screens */
+@media (min-width: 768px) {
+    #display-info {
+        margin-left: 15vw;
+        margin-right: 15vw;
+    }
+
+    /* Apply the same margin to the title bar to align with the grid */
+    #display-titles {
+        margin-left: 15vw;
+        margin-right: 15vw;
+    }
+
+}
+
+/* Keep the full width on mobile screens */
+@media (max-width: 767px) {
+    #display-info, #display-titles {
+        margin-left: 10;
+        margin-right: 10;
+    }
+}
+
