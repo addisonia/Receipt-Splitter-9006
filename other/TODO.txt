@@ -9,12 +9,6 @@ BUGS:
 TO ADD:
 ------------------------------
 
-- add a wide transparent down arrow on home page
-that scrolls the site down to the About section
-(add the about section as well)
-
-- make price input box less wide on mobile view
-
 - add a column to the far right called Per item
 that has one checkbox (default unchecked). if
 checked change the checkboxes in the buyers row for
@@ -22,13 +16,16 @@ that item to be number inputs (default to even split)
 and have some way to prevent if numbers dont add up
 to total cost
 
-- make about page text a bit lower for mobile view
 
 - add price totals for all buyers below items for each
 receipt on my receipts page
 
-- update about section
+- below buyer totals on split page, add a Total Tax:
+that displays the tax (autoupdate) and change
+tax input box to not keep entered tax amount
+in the input box when entered
 
+- have snake game show a faded pause button when paused
 
 ------------------------------
 OTHER IDEAS:
@@ -36,6 +33,9 @@ OTHER IDEAS:
 
 - add game mode Paradise where food covers the entire
 game board, snake increases by 1 for each food
+
+- add game mode "Free Range" where when the snake hits
+a wall it travels through it to the opposite side
 
 -add remove item button (trash can symbol? x circle symbol?)
 

@@ -124,7 +124,14 @@ function isMobileDevice() {
 
 // Function to toggle the pause state of the game
 function togglePause() {
+    console.log('Toggle pause called');
     isPaused = !isPaused;
+    const pauseOverlay = document.getElementById('pauseOverlay');
+    if (isPaused) {
+        pauseOverlay.style.display = 'flex'; // Show the pause icon
+    } else {
+        pauseOverlay.style.display = 'none'; // Hide the pause icon
+    }
 }
 
 function applyGameModeSettings(mode) {
@@ -228,9 +235,13 @@ window.addEventListener('keydown', e => {
         case 'd': // Add 'D' key functionality
             rightArrow(); // Reuse the rightArrow function
             break;
-        case ' ':
-            isPaused = !isPaused;
-            break;
+        // case ' ':
+        //     isPaused = !isPaused;
+        //     break;
+            case ' ':
+        e.preventDefault(); // Prevent scrolling the page when pressing space
+        togglePause();
+        break;
     }
 });
 

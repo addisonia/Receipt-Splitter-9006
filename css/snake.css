@@ -379,6 +379,40 @@ body, html {
 
 
 
+/* pause overlay */
+#pauseOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 20; /* Above everything else */
+}
+
+#pauseOverlay i {
+    font-size: 5rem; /* Large size for the icon */
+    color: var(--white);
+    opacity: 0.75; /* Slightly transparent */
+    animation: zoomIn 1s;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 0.75;
+    }
+}
+
+
+
 
 
 /* mobile buttons */

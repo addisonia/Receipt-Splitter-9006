@@ -78,9 +78,8 @@ body{
     max-width: 80%; /* Ensures the GIF is not wider than its container */
     height: auto; /* Keeps the GIF's aspect ratio */
     display: block; /* Makes the GIF a block-level element */
-    margin: 0 auto 20px; /* Centers the GIF and adds some space below it */
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 0 auto 30px; /* Centers the GIF and adds some space below it */
+    margin-top: 10px;
 }
 
 
