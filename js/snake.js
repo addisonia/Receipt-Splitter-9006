@@ -85,12 +85,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Add touch event listener to game area
     const gameArea = document.getElementById('gameArea');
     gameArea.addEventListener('touchstart', function(e) {
-        // Check if mobile buttons are enabled
-        if (document.body.classList.contains('mobile-buttons-enabled')) {
-            e.preventDefault(); // Prevent default touch behavior (scrolling, zooming, etc.)
-            togglePause(); // Call function to toggle game pause state
-        }
-    });   
+        console.log('Screen touched. Current isPaused state before toggle:', isPaused);
+        e.preventDefault(); // Prevent default behavior like scrolling
+        togglePause();
+    }, false);
+
+    // Attach an event listener to the pause overlay
+    const pauseOverlay = document.getElementById('pauseOverlay');
+    pauseOverlay.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // Prevent default touch behavior
+        togglePause(); // This should unpause the game
+    }, false);
+
     
     // Automatically enable mobile buttons for mobile users
     if (isMobileDevice()) {
@@ -122,16 +128,31 @@ function isMobileDevice() {
 }
 
 
+// Assuming pauseOverlay is defined globally like this:
+const pauseOverlay = document.getElementById('pauseOverlay');
+
 // Function to toggle the pause state of the game
 function togglePause() {
-    console.log('Toggle pause called');
+    console.log('togglePause called. Current isPaused state:', isPaused);
     isPaused = !isPaused;
-    const pauseOverlay = document.getElementById('pauseOverlay');
+
+    // Now, since pauseOverlay is defined globally, it can be used here directly
     if (isPaused) {
-        pauseOverlay.style.display = 'flex'; // Show the pause icon
+        console.log('Game is now paused.');
+        pauseOverlay.style.display = 'flex'; // Ensure this shows the pause overlay
     } else {
-        pauseOverlay.style.display = 'none'; // Hide the pause icon
+        console.log('Game is now running.');
+        pauseOverlay.style.display = 'none'; // Hide the pause overlay
     }
+}
+
+
+function handleTouch(e) {
+    // Preventing the default behavior to avoid scrolling and zooming
+    e.preventDefault();
+
+    // We call togglePause to change the state of the game
+    togglePause();
 }
 
 function applyGameModeSettings(mode) {
@@ -153,8 +174,7 @@ function resetGame() {
     updateCurrentScore();
 }
 
-// Access the game area from the DOM to manipulate it
-const gameArea = document.getElementById('gameArea');
+
 // Get the initial width and height of the game area
 let gameWidth = gameArea.clientWidth;
 let gameHeight = gameArea.clientHeight;
