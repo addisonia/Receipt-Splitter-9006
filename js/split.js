@@ -80,18 +80,21 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (document.activeElement === itemPriceInput) {
         buyerNameInput.focus();
       } 
-    // } else if (
-    //   event.key === "Enter" &&
-    //   document.activeElement === itemNameInput
-    // ) {
-    //   itemPriceInput.focus();
-    // 
+    
     } else if (
       event.key === "Enter" &&
       document.activeElement === taxAmountInput
     ) {
       itemNameInput.focus();
+    } else if (
+      event.key === "Enter" &&
+      document.activeElement === itemNameInput &&
+      itemNameInput.value.trim() !== ""
+    ) {
+      itemPriceInput.focus();
     }
+    
+    
   };
 
   //call function
@@ -270,13 +273,6 @@ const submitItem = () => {
   }
 };
 
-
-
-
-// Function to validate the expression
-function isValidExpression(expression) {
-  return /^[\d+\-*/. ()]+$/.test(expression);
-}
 
 
 // Upon submission, save the actual value or an empty string if nothing is entered

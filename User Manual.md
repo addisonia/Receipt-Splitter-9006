@@ -26,6 +26,7 @@
 - **Down Arrow**: Move from item to price input (not vice versa, but if you submit an item it will auto move your cursor focus to item input).
 - **Up Arrow**: Move down from buyer to tax amount input (not vice versa).
 - **Tab**: Jump to the next input (cycles from buyers to tax to item to price and then back to buyers).
+- **Enter**: Jump from item name input to price input as long as something has been entered in the item name input.
 # 
 # 
 
