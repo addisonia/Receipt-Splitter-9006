@@ -182,8 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
     addTax();
   });
 
-  // Update tax whenever the tax input value changes
-  taxAmountInput.addEventListener("change", addTax);
 });
 
 let receiptName = "";
@@ -367,12 +365,37 @@ const addTax = () => {
   // If tax input is not a number (which includes empty string), default tax to 0
   tax = !isNaN(taxAmount) ? taxAmount : 0;
 
-  updateCostPerBuyerDisplay();
-  const itemNameInput = document.getElementById("itemName");
-  itemNameInput.focus();
   saveState(); // Save the updated state to local storage
 
+  // Update the display of the tax amount
+  console.log("Tax before update: ", tax);
+  updateTaxAmountDisplay();
+  console.log("Tax after update: ", tax);
+  updateCostPerBuyerDisplay();
+
+  // Clear the input field after submission
+  taxAmountInput.value = '';
+  const itemNameInput = document.getElementById("itemName");
+  itemNameInput.focus();
+
 };
+
+
+// function to update the tax amount display
+const updateTaxAmountDisplay = () => {
+  const taxAmountDisplay = document.getElementById("tax-amount-display");
+  taxAmountDisplay.innerHTML = `<strong>Tax Amount:</strong> $${tax.toFixed(2)}`;
+};
+
+// Listen for the Enter key within the taxAmount input.
+document.getElementById("taxAmount").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    addTax();
+  }
+});
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const splitTaxToggle = document.getElementById('splitTaxToggle');
@@ -380,6 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
   splitTaxToggle.addEventListener('change', function() {
     calculateAndDisplayCosts(); // Call a function to recalculate and display costs
   });
+
+  updateTaxAmountDisplay();
 });
 
 
@@ -522,6 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateItemsDisplay();
     updateCostPerBuyerDisplay();
+    updateTaxAmountDisplay();
 
     if (savedData.darkMode) {
       document.body.classList.add('dark-mode');
@@ -553,8 +579,10 @@ function clearData() {
   receiptName = "";
   items = [];
   buyers = [];
+  tax = 0;
   updateItemsDisplay();
   updateCostPerBuyerDisplay();
+  updateTaxAmountDisplay();
 
   // Clear input fields
   document.getElementById("receiptName").value = '';

@@ -151,9 +151,8 @@
             id="taxAmount"
             name="taxAmount"
             step="0.01"
-            required
           />
-          <button onclick="addTax()">Enter</button>
+          <button type="button" onclick="addTax()">Enter</button>
         </form>
       </div>
 
@@ -179,6 +178,8 @@
       <p><strong>Cost per Buyer: </strong></p>
       <div id="cost-per-buyer-list"></div>
     </div>
+
+    <div id="tax-amount-display" style="text-align: center; font-weight: bold; margin-top: 10px;"></div>
 
     <!-- display titles -->
     <div id="display-titles" class="grid-container">

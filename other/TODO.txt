@@ -20,12 +20,9 @@ to total cost
 - add price totals for all buyers below items for each
 receipt on my receipts page
 
-- below buyer totals on split page, add a Total Tax:
-that displays the tax (autoupdate) and change
-tax input box to not keep entered tax amount
-in the input box when entered
 
-- have snake game show a faded pause button when paused
+- fix split page so that when you add buyers after
+items it autoupdates buyers as well
 
 ------------------------------
 OTHER IDEAS:

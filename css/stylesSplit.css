@@ -467,6 +467,16 @@ button:hover {
 }
 
 
+/* Hide the up and down arrows from the number input */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+
 /* mobile view */
 @media (max-width: 750px) {
     .row {
