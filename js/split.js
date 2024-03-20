@@ -80,11 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (document.activeElement === itemPriceInput) {
         buyerNameInput.focus();
       } 
+    // } else if (
+    //   event.key === "Enter" &&
+    //   document.activeElement === itemNameInput
+    // ) {
+    //   itemPriceInput.focus();
+    // 
     } else if (
       event.key === "Enter" &&
-      document.activeElement === itemNameInput
+      document.activeElement === taxAmountInput
     ) {
-      itemPriceInput.focus();
+      itemNameInput.focus();
     }
   };
 
@@ -365,7 +371,6 @@ const addTax = () => {
   // If tax input is not a number (which includes empty string), default tax to 0
   tax = !isNaN(taxAmount) ? taxAmount : 0;
 
-  saveState(); // Save the updated state to local storage
 
   // Update the display of the tax amount
   console.log("Tax before update: ", tax);
@@ -377,6 +382,8 @@ const addTax = () => {
   taxAmountInput.value = '';
   const itemNameInput = document.getElementById("itemName");
   itemNameInput.focus();
+
+  saveState(); // Save the updated state to local storage
 
 };
 
@@ -392,6 +399,7 @@ document.getElementById("taxAmount").addEventListener("keydown", function(event)
   if (event.key === "Enter") {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     addTax();
+    document.getElementById("itemName").focus(); // Explicitly set focus to itemNameInput
   }
 });
 

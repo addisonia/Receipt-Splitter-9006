@@ -2,7 +2,9 @@
 BUGS:
 ------------------------------
 
-- none
+- cant seem to get tax to autofocus to item input 
+while simultaneosly allowing item to autofocus to price
+input with the Enter keypress
 
 
 ------------------------------
