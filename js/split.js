@@ -288,18 +288,28 @@ const addReceiptName = () => {
 
 const addBuyer = () => {
   const buyerName = document.getElementById("buyerName").value.trim();
-
   if (buyerName !== "") {
-    buyers.push({
+    const newBuyer = {
       name: buyerName,
       selected: true,
+    };
+    buyers.push(newBuyer);
+    
+    // Update existing items to include the new buyer
+    items = items.map(item => {
+      return {
+        ...item,
+        buyers: [...item.buyers, { ...newBuyer }]
+      };
     });
-    document.getElementById("buyersForm").reset();
-    updateCostPerBuyerDisplay(); // Update cost per buyer display
-    saveState(); // Save the updated state to local storage
 
+    document.getElementById("buyersForm").reset();
+    updateItemsDisplay(); // Update items to include the new buyer
+    updateCostPerBuyerDisplay(); // Recalculate and display costs
+    saveState(); // Optionally save the updated state
   }
 };
+
 
 const updateItemsDisplay = () => {
   const displayInfoContainer = document.querySelector("#display-info");

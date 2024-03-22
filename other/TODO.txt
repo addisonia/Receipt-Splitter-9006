@@ -2,9 +2,7 @@
 BUGS:
 ------------------------------
 
-- cant seem to get tax to autofocus to item input 
-while simultaneosly allowing item to autofocus to price
-input with the Enter keypress
+- none
 
 
 ------------------------------
@@ -23,8 +21,7 @@ to total cost
 receipt on my receipts page
 
 
-- fix split page so that when you add buyers after
-items it autoupdates buyers as well
+- make down key go from buyers to tax when in mobile view
 
 ------------------------------
 OTHER IDEAS:
