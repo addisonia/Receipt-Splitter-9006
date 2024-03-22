@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         taxAmountInput.focus();
       } else if (document.activeElement === receiptNameInput) {
         buyerNameInput.focus();
+      } else if (document.activeElement === taxAmountInput) {
+        itemNameInput.focus();
+      } else if (document.activeElement === itemPriceInput) {
+        itemNameInput.focus();
       }
     } else if (event.key === "ArrowLeft") {
       event.preventDefault();
@@ -43,14 +47,24 @@ document.addEventListener("DOMContentLoaded", () => {
         buyerNameInput.focus();
       } else if (document.activeElement === buyerNameInput) {
         receiptNameInput.focus();
+      } else if (document.activeElement === itemNameInput) {
+        taxAmountInput.focus();
       }
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
 
       if (document.activeElement === buyerNameInput) {
-        itemNameInput.focus();
+        if (window.innerWidth < 750) {
+          taxAmountInput.focus();
+        } else {
+          itemNameInput.focus();
+        }
       } else if (document.activeElement === taxAmountInput) {
-        itemPriceInput.focus();
+        if (window.innerWidth < 750) {
+          itemNameInput.focus();
+        } else {
+          itemPriceInput.focus();
+        }
       } else if (document.activeElement === itemNameInput) {
         itemPriceInput.focus();
       } else if (document.activeElement === receiptNameInput) {

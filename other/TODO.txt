@@ -20,9 +20,6 @@ to total cost
 - add price totals for all buyers below items for each
 receipt on my receipts page
 
-
-- make down key go from buyers to tax when in mobile view
-
 ------------------------------
 OTHER IDEAS:
 ------------------------------
