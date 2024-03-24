@@ -22,13 +22,16 @@ OTHER IDEAS:
 
 - clean up my receipts page
 
+- add safety mode in settings that gives you a waring before
+delting items
+
+- add github, linkedin, email icon/links at bottom of about page
+
 - add game mode Paradise where food covers the entire
 game board, snake increases by 1 for each food
 
 - add game mode "Free Range" where when the snake hits
 a wall it travels through it to the opposite side
-
--add remove item button (trash can symbol? x circle symbol?)
 
 - unselect all items from a user option
 

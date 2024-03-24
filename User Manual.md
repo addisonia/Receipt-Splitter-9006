@@ -87,6 +87,7 @@
 # 
 
 ## Display grid:
+- Click the red trash can icon to delete an item
 - Change the value in the Qty (Quantity) column to change the quantity of that item
 - Click the checkbox next to a buyer's name or click on buyer's name to uncheck/check a buyer for any item. Once checked/unchecked, the Cost per Buyer display will auto-update accordingly.
 

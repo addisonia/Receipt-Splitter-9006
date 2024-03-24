@@ -350,67 +350,89 @@ const updateItemsDisplay = () => {
     displayTitlesContainer.style.display = "grid";
     totalCostDisplay.classList.add("grid-visible");
 
-      items.forEach((item, itemIndex) => {
-    // Create a container for each item row
-    const itemRowDiv = document.createElement("div");
-    itemRowDiv.classList.add("item-row");
+    items.forEach((item, itemIndex) => {
+      // Create a container for each item row
+      const itemRowDiv = document.createElement("div");
+      itemRowDiv.classList.add("item-row");
+
+    // Create a container for the item name and delete icon
+    const itemNameContainer = document.createElement("div");
+    itemNameContainer.classList.add("item-name-container");
+
+    // Create and append the delete icon
+    const deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fa-solid", "fa-trash", "delete-icon");
+    deleteIcon.addEventListener("click", () => deleteItem(itemIndex));
+    itemNameContainer.appendChild(deleteIcon);
 
     // Create and append the item name
-    appendItemInfo(itemRowDiv, item.item, "item-name");
+    const itemNameDiv = document.createElement("div");
+    itemNameDiv.textContent = item.item;
+    itemNameDiv.classList.add("item-name");
+    itemNameContainer.appendChild(itemNameDiv);
 
-    // Create and append the item price
-    appendItemInfo(itemRowDiv, `$${item.price.toFixed(2)}`, "item-price");
+    itemRowDiv.appendChild(itemNameContainer);
 
-    // Create and append the quantity
-    const quantityDiv = document.createElement("div");
-    quantityDiv.classList.add("item-quantity");
-    const quantityInput = document.createElement("input");
-    quantityInput.type = "number";
-    quantityInput.min = "1";
-    quantityInput.value = item.quantity;
-    quantityInput.addEventListener("change", (event) => {
-      const newQuantity = parseInt(event.target.value);
-      if (newQuantity !== item.quantity) {
-        const prevQuantity = item.quantity;
-        item.quantity = newQuantity;
-        item.buyers = item.buyers.map(buyer => ({
-          ...buyer,
-          selected: newQuantity === 1 && prevQuantity !== 1 ? [true] : buyer.selected.slice(0, newQuantity),
-        }));
-        updateItemsDisplay();
-        updateCostPerBuyerDisplay();
-        updateTotalCostDisplay();
-        saveState();
-      }
-    });
-    quantityDiv.appendChild(quantityInput);
-    itemRowDiv.appendChild(quantityDiv);
+      // Create and append the item price
+      appendItemInfo(itemRowDiv, `$${item.price.toFixed(2)}`, "item-price");
 
-    // Create and append the buyers
-    const buyersDiv = document.createElement("div");
-    buyersDiv.classList.add("item-buyers");
-    for (let i = 0; i < item.quantity; i++) {
-      const rowDiv = document.createElement("div");
-      rowDiv.classList.add("buyer-row");
-      item.buyers.forEach((buyer, buyerIndex) => {
-        appendBuyer(rowDiv, buyer, itemIndex, buyerIndex, i);
+      // Create and append the quantity
+      const quantityDiv = document.createElement("div");
+      quantityDiv.classList.add("item-quantity");
+      const quantityInput = document.createElement("input");
+      quantityInput.type = "number";
+      quantityInput.min = "1";
+      quantityInput.value = item.quantity;
+      quantityInput.addEventListener("change", (event) => {
+        const newQuantity = parseInt(event.target.value);
+        if (newQuantity !== item.quantity) {
+          const prevQuantity = item.quantity;
+          item.quantity = newQuantity;
+          item.buyers = item.buyers.map(buyer => ({
+            ...buyer,
+            selected: newQuantity === 1 && prevQuantity !== 1 ? [true] : buyer.selected.slice(0, newQuantity),
+          }));
+          updateItemsDisplay();
+          updateCostPerBuyerDisplay();
+          updateTotalCostDisplay();
+          saveState();
+        }
       });
-      buyersDiv.appendChild(rowDiv);
+      quantityDiv.appendChild(quantityInput);
+      itemRowDiv.appendChild(quantityDiv);
 
-      // Add a small gap between buyer rows, except for the last row
-      if (i < item.quantity - 1) {
-        const gapDiv = document.createElement("div");
-        gapDiv.classList.add("buyer-row-gap");
-        buyersDiv.appendChild(gapDiv);
+      // Create and append the buyers
+      const buyersDiv = document.createElement("div");
+      buyersDiv.classList.add("item-buyers");
+      for (let i = 0; i < item.quantity; i++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("buyer-row");
+        item.buyers.forEach((buyer, buyerIndex) => {
+          appendBuyer(rowDiv, buyer, itemIndex, buyerIndex, i);
+        });
+        buyersDiv.appendChild(rowDiv);
+
+        // Add a small gap between buyer rows, except for the last row
+        if (i < item.quantity - 1) {
+          const gapDiv = document.createElement("div");
+          gapDiv.classList.add("buyer-row-gap");
+          buyersDiv.appendChild(gapDiv);
+        }
       }
-    }
-    itemRowDiv.appendChild(buyersDiv);
+      itemRowDiv.appendChild(buyersDiv);
 
-    // Append the item row to the display info container
-    displayInfoContainer.appendChild(itemRowDiv);
-  });
+      // Append the item row to the display info container
+      displayInfoContainer.appendChild(itemRowDiv);
+    });
   }
+};
 
+const deleteItem = (itemIndex) => {
+  items.splice(itemIndex, 1);
+  updateItemsDisplay();
+  updateCostPerBuyerDisplay();
+  updateTotalCostDisplay();
+  saveState();
 };
 
 

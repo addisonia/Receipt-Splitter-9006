@@ -429,9 +429,6 @@ button:hover {
     margin: 0 30px;
 }
 
-.item-name-container {
-    margin-right: 20px;
-}
 
 .item-price-container {
     margin-left: 20px;
@@ -614,6 +611,11 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* display grid */
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.7fr 0.5fr 0.4fr 1.4fr;
+  }
+
 /* display title background color */
 #display-titles > div {
     background-color: var(--light-gray); /* Different background for title row */
@@ -662,6 +664,29 @@ input[type='number']::-webkit-outer-spin-button {
     text-align: center;
     margin-top: 0px;
 }
+
+
+.item-name-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .delete-icon {
+    font-size: 14px;
+    color: red;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+  }
+  
+  .item-name {
+    flex-grow: 1;
+  }
+
 
 /* Adds border to the left of the first column in every row of the display grid */
 #display-info .item-row > div:first-child {
@@ -784,6 +809,12 @@ input[type='number']::-webkit-outer-spin-button {
         display: grid;
         grid-template-columns: 0.7fr 0.7fr 0.4fr 1.2fr;
     }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 0.7fr 0.7fr 0.4fr 1.2fr;
+      }
+    
 }
 
 
