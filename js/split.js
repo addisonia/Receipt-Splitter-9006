@@ -155,17 +155,18 @@ window.closeSettingsPopup = closeSettingsPopup;
 //Dark Mode
 document.addEventListener('DOMContentLoaded', () => {
   const darkModeToggle = document.getElementById('darkModeToggle');
-  
+
   darkModeToggle.addEventListener('change', function() {
-    if(this.checked) {
+    if (this.checked) {
       document.body.classList.add('dark-mode');
       document.getElementById('darkModeStylesheet').disabled = false;
+      localStorage.setItem('darkModeState', 'true'); // Save state to local storage
     } else {
       document.body.classList.remove('dark-mode');
       document.getElementById('darkModeStylesheet').disabled = true;
+      localStorage.setItem('darkModeState', 'false'); // Save state to local storage
     }
-    saveState(); // Save the updated state to local storage
-
+    saveState();
   });
 });
 

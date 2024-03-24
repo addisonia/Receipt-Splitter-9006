@@ -12,8 +12,6 @@ TO ADD:
 name and then make it so that the receipt name
 doesn't stay in the input box when submited
 
-- make dark mode affect my receipts page
-
 - add tip option
 
 ------------------------------

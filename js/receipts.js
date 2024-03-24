@@ -188,5 +188,19 @@ function calculateCostPerBuyer(receipt) {
 }
 
 
+
+//Dark Mode Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeState = localStorage.getItem('darkModeState');
+  const darkModeStylesheet = document.getElementById('darkModeStylesheet');
+
+  if (darkModeState === 'true') {
+    document.body.classList.add('dark-mode');
+    darkModeStylesheet.disabled = false;
+  } else {
+    document.body.classList.remove('dark-mode');
+    darkModeStylesheet.disabled = true;
+  }
+});
   
 

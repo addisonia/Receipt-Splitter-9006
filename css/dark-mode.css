@@ -130,12 +130,49 @@ body.dark-mode .popup label[for='darkModeToggle'] {
   }
 
 
-/* change grid lines color */
+/* Change grid lines color */
 body.dark-mode .item-row > div {
-    border-color: var(--easy-white); /* Sets the border color to white */
-  }
+  border-color: var(--easy-white); /* Sets the border color to white */
+}
 
 
+body.dark-mode .item-name {
+  border-color: var(--easy-white);
+}
+
+/* Apply dark mode styles to the "My Receipts" page */
+body.dark-mode.my-receipts-page {
+  background-color: var(--dark);
+  color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt {
+  background-color: #1e1e1e;
+  color: var(--easy-white);
+  border-color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt h3 {
+  color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt p {
+  color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt ul {
+  color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt-actions button {
+  background-color: var(--dark-shadow);
+  color: var(--easy-white);
+  border-color: var(--easy-white);
+}
+
+body.dark-mode.my-receipts-page .receipt-actions button:hover {
+  background-color: var(--dmBlue);
+}
 
 /* Change the background colors for specific sections in dark mode */
 body.dark-mode #buyersForm {
