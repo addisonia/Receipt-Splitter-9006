@@ -396,6 +396,13 @@ const updateItemsDisplay = () => {
         appendBuyer(rowDiv, buyer, itemIndex, buyerIndex, i);
       });
       buyersDiv.appendChild(rowDiv);
+
+      // Add a small gap between buyer rows, except for the last row
+      if (i < item.quantity - 1) {
+        const gapDiv = document.createElement("div");
+        gapDiv.classList.add("buyer-row-gap");
+        buyersDiv.appendChild(gapDiv);
+      }
     }
     itemRowDiv.appendChild(buyersDiv);
 

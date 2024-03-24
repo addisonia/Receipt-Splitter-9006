@@ -631,7 +631,7 @@ input[type='number']::-webkit-outer-spin-button {
 #display-titles,
 #display-info {
   display: grid;
-  grid-template-columns: 0.7fr 0.5fr 0.3fr 1.5fr;
+  grid-template-columns: 0.7fr 0.5fr 0.4fr 1.4fr;
 }
 
 #display-titles > div {
@@ -729,11 +729,20 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .item-buyers {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 5px;
-    align-items: center;
-    /* justify-items: center; */
+    align-items: flex-start;
+  }
+  
+  .buyer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .buyer-row-gap {
+    height: 15px;
   }
 
 .buyer-container {
