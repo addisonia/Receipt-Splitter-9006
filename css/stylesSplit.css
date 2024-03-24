@@ -475,6 +475,17 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 
+#total-cost-display {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    transition: margin-bottom 0.3s ease;
+  }
+  
+  #total-cost-display.grid-visible {
+    margin-bottom: 0px;
+  }
 
 
 /* mobile view */
@@ -611,12 +622,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 
 #display-titles {
-    display: grid;
-    grid-template-columns: 0.7fr 0.5fr 1.8fr;
     align-items: center;
     margin-right: 10px;
     margin-left: 10px;
     font-weight: bold;
+}
+
+#display-titles,
+#display-info {
+  display: grid;
+  grid-template-columns: 0.7fr 0.5fr 0.3fr 1.5fr;
 }
 
 #display-titles > div {
@@ -661,8 +676,6 @@ input[type='number']::-webkit-outer-spin-button {
 
 
 #display-info {
-    display: grid;
-    grid-template-columns: 0.7fr 0.5fr 1.8fr;
     gap: 0px;
     row-gap: 0px; /*gap between display rows */
     margin-left: 10px;
@@ -682,6 +695,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .item-name,
 .item-price,
+.item-quantity,
 .item-buyers{
     border: 1px solid #000;
     padding: 10px; /*height of display rows*/
@@ -694,12 +708,33 @@ input[type='number']::-webkit-outer-spin-button {
     display: contents; /* This lets the children participate in the grid directly */
 }
 
-.item-buyers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    align-items: center; /* Vertically aligns the checkboxes and labels */
+.item-quantity {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    padding: 10px;
+  }
+
+  .item-quantity input {
+    width: 100%;
+    text-align: center;
+  }
+
+  .item-name,
+  .item-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.item-buyers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+    align-items: center;
+    /* justify-items: center; */
+  }
 
 .buyer-container {
     display: flex;

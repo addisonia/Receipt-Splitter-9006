@@ -197,8 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   updateCostPerBuyerDisplay();
-
-  const taxAmountInput = document.getElementById("taxAmount");
+  updateTotalCostDisplay();
 
   document.getElementById("taxForm").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -267,18 +266,20 @@ const submitItem = () => {
       let itemPrice = eval(itemPriceExpression);
 
       if (itemName !== "" && !isNaN(itemPrice) && itemPrice > 0) {
-          const item = {
-              item: itemName + quantityText, // Append the quantity text to the item name, if applicable
-              price: itemPrice,
-              buyers: buyers.map(buyer => ({ ...buyer })),
-          };
-          items.push(item);
+        const item = {
+          item: itemName + quantityText,
+          price: itemPrice,
+          quantity: 1, // Set default quantity to 1
+          buyers: buyers.map(buyer => ({ ...buyer, selected: [true] })), // Initialize selected array with true for quantity 1
+        };
+        items.push(item);
 
-          updateItemsDisplay();
-          document.getElementById("itemForm").reset();
-          itemNameInput.focus(); // Focus back to the item name input
-          updateCostPerBuyerDisplay();
-          saveState(); // Assuming there's a function to save the state
+        updateItemsDisplay();
+        document.getElementById("itemForm").reset();
+        itemNameInput.focus(); // Focus back to the item name input
+        updateCostPerBuyerDisplay();
+        updateTotalCostDisplay();
+        saveState(); // Assuming there's a function to save the state
       } 
       // If the evaluation or input is invalid, the function simply exits without action
   } catch (error) {
@@ -303,9 +304,17 @@ const addReceiptName = () => {
 const addBuyer = () => {
   const buyerName = document.getElementById("buyerName").value.trim();
   if (buyerName !== "") {
+    let newBuyerName = buyerName;
+    let duplicateCount = 1;
+
+    while (buyers.some(buyer => buyer.name === newBuyerName)) {
+      duplicateCount++;
+      newBuyerName = `${buyerName} (${duplicateCount})`;
+    }
+
     const newBuyer = {
-      name: buyerName,
-      selected: true,
+      name: newBuyerName,
+      selected: [],
     };
     buyers.push(newBuyer);
     
@@ -313,13 +322,14 @@ const addBuyer = () => {
     items = items.map(item => {
       return {
         ...item,
-        buyers: [...item.buyers, { ...newBuyer }]
+        buyers: [...item.buyers, { ...newBuyer, selected: Array(item.quantity).fill(true) }], // Initialize selected array based on item quantity
       };
     });
 
     document.getElementById("buyersForm").reset();
     updateItemsDisplay(); // Update items to include the new buyer
     updateCostPerBuyerDisplay(); // Recalculate and display costs
+    updateTotalCostDisplay();
     saveState(); // Optionally save the updated state
   }
 };
@@ -327,9 +337,20 @@ const addBuyer = () => {
 
 const updateItemsDisplay = () => {
   const displayInfoContainer = document.querySelector("#display-info");
+  const displayTitlesContainer = document.querySelector("#display-titles");
+  const totalCostDisplay = document.querySelector("#total-cost-display");
   displayInfoContainer.innerHTML = ""; // Clear previous content
 
-  items.forEach((item, itemIndex) => {
+  if (items.length === 0) {
+    displayInfoContainer.style.display = "none";
+    displayTitlesContainer.style.display = "none";
+    totalCostDisplay.classList.remove("grid-visible");
+  } else {
+    displayInfoContainer.style.display = "grid";
+    displayTitlesContainer.style.display = "grid";
+    totalCostDisplay.classList.add("grid-visible");
+
+      items.forEach((item, itemIndex) => {
     // Create a container for each item row
     const itemRowDiv = document.createElement("div");
     itemRowDiv.classList.add("item-row");
@@ -340,19 +361,51 @@ const updateItemsDisplay = () => {
     // Create and append the item price
     appendItemInfo(itemRowDiv, `$${item.price.toFixed(2)}`, "item-price");
 
+    // Create and append the quantity
+    const quantityDiv = document.createElement("div");
+    quantityDiv.classList.add("item-quantity");
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.min = "1";
+    quantityInput.value = item.quantity;
+    quantityInput.addEventListener("change", (event) => {
+      const newQuantity = parseInt(event.target.value);
+      if (newQuantity !== item.quantity) {
+        const prevQuantity = item.quantity;
+        item.quantity = newQuantity;
+        item.buyers = item.buyers.map(buyer => ({
+          ...buyer,
+          selected: newQuantity === 1 && prevQuantity !== 1 ? [true] : buyer.selected.slice(0, newQuantity),
+        }));
+        updateItemsDisplay();
+        updateCostPerBuyerDisplay();
+        updateTotalCostDisplay();
+        saveState();
+      }
+    });
+    quantityDiv.appendChild(quantityInput);
+    itemRowDiv.appendChild(quantityDiv);
+
     // Create and append the buyers
     const buyersDiv = document.createElement("div");
     buyersDiv.classList.add("item-buyers");
-    item.buyers.forEach((buyer, buyerIndex) => {
-      // Use the appendBuyer function to add each buyer
-      appendBuyer(buyersDiv, buyer, itemIndex, buyerIndex);
-    });
+    for (let i = 0; i < item.quantity; i++) {
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("buyer-row");
+      item.buyers.forEach((buyer, buyerIndex) => {
+        appendBuyer(rowDiv, buyer, itemIndex, buyerIndex, i);
+      });
+      buyersDiv.appendChild(rowDiv);
+    }
     itemRowDiv.appendChild(buyersDiv);
 
     // Append the item row to the display info container
     displayInfoContainer.appendChild(itemRowDiv);
   });
+  }
+
 };
+
 
 const appendItemInfo = (container, text, className) => {
   const infoDiv = document.createElement("div");
@@ -361,15 +414,15 @@ const appendItemInfo = (container, text, className) => {
   container.appendChild(infoDiv);
 };
 
-const appendBuyer = (buyersDiv, buyer, itemIndex, buyerIndex) => {
+const appendBuyer = (buyersDiv, buyer, itemIndex, buyerIndex, quantityIndex) => {
   const buyerContainer = document.createElement("div");
   buyerContainer.classList.add("buyer-container");
 
   const buyerCheckbox = document.createElement("input");
   buyerCheckbox.type = "checkbox";
-  buyerCheckbox.id = `buyer-${buyerIndex}-item-${itemIndex}`;
-  buyerCheckbox.checked = buyer.selected;
-  buyerCheckbox.onchange = () => toggleBuyerSelection(itemIndex, buyerIndex);
+  buyerCheckbox.id = `buyer-${buyerIndex}-item-${itemIndex}-qty-${quantityIndex}`;
+  buyerCheckbox.checked = buyer.selected[quantityIndex];
+  buyerCheckbox.onchange = () => toggleBuyerSelection(itemIndex, buyerIndex, quantityIndex);
 
   const buyerLabel = document.createElement("label");
   buyerLabel.htmlFor = buyerCheckbox.id;
@@ -397,6 +450,7 @@ const addTax = () => {
   updateTaxAmountDisplay();
   console.log("Tax after update: ", tax);
   updateCostPerBuyerDisplay();
+  updateTotalCostDisplay();
 
   // Clear the input field after submission
   taxAmountInput.value = '';
@@ -432,52 +486,47 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateAndDisplayCosts(); // Call a function to recalculate and display costs
   });
 
-  updateTaxAmountDisplay();
 });
 
 
 //cost per buyer
 const calculateBuyerOwes = () => {
   const splitEvenly = document.getElementById('splitTaxToggle').checked;
-  // Initialize buyer totals with zero values
   const buyerTotals = buyers.map(() => 0);
   let totalCostWithoutTax = 0;
 
-  // Calculate the total cost per item and accumulate total cost without tax
   items.forEach((item) => {
-    const itemTotalBuyers = item.buyers.filter((buyer) => buyer.selected).length;
-    if (itemTotalBuyers === 0) return;
+    for (let i = 0; i < item.quantity; i++) {
+      const selectedBuyers = item.buyers.filter((buyer) => buyer.selected[i]);
+      const itemTotalBuyers = selectedBuyers.length;
+      if (itemTotalBuyers === 0) continue;
 
-    const itemCostPerBuyer = item.price / itemTotalBuyers;
-    item.buyers.forEach((buyer, index) => {
-      if (buyer.selected) {
-        buyerTotals[index] += itemCostPerBuyer;
+      const itemCostPerBuyer = item.price / itemTotalBuyers;
+      selectedBuyers.forEach((buyer) => {
+        const buyerIndex = buyers.findIndex((b) => b.name === buyer.name);
+        buyerTotals[buyerIndex] += itemCostPerBuyer;
         totalCostWithoutTax += itemCostPerBuyer;
-      }
-    });
+      });
+    }
   });
 
-  if (splitEvenly) {
+  if (items.length === 0 && tax > 0) {
     const taxPerBuyer = tax / buyers.length;
     buyerTotals.forEach((_, index) => buyerTotals[index] += taxPerBuyer);
-  }
-  // If no items, split tax evenly among all buyers
-  else if (items.length === 0 && buyers.length > 0) {
+  } else if (splitEvenly) {
     const taxPerBuyer = tax / buyers.length;
     buyerTotals.forEach((_, index) => buyerTotals[index] += taxPerBuyer);
-  } else if (totalCostWithoutTax > 0) { // Only divide tax if there are items
-    // Calculate the proportional tax for each buyer
+  } else if (totalCostWithoutTax > 0) {
     buyers.forEach((buyer, index) => {
-      if (buyerTotals[index] === 0) return; // Skip buyers who didn't buy anything
+      if (buyerTotals[index] === 0) return;
       const buyerProportionalCost = buyerTotals[index] / totalCostWithoutTax;
       const taxContribution = buyerProportionalCost * tax;
-      buyerTotals[index] += taxContribution; // Add the tax contribution to the buyer's total
+      buyerTotals[index] += taxContribution;
     });
   }
 
   return buyerTotals;
 };
-
 
 
 
@@ -512,16 +561,27 @@ function calculateAndDisplayCosts() {
   saveState();
 }
 
-const toggleBuyerSelection = (itemIndex, buyerIndex) => {
-  // Toggle the 'selected' state of the buyer for this item
-  items[itemIndex].buyers[buyerIndex].selected =
-    !items[itemIndex].buyers[buyerIndex].selected;
 
-  updateItemsDisplay(); // Re-render the items display
-  updateCostPerBuyerDisplay(); // Update the cost per buyer display
-  saveState(); // Save the updated state to local storage
-
+const toggleBuyerSelection = (itemIndex, buyerIndex, quantityIndex) => {
+  items[itemIndex].buyers[buyerIndex].selected[quantityIndex] = !items[itemIndex].buyers[buyerIndex].selected[quantityIndex];
+  updateItemsDisplay();
+  updateCostPerBuyerDisplay();
+  updateTotalCostDisplay();
+  saveState();
 };
+
+function calculateTotalCost() {
+  let totalCost = 0;
+  items.forEach(item => {
+    totalCost += item.price * item.quantity;
+  });
+  return totalCost + tax;
+}
+
+function updateTotalCostDisplay() {
+  const totalCostDisplay = document.getElementById("total-cost-display");
+  totalCostDisplay.innerHTML = `<strong>Total Cost:</strong> $${calculateTotalCost().toFixed(2)}`;
+}
 
 
 
@@ -576,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateItemsDisplay();
     updateCostPerBuyerDisplay();
     updateTaxAmountDisplay();
+    updateTotalCostDisplay();
 
     if (savedData.darkMode) {
       document.body.classList.add('dark-mode');
@@ -611,6 +672,7 @@ function clearData() {
   updateItemsDisplay();
   updateCostPerBuyerDisplay();
   updateTaxAmountDisplay();
+  updateTotalCostDisplay();
 
   // Clear input fields
   document.getElementById("receiptName").value = '';

@@ -4,21 +4,16 @@ BUGS:
 
 - none
 
-
 ------------------------------
 TO ADD:
 ------------------------------
 
-- add a column to the far right called Per item
-that has one checkbox (default unchecked). if
-checked change the checkboxes in the buyers row for
-that item to be number inputs (default to even split)
-and have some way to prevent if numbers dont add up
-to total cost
+- make the buyers display in rows not columns
 
+- add label that says receipt name with the receipt
+name and then make it so that the receipt name
+doesn't stay in the input box when submited
 
-- add price totals for all buyers below items for each
-receipt on my receipts page
 
 ------------------------------
 OTHER IDEAS:
