@@ -2,7 +2,8 @@
 BUGS:
 ------------------------------
 
-- none
+- make it so that you can't pause the snake
+game when settings popup is open
 
 ------------------------------
 TO ADD:
@@ -11,6 +12,8 @@ TO ADD:
 - add label that says receipt name with the receipt
 name and then make it so that the receipt name
 doesn't stay in the input box when submited
+
+- move trash icon to be 10px to right
 
 - add tip option
 

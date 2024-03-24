@@ -679,8 +679,8 @@ input[type='number']::-webkit-outer-spin-button {
     color: red;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 5px;
+    top: 12px;
+    left: 10px;
   }
   
   .item-name {
