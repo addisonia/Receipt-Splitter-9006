@@ -781,6 +781,9 @@ input[type='number']::-webkit-outer-spin-button {
     #display-info, #display-titles {
         margin-left: 10;
         margin-right: 10;
+        display: grid;
+        grid-template-columns: 0.7fr 0.7fr 0.4fr 1.2fr;
     }
 }
+
 

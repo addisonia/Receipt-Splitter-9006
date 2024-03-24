@@ -8,19 +8,19 @@ BUGS:
 TO ADD:
 ------------------------------
 
-- make the buyers display in rows not columns
-
 - add label that says receipt name with the receipt
 name and then make it so that the receipt name
 doesn't stay in the input box when submited
 
-- clean up my receipts page
-
 - make dark mode affect my receipts page
+
+- add tip option
 
 ------------------------------
 OTHER IDEAS:
 ------------------------------
+
+- clean up my receipts page
 
 - add game mode Paradise where food covers the entire
 game board, snake increases by 1 for each food
