@@ -5,6 +5,11 @@ BUGS:
 - make it so that you can't pause the snake
 game when settings popup is open
 
+- tax amount isnt showing up with $0.00 by default
+
+- display grid only actually goes away when you 
+clear data
+
 ------------------------------
 TO ADD:
 ------------------------------
@@ -13,9 +18,10 @@ TO ADD:
 name and then make it so that the receipt name
 doesn't stay in the input box when submited
 
-- move trash icon to be 10px to right
-
 - add tip option
+
+- add some sort of margin below the trash icon
+(make rows a min height?)
 
 ------------------------------
 OTHER IDEAS:

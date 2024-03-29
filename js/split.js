@@ -54,17 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       if (document.activeElement === buyerNameInput) {
-        if (window.innerWidth < 750) {
-          taxAmountInput.focus();
-        } else {
-          itemNameInput.focus();
-        }
+        taxAmountInput.focus();
       } else if (document.activeElement === taxAmountInput) {
-        if (window.innerWidth < 750) {
-          itemNameInput.focus();
-        } else {
-          itemPriceInput.focus();
-        }
+        itemNameInput.focus();
       } else if (document.activeElement === itemNameInput) {
         itemPriceInput.focus();
       } else if (document.activeElement === receiptNameInput) {
@@ -716,6 +708,47 @@ function clearData() {
 
 
 
+
+
+//-----------------------------------------------\\
+
+
+// Dynamic screen size adjuster for item/price inputs 
+
+function adjustLabelMargin() {
+  // Only run this adjustment for screens 750px and wider
+  if (window.innerWidth >= 750) {
+      // Define the screen widths and corresponding margin-left values
+      const minWidth = 750;
+      const maxWidth = 3000; // Extended to 3000px
+      const minMargin = 22; // Percentage for 750px width
+      // Adjust maxMargin as needed for 3000px width
+      // This example linearly extrapolates the margin increase, but you may adjust it as needed
+      const maxMargin = 22 + ((36 - 22) / (1500 - 750)) * (3000 - 750);
+
+      // Calculate the current screen width's relative position between minWidth and maxWidth
+      const screenPosition = Math.min((window.innerWidth - minWidth) / (maxWidth - minWidth), 1); // Ensure it doesn't exceed 1
+
+      // Interpolate the margin-left value for the current screen width
+      const currentMargin = minMargin + (maxMargin - minMargin) * screenPosition;
+
+      // Apply the calculated margin-left to the labels
+      document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
+          label.style.marginLeft = `${currentMargin}%`;
+      });
+  } else {
+      // For screens smaller than 750px, reset to default if needed
+      document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
+          label.style.marginLeft = ''; // Resets to the CSS file value
+      });
+  }
+}
+
+// Call the function on initial load
+adjustLabelMargin();
+
+// Add event listener to adjust the margins when the window is resized
+window.addEventListener('resize', adjustLabelMargin);
 
 
 

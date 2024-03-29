@@ -22,7 +22,7 @@
 # 
 ## Keyboard shortcuts:
 - **Down Arrow**: Move downn from receipt name input to buyer input to item name input to price input. When in mobile view, it will go from buyer input to tax input to item name input.
-- **Up Arrow**: Move up from price input to tax input to buyer input to receipt name input. When in mobile view will go from price input to item name input to buyer input.
+- **Up Arrow**: Move up from price input to item name input to tax input to buyer input to receipt name input. 
 - **Tab**: Jump to the next input (cycles from buyers to tax to item to price and then back to buyers).
 - **Enter**: Jump from item name input to price input as long as something has been entered in the item name input.
 # 

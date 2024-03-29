@@ -358,35 +358,31 @@ button:hover {
 /* ---------------------------------------------------------------*/
 
 
-
-.input-region{
-    margin-top: 10px;
+.input-region {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* receipt name */
 #receiptNameForm {
     background-color: var(--light-gray2);
-    padding: 20px;
-    margin-left: 0px;
-    margin-right: 10px;
+    padding: 25px;
     margin-bottom: 10px !important;
     width: 100%; 
-    max-width: 400px; 
-    margin: 0 auto;
 }
-
 
 .row {
     display: flex;
     justify-content: center;
-    align-items: start;
     width: 100%;
-    gap: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /*tax to item inputs gap*/
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* buyers to tax gap*/
 }
 
-
-
+/*item/price box width */
 .input-region > form#itemForm {
     width: 100%;
 }
@@ -396,11 +392,13 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 3px;
+    align-items: center;
 }
 
 .input-region label{
     text-align: center;
     margin-left: 25px;
+    margin-right: 10px;
 }
 
 /* Vertically center buyer and tax labels */
@@ -408,8 +406,7 @@ button:hover {
     display: flex;
     align-items: center;
     margin-right: 2.5px; /* Adjust as necessary */
-  }
-
+}
 
 .input-region button{
     margin-left: 10px;
@@ -418,28 +415,82 @@ button:hover {
 .input-region input[type="text"],
 .input-region input[type="number"] {
     padding: 5px;
+    height: 40px; 
 }
 
 #addBuyerButton {
     display: block;
 }
 
-#buyersForm,
-#taxForm {
-    margin: 0 30px;
+/* Ensure that containers are stacked vertically */
+.item-name-container,
+.item-price-container {
+    display: flex;
+    flex-direction: row;
+    width: 45%; /* Take the full width to contain the label and input */
+    margin: 0; /* Reset margin */
+    align-items: center; /* Aligns items to the start of the flex container */
 }
 
+/* Adjust the labels */
+.item-name-container label,
+.item-price-container label {
+    white-space: nowrap;
+    width: auto; /* Let the width be as wide as the content */
+    margin-left: 0; /* Reset any margin to align with the container start */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+/* Adjust the inputs */
+.item-name-container input,
+.item-price-container input {
+    width: calc(100% - 20px); /* Take full width minus padding for consistency */
+    margin: 0; /* Reset margin to align with the start of the container */
+}
+
+/* Style the button */
+#itemForm button#submitItemButton {
+    width: 100%; /* Button should take the full width of its container */
+    margin-top: 10px; /* Provide some space above the button */
+}
 
 .item-price-container {
     margin-left: 20px;
 }
 
+/* Adjust the form layout to stack elements vertically */
+#itemForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/* colored boxes */
+#itemForm input[type="text"],
+#itemForm input[type="number"] {
+    margin-bottom: 10px; /* Provide space between successive fields */
+}
+
+#itemForm button#submitItemButton {
+    width: 45%; 
+    height: 40px;
+    margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
+    display: block; /* Display block to enable the use of auto margins for centering */
+}
+
+#itemForm .item-name-container,
+#itemForm .item-price-container,
+#itemForm button#submitItemButton {
+    width: 60%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#itemForm button#submitItemButton {
+    height: 40px; 
+}
 
 #buyersForm, #taxForm {
-    width: 100%; /* Set a specific width */
-    max-width: 325px; /* Example max width to prevent overly wide forms on larger screens */
+    width: 100%; 
     margin: 0 auto; /* Center the forms */
 }
 
@@ -461,16 +512,15 @@ button:hover {
     margin-left: 0px;
     margin-right: 10px;
     margin-bottom: 0px;
+    width: 100%; 
 }
-
 
 /* Hide the up and down arrows from the number input */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
-
 
 #total-cost-display {
     text-align: center;
@@ -478,133 +528,71 @@ input[type='number']::-webkit-outer-spin-button {
     margin-top: 10px;
     margin-bottom: 30px;
     transition: margin-bottom 0.3s ease;
-  }
+}
   
-  #total-cost-display.grid-visible {
+#total-cost-display.grid-visible {
     margin-bottom: 0px;
-  }
+}
+
+/* Adjust the form layout to stack elements vertically */
+#itemForm {
+    flex-direction: column; 
+    align-items: center;
+    margin: 0 auto; /* Center the form within the viewport */
+}
+
+#itemForm .item-name-container,
+#itemForm .item-price-container,
+#itemForm button#submitItemButton {
+    width: 60%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#itemForm, #buyersForm, #taxForm, #receiptNameForm {
+    max-width: 400px; 
+}
+
+#itemForm button#submitItemButton {
+    height: 40px; 
+}
 
 
-/* mobile view */
-@media (max-width: 750px) {
-    .row {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+
+
+@media (min-width: 750px) {
+    #receiptNameForm, #buyersForm, #taxForm, #itemForm {
+        width: 100vw;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    .input-region form {
-        align-items: center; /* Center-align the items */
-    }
-
-    /* You might need to adjust the margins if your labels are taking more space */
-    .input-region label {
-        margin-right: 10px; /* Adjust this value so that it matches the other labels */
-    }
-    
-    
-    /* Adjust label alignment with larger input boxes */
-    .input-region label.aligned-label {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        text-align: right;
-        margin-bottom: 2px; 
-    }
-
-    .input-region input[type="text"], 
-    .input-region input[type="number"] {
-        height: 40px; 
-    }
-
-    /* Ensure that containers are stacked vertically */
-    .item-name-container,
-    .item-price-container {
-        display: flex;
-        flex-direction: row;
-        width: 45%; /* Take the full width to contain the label and input */
-        margin: 0; /* Reset margin */
-        align-items: center; /* Aligns items to the start of the flex container */
-    }
-
-    /* Adjust the labels */
     .item-name-container label,
     .item-price-container label {
-        white-space: nowrap;
-        width: auto; /* Let the width be as wide as the content */
-        margin-left: 0; /* Reset any margin to align with the container start */
-        margin-bottom: 5px; /* Space between label and input */
+        width: 50px;
+        margin-left: 36%;
     }
 
-    /* Adjust the inputs */
     .item-name-container input,
     .item-price-container input {
-        width: calc(100% - 20px); /* Take full width minus padding for consistency */
-        margin: 0; /* Reset margin to align with the start of the container */
-    }
-
-    /* Style the button */
-    #itemForm button#submitItemButton {
-        width: 100%; /* Button should take the full width of its container */
-        margin-top: 10px; /* Provide some space above the button */
-    }
-
-
-
-
-    /* Adjust the form layout to stack elements vertically */
-    #itemForm {
-        flex-direction: column; 
-        align-items: center;
-        max-width: 450px; /* Adjust the max-width to match other input forms */
-        margin: 0 auto; /* Center the form within the viewport */
-    }
-
-    #receiptNameForm {
-        margin-bottom: 10px !important;
-    }
-
-    #itemForm input[type="text"],
-    #itemForm input[type="number"] {
-        margin-bottom: 10px; /* Provide space between successive fields */
-    }
-
-    #buyersForm, #taxForm, #receiptNameForm {
-        width: 100%; /* Set a specific width */
-        max-width: 450px; /* Example max width to prevent overly wide forms on larger screens */
-        margin: 0 auto; /* Center the forms */
+        width: 150px;
     }
 
     #itemForm button#submitItemButton {
-        width: 45%; 
-        height: 40px;
-        margin: 10px auto; /* Top and bottom margin is 10px, left and right auto for centering */
-        display: block; /* Display block to enable the use of auto margins for centering */
+        position: absolute;
+        width: 60px;
+        height: 92px;
+        margin-left: 270px;
+        margin-bottom: 20px;
     }
+
 
 }
 
-/* for small small screens */
-@media (max-width: 480px) {
-    #itemForm .item-name-container,
-    #itemForm .item-price-container,
-    #itemForm button#submitItemButton {
-      width: 60%; 
-      margin-left: auto;
-      margin-right: auto;
-    }
 
-    #itemForm, #buyersForm, #taxForm, #receiptNameForm {
-        max-width: 400px; 
-    }
 
-    #itemForm button#submitItemButton {
-        height: 40px; 
-      }
-    
-
-  }
-
+  
 /*-------------------------------------------------------*/
 
 
