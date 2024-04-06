@@ -676,6 +676,16 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
 
+
+@media (min-width: 480px) {
+    .item-name.near-border {
+        padding-left: 35px;
+    }
+}
+
+
+
+
 /* Adds border to the left of the first column in every row of the display grid */
 #display-info .item-row > div:first-child {
     border-left: 2px solid black;
@@ -717,6 +727,12 @@ input[type='number']::-webkit-outer-spin-button {
     overflow-wrap: break-word; /* Ensures words break to prevent overflow */
 }
 
+@media (max-width: 480px) {
+    .item-name{
+        padding-top: 35px; /*height of display rows*/
+    }
+}
+
 .item-row {
     display: contents; /* This lets the children participate in the grid directly */
 }
@@ -732,6 +748,7 @@ input[type='number']::-webkit-outer-spin-button {
   .item-quantity input {
     width: 100%;
     text-align: center;
+    height: 30px;
   }
 
   .item-name,

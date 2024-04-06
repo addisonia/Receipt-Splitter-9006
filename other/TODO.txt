@@ -10,6 +10,8 @@ game when settings popup is open
 - display grid only actually goes away when you 
 clear data
 
+- vertically center buyers boxes
+
 ------------------------------
 TO ADD:
 ------------------------------

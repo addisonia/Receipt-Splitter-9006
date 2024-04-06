@@ -272,6 +272,8 @@ const submitItem = () => {
         itemNameInput.focus(); // Focus back to the item name input
         updateCostPerBuyerDisplay();
         updateTotalCostDisplay();
+        assessAndAdjustItemNames();
+        
         saveState(); // Assuming there's a function to save the state
       } 
       // If the evaluation or input is invalid, the function simply exits without action
@@ -388,6 +390,9 @@ const updateItemsDisplay = () => {
           updateItemsDisplay();
           updateCostPerBuyerDisplay();
           updateTotalCostDisplay();
+          updateItemNameDisplay();
+          assessAndAdjustItemNames();
+          
           saveState();
         }
       });
@@ -425,6 +430,8 @@ const deleteItem = (itemIndex) => {
   updateItemsDisplay();
   updateCostPerBuyerDisplay();
   updateTotalCostDisplay();
+  assessAndAdjustItemNames();
+  
   saveState();
 };
 
@@ -589,6 +596,7 @@ const toggleBuyerSelection = (itemIndex, buyerIndex, quantityIndex) => {
   updateItemsDisplay();
   updateCostPerBuyerDisplay();
   updateTotalCostDisplay();
+
   saveState();
 };
 
@@ -660,6 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTaxAmountDisplay();
     updateTotalCostDisplay();
 
+
     if (savedData.darkMode) {
       document.body.classList.add('dark-mode');
       document.getElementById('darkModeStylesheet').disabled = false;
@@ -696,6 +705,7 @@ function clearData() {
   updateTaxAmountDisplay();
   updateTotalCostDisplay();
 
+
   // Clear input fields
   document.getElementById("receiptName").value = '';
   document.getElementById("buyerName").value = '';
@@ -716,33 +726,40 @@ function clearData() {
 // Dynamic screen size adjuster for item/price inputs 
 
 function adjustLabelMargin() {
-  // Only run this adjustment for screens 750px and wider
   if (window.innerWidth >= 750) {
-      // Define the screen widths and corresponding margin-left values
       const minWidth = 750;
-      const maxWidth = 3000; // Extended to 3000px
-      const minMargin = 22; // Percentage for 750px width
-      // Adjust maxMargin as needed for 3000px width
-      // This example linearly extrapolates the margin increase, but you may adjust it as needed
-      const maxMargin = 22 + ((36 - 22) / (1500 - 750)) * (3000 - 750);
+      const maxWidth = 1500; // Use 1500px as the cutoff for increasing margin
+      const minMargin = 22; // Minimum margin percentage for 750px width
+      const maxMargin = 36; // Adjusted maximum margin percentage for 1500px width
 
-      // Calculate the current screen width's relative position between minWidth and maxWidth
-      const screenPosition = Math.min((window.innerWidth - minWidth) / (maxWidth - minWidth), 1); // Ensure it doesn't exceed 1
+      let currentMargin;
 
-      // Interpolate the margin-left value for the current screen width
-      const currentMargin = minMargin + (maxMargin - minMargin) * screenPosition;
+      if (window.innerWidth <= maxWidth) {
+          // Calculate the current screen width's relative position between minWidth and maxWidth
+          const screenPosition = (window.innerWidth - minWidth) / (maxWidth - minWidth);
+          // Interpolate the margin-left value for the current screen width
+          currentMargin = minMargin + (maxMargin - minMargin) * screenPosition;
+      } else {
+          // For screens wider than 1500px, use the maxMargin
+          currentMargin = maxMargin;
+      }
 
-      // Apply the calculated margin-left to the labels
+      // Apply the calculated or maximum margin-left to the labels
       document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
           label.style.marginLeft = `${currentMargin}%`;
       });
   } else {
-      // For screens smaller than 750px, reset to default if needed
+      // For screens smaller than 750px, reset the margin-left to default
       document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
-          label.style.marginLeft = ''; // Resets to the CSS file value
+          label.style.marginLeft = ''; // Resets to default or CSS value
       });
   }
 }
+
+// Call the function on initial load and whenever the window is resized
+adjustLabelMargin();
+window.addEventListener('resize', adjustLabelMargin);
+
 
 // Call the function on initial load
 adjustLabelMargin();
@@ -754,4 +771,59 @@ window.addEventListener('resize', adjustLabelMargin);
 
 
 
+// Display grid item name text wrapping and padding function
+const assessAndAdjustItemNames = () => {
+  const itemNames = document.querySelectorAll('.item-name');
+
+  itemNames.forEach((item) => {
+      const itemStyle = window.getComputedStyle(item);
+      const fontSize = parseFloat(itemStyle.fontSize);
+      const textContent = item.textContent;
+      const itemTextWidth = calculateTextWidth(textContent, fontSize);
+
+      console.log('Item name text width:', itemTextWidth);
+
+      const itemRect = item.getBoundingClientRect();
+      console.log('Item name container width:', itemRect.width);
+      console.log('Item name container right edge:', itemRect.right);
+
+      const container = item.closest('.item-row'); // Adjust the class name if needed
+      if (container) {
+          const containerRect = container.getBoundingClientRect();
+          console.log('Container width:', containerRect.width);
+          console.log('Container right edge:', containerRect.right);
+
+          const threshold = 70;
+          const distanceFromRight = containerRect.right - itemRect.right;
+          console.log('Distance from right edge:', distanceFromRight);
+
+          if (itemTextWidth >= itemRect.width - threshold) {
+              item.classList.add('near-border');
+              console.log('Added near-border class');
+          } else {
+              item.classList.remove('near-border');
+              console.log('Removed near-border class');
+          }
+      } else {
+          console.log('Container not found');
+          item.classList.remove('near-border');
+      }
+
+      console.log('---');
+  });
+};
+
+// Helper function to calculate the width of text based on font size
+const calculateTextWidth = (text, fontSize) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = `${fontSize}px Arial`; // Adjust the font family if needed
+    const metrics = context.measureText(text);
+    return metrics.width;
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  assessAndAdjustItemNames(); // Call on initial load
+  window.addEventListener('resize', assessAndAdjustItemNames); // Adjust on window resize
+});
 
