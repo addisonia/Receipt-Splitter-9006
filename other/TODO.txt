@@ -22,9 +22,6 @@ doesn't stay in the input box when submited
 
 - add tip option
 
-- add some sort of margin below the trash icon
-(make rows a min height?)
-
 ------------------------------
 OTHER IDEAS:
 ------------------------------

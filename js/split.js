@@ -431,7 +431,7 @@ const deleteItem = (itemIndex) => {
   updateCostPerBuyerDisplay();
   updateTotalCostDisplay();
   assessAndAdjustItemNames();
-  
+
   saveState();
 };
 
@@ -726,35 +726,46 @@ function clearData() {
 // Dynamic screen size adjuster for item/price inputs 
 
 function adjustLabelMargin() {
-  if (window.innerWidth >= 750) {
-      const minWidth = 750;
-      const maxWidth = 1500; // Use 1500px as the cutoff for increasing margin
-      const minMargin = 22; // Minimum margin percentage for 750px width
-      const maxMargin = 36; // Adjusted maximum margin percentage for 1500px width
+  const screenWidth = window.innerWidth;
+  if (screenWidth >= 750) {
+    const minWidth = 750;
+    const firstTargetWidth = 1500; // First target width for specific margin adjustment
+    const secondTargetWidth = 2571; // Second target width for another specific margin adjustment
+    const maxWidth = 5142;
+    const minMargin = 22;
+    const firstTargetMargin = 36; // Target margin for 1500px width
+    const secondTargetMargin = 41.5; // Target margin for 2571px width
+    const maxMargin = 45.5;
 
-      let currentMargin;
+    let currentMargin;
 
-      if (window.innerWidth <= maxWidth) {
-          // Calculate the current screen width's relative position between minWidth and maxWidth
-          const screenPosition = (window.innerWidth - minWidth) / (maxWidth - minWidth);
-          // Interpolate the margin-left value for the current screen width
-          currentMargin = minMargin + (maxMargin - minMargin) * screenPosition;
-      } else {
-          // For screens wider than 1500px, use the maxMargin
-          currentMargin = maxMargin;
-      }
+    if (screenWidth <= firstTargetWidth) {
+      // Linear interpolation between minWidth and firstTargetWidth
+      currentMargin = minMargin + (firstTargetMargin - minMargin) * (screenWidth - minWidth) / (firstTargetWidth - minWidth);
+    } else if (screenWidth <= secondTargetWidth) {
+      // Linear interpolation between firstTargetWidth and secondTargetWidth
+      currentMargin = firstTargetMargin + (secondTargetMargin - firstTargetMargin) * (screenWidth - firstTargetWidth) / (secondTargetWidth - firstTargetWidth);
+    } else if (screenWidth <= maxWidth) {
+      // Linear interpolation between secondTargetWidth and maxWidth
+      currentMargin = secondTargetMargin + (maxMargin - secondTargetMargin) * (screenWidth - secondTargetWidth) / (maxWidth - secondTargetWidth);
+    } else {
+      // For screens wider than maxWidth, use the maxMargin
+      currentMargin = maxMargin;
+    }
 
-      // Apply the calculated or maximum margin-left to the labels
-      document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
-          label.style.marginLeft = `${currentMargin}%`;
-      });
+    // Apply the calculated margin-left to the labels
+    document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
+        label.style.marginLeft = `${currentMargin}%`;
+    });
   } else {
-      // For screens smaller than 750px, reset the margin-left to default
-      document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
-          label.style.marginLeft = ''; // Resets to default or CSS value
-      });
+    // For screens smaller than 750px, reset the margin-left to default
+    document.querySelectorAll('.item-name-container label, .item-price-container label').forEach(label => {
+        label.style.marginLeft = ''; // Resets to default or CSS value
+    });
   }
 }
+
+
 
 // Call the function on initial load and whenever the window is resized
 adjustLabelMargin();
