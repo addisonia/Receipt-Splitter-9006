@@ -5,12 +5,15 @@ BUGS:
 - make it so that you can't pause the snake
 game when settings popup is open
 
+- align input boxes on left side and make them the
+same width
+
 - tax amount isnt showing up with $0.00 by default
 
 - display grid only actually goes away when you 
 clear data
 
-- vertically center buyers boxes
+- vertically center buyers boxes only when Qty = 1
 
 ------------------------------
 TO ADD:
@@ -28,7 +31,7 @@ OTHER IDEAS:
 
 - clean up my receipts page
 
-- add safety mode in settings that gives you a waring before
+- add safety mode in settings that gives you a warning before
 delting items
 
 - add github, linkedin, email icon/links at bottom of about page
@@ -60,22 +63,12 @@ instead of just google sign in
 
 - download button on My Receipts page to download data as csv
 
-Machine learning related ideas:
-- dont tax food items
-(maybe put "tax" in front of the item)
-(machine learning food or not food model??)
-- vegan option
-(type VEGAN at end of buyer name to auto uncheck non 
-vegan items)
-
 
 
 - for snake game, replace snake pixel with Receipt
 png 📜 and add bent receipts for when the snake turns
 - use coins or moneybag png for snake food
 
-
-- weighted items option?
 
 - allow users to import past receipts directly
 into display grid
